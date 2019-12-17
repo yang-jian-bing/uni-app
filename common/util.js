@@ -65,9 +65,13 @@ var dateUtils = {
 		return new Date(a[0], a[1] - 1, a[2], a[3], a[4], a[5]);
 	}
 };
+function timerZero(date) {
+  return /\d{4}-\d{2}-\d{2}/.exec(date) ? /\d{4}-\d{2}-\d{2}/.exec(date)[0] : '无'
+}
 
 module.exports = {
 	formatTime: formatTime,
 	formatLocation: formatLocation,
-	dateUtils: dateUtils
+	dateUtils: dateUtils,
+	timerZero
 }
