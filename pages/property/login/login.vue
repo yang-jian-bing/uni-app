@@ -2,7 +2,7 @@
 	<view>
 		<view class="top">
             <view class="topImg-t">
-                <img class="teachtopImg" src="../../../static/property/logo.png" alt="" />
+                <image class="teachtopImg" src="../../../static/property/logo.png" alt="" />
             </view>
             <view class="loginBox">
                 <span>用户名</span>

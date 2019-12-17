@@ -4,7 +4,7 @@
             <view class="actMid myBorder">
                 <span class="invmidWz">创业大赛A座</span>
                 <view class="topmid diff">
-                    <img class='seleRight' src="../../../static/property/logo.png" alt="">
+                    <image class='seleRight' src="../../../static/property/logo.png" alt="">
                 </view>
             </view>
             <view class="line"></view>

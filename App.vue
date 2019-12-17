@@ -91,7 +91,7 @@
 /* page{
 	background: #eeeeee;
 } */
-.top img {
+.top image {
     max-width: 100% !important;
     /* height: auto; */
     background-size: cover;
@@ -160,7 +160,7 @@ li {
     font-size: 17px;
 }
 
-.search img {
+.search image {
     width: 21px !important;
     height: 21px !important;
     position: absolute;

@@ -37,7 +37,7 @@
             <view class="line"></view>
             <view class='cost-mg'>
                 去缴费
-                <img class='resmoreImg' src="../../../static/property/moreright.png" alt="">
+                <image class='resmoreImg' src="../../../static/property/moreright.png" alt="">
             </view>
         </view>
 	</view>
