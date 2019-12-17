@@ -1,9 +1,15 @@
 import minRequest from "./minRequest";
 export default {
     // 这里统一管理api请求
-    uniapp(data) {
+    userRecord(data) {                      //客户档案
         return minRequest.get(
             "/api/propertyManage/customerFiles/queryList",
+            data
+        );
+    },
+    contractList(data) {                      //合同列表
+        return minRequest.get(
+            "/api/propertyManage/contractInfo/queryList",
             data
         );
     },
