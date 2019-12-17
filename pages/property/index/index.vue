@@ -23,6 +23,8 @@
 </template>
 
 <script>
+    import base from '@/common/app-base.js'
+
 	export default {
 		data() {
 			return {
@@ -33,10 +35,8 @@
 
 		},
 		methods: {
-			open(page){
-				uni.navigateTo({
-				url: '../'+page,
-				})
+			open(url){
+				base.openPage(url);
 			}
 		}
 	}
