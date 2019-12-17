@@ -2,7 +2,7 @@
 	<view>
 		<view class="top">
             <view class="search mui-input-row">
-                <img src="../../../../static/property/search.png" />
+                <img src="../../../static/property/search.png" />
                 <input type="text" class="mui-input-clear" placeholder="搜索">
             </view>
 

@@ -2,7 +2,7 @@
 	<view>
 		<view class="top">
 		    <view class="search mui-input-row">
-		        <img src="../../../../static/property/search.png" />
+		        <img src="../../../static/property/search.png" />
 		        <input type="text" class="mui-input-clear" placeholder="搜索">
 		    </view>
 		
@@ -15,7 +15,7 @@
 		            	    <span class="invmidWz">2019/11/12 10:23</span>
 		            	</view>
 		            	 <div class='infotit serwz'>
-		            	    <img class='no-width' src="../../../../static/property/No.png" alt="">
+		            	    <img class='no-width' src="../../../static/property/No.png" alt="">
 		            	    13243456765
 		            	</div>
 		            </view>
@@ -38,7 +38,7 @@
 						    <span class="invmidWz">2019/11/12 10:23</span>
 						</view>
 						 <div class='infotit serwz'>
-						    <img class='no-width' src="../../../../static/property/No.png" alt="">
+						    <img class='no-width' src="../../../static/property/No.png" alt="">
 						    13243456765
 						</div>
 					</view>
