@@ -18,7 +18,7 @@
                         </view>
                         <view class="label projectBox flex-end">
                             <text href="">编辑</text>
-                            <text>删除</text>
+                            <text @tap="deleteHandle(item)">删除</text>
                         </view>
                     </view>
                 </view>
@@ -35,9 +35,7 @@
     import {
         timerZero
     } from '@/common/util.js';
-    import {
-        getHandle
-    } from '@/common/api.js'
+    import {getHandle,postHandle} from '@/common/api.js'
     import uniLoadMore from '@/components/uni-load-more/uni-load-more.vue'
     export default {
         data() {
@@ -54,7 +52,7 @@
         components: {
             uniLoadMore
         },
-        onLoad() {
+        onLoad() {  
             this.init()
         },
         onReachBottom() {
@@ -65,6 +63,11 @@
         methods: {
             init() {
                 getHandle('/api/propertyManage/facilitiesMaintenance/queryList', this.obj).then(data => {
+                        uni.showToast({
+                            title: '请求成功',
+                            icon: 'success',
+                            mask: true
+                        });
                     const list = data[1].data.body
                     const totalNum = list.totalNum
                     for (let s of list.data) {
@@ -77,6 +80,15 @@
                     } else {
                         this.obj.page++
                     }
+                })
+            },
+            deleteHandle(item){
+                postHandle('/api/propertyManage/facilitiesMaintenance/delete',{id:item.id}).then(data=>{
+                    this.list.splice(this.list.indexOf(item),1)
+                    uni.showModal({
+                        content: '删除成功',
+                        showCancel: false
+                    });
                 })
             }
         }

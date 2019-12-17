@@ -5,11 +5,6 @@ function getHandle(url, data) {
             url: requestUrl + url,
             data
         }).then(res => {
-            uni.showToast({
-                title: '请求成功',
-                icon: 'success',
-                mask: true
-            });
             resolve(res)
         }).catch(err => {
             console.log('request fail', err);
@@ -21,6 +16,24 @@ function getHandle(url, data) {
         });
     })
 }
-export {
-    getHandle
+function postHandle(url, data) {
+    return new Promise((resolve, reject) => {
+        uni.request({
+            url: requestUrl + url,
+            data,
+			method:'POST'
+        }).then(res => {
+            resolve(res)
+        }).catch(err => {
+            console.log('request fail', err);
+            uni.showModal({
+                content: err.errMsg,
+                showCancel: false
+            });
+            reject(res)
+        });
+    })
+}
+module.exports =  {
+    getHandle,postHandle
 }
