@@ -3,7 +3,7 @@
 		<view class="top">
             <view class="list dasanMargin">
                 <view class="serindWid">
-					<div class="myTit1">基本信息</div>
+					<view class="myTit1">基本信息</view>
                     <view class="topmid diff myPadtop">
                         <span class="topwz resMin">所属园区</span>
                         <span class="invmidWz">创业大厦</span>
@@ -12,16 +12,81 @@
                         <span class="topwz resMin">所在地点</span>
                         <span class="invmidWz">A座101</span>
                     </view>
-					<div class="myTit1">使用情况</div>
 					<view class="topmid diff myPadtop">
-					    <span class="topwz resMin">所属园区</span>
+					    <span class="topwz resMin">设施名称</span>
+					    <span class="invmidWz">A座101</span>
+					</view>
+					<view class="topmid diff myPadtop">
+					    <span class="topwz resMin">设施类型</span>
+					    <span class="invmidWz">A座101</span>
+					</view>
+					<view class="topmid diff myPadtop">
+					    <span class="topwz resMin">设施编码</span>
+					    <span class="invmidWz">A座101</span>
+					</view>
+					<view class="topmid diff myPadtop">
+					    <span class="topwz resMin">设施规格</span>
+					    <span class="invmidWz">A座101</span>
+					</view>
+					<view class="topmid diff myPadtop">
+					    <span class="topwz resMin">设施状态</span>
+					    <span class="invmidWz">A座101</span>
+					</view>
+					<view class="myTit1">使用情况</view>
+					<view class="topmid diff myPadtop">
+					    <span class="topwz resMin">安装日期</span>
 					    <span class="invmidWz">创业大厦</span>
 					</view>
 					<view class="topmid diff myPadtop">
-					    <span class="topwz resMin">所在地点</span>
+					    <span class="topwz resMin">报废日期</span>
 					    <span class="invmidWz">A座101</span>
 					</view>
-                   
+					<view class="topmid diff myPadtop">
+					    <span class="topwz resMin">使用年限</span>
+					    <span class="invmidWz">A座101</span>
+					</view>
+					<view class="topmid diff myPadtop">
+					    <span class="topwz resMin">已用时长</span>
+					    <span class="invmidWz">A座101</span>
+					</view>
+					<view class="topmid diff myPadtop">
+					    <span class="topwz resMin">维修次数</span>
+					    <span class="invmidWz">A座101</span>
+					</view>
+					<view class="topmid diff myPadtop">
+					    <span class="topwz resMin">保养次数</span>
+					    <span class="invmidWz">A座101</span>
+					</view>
+                   <view class="myTit1">维保单位</view>
+                   <view class="topmid diff myPadtop">
+                       <span class="topwz resMin">维保单位</span>
+                       <span class="invmidWz">创业大厦</span>
+                   </view>
+                   <view class="topmid diff myPadtop">
+                       <span class="topwz resMin">维保单位电话</span>
+                       <span class="invmidWz">A座101</span>
+                   </view>
+				    <view class="topmid diff myPadtop">
+				       <span class="topwz resMin">维保单位地址</span>
+				       <span class="invmidWz">A座101</span>
+				   </view>
+				   <view class="topmid diff myPadtop">
+				       <span class="topwz resMin">设施维保人员</span>
+				       <span class="invmidWz">A座101</span>
+				   </view>
+				    <view class="topmid diff myPadtop">
+				       <span class="topwz resMin">生产厂家</span>
+				       <span class="invmidWz">A座101</span>
+				   </view>
+				   
+				   <view class="topmid diff myPadtop">
+				       <span class="topwz resMin">厂家地址</span>
+				       <span class="invmidWz">A座101</span>
+				   </view>
+				   <view class="topmid diff myPadtop">
+				       <span class="topwz resMin">备注</span>
+				       <span class="invmidWz">A座101</span>
+				   </view>
                 </view>
             </view>
 
