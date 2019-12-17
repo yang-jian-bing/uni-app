@@ -1,3 +1,4 @@
+import common from "./common";
 import yangjianbing from "./yangjianbing";
 import zhanghaiqi from "./zhanghaiqi";
 import mengguodong from "./mengguodong";
@@ -6,6 +7,7 @@ import lihao from "./lihao";
 
 let object = Object.assign(
     {},
+    common,
     yangjianbing,
     zhanghaiqi,
     mengguodong,
