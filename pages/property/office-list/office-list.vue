@@ -91,7 +91,7 @@ export default {
     }).catch(err => {
       console.log(err)
     })
-    this.$minApi.post1({ id: '617e3401-86ce-429f-ae8c-c028734b60b1' }).then(res => {
+    this.$minApi.post1({ id: '6196215c-f4d7-446c-9646-f03c7f7b3db5' }).then(res => {
       this.res = res
       console.log(res)
     }).catch(err => {
