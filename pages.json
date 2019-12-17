@@ -113,6 +113,30 @@
 				 "navigationBarTitleText": "办公室详情"
 			}
 		},
+		{
+            "path" : "pages/property/resource-meetingroom-details/resource-meetingroom-details",
+            "style" : {
+				"navigationBarTitleText": "资源管理会议室详情"
+			}
+        },
+		{
+		    "path" : "pages/property/add-facilities-maintain1/add-facilities-maintain1",
+		    "style" : {
+				"navigationBarTitleText": "新增维修记录"
+			}
+		},
+		{
+		    "path" : "pages/property/add-facilities-maintain2/add-facilities-maintain2",
+		    "style" : {
+				"navigationBarTitleText": "新增保养记录"
+			}
+		},
+		{
+		    "path" : "pages/property/facilities-details/facilities-details",
+		    "style" : {
+				"navigationBarTitleText": "设施详情"
+			}
+		},
         // pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
         {
             "path": "pages/tabBar/component/component",

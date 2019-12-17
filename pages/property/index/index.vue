@@ -19,6 +19,13 @@
 			<button @click="open('payment-records/payment-records')">缴费记录</button>
 			<button @click="open('daily-charge/daily-charge')">日常收费</button>
 			<button @click="open('office-details/office-details')">办公室详情</button>
+			<button @click="open('resource-meetingroom-details/resource-meetingroom-details')">资源管理会议室详情</button>
+			
+			<button @click="open('add-facilities-maintain1/add-facilities-maintain1')">新增维修记录</button>
+			<button @click="open('add-facilities-maintain2/add-facilities-maintain2')">新增保养记录</button>
+			<button @click="open('resource-meetingroom-details/resource-meetingroom-details')">新增设施</button>
+			<button @click="open('facilities-details/facilities-details')">设施详情</button>
+			
         </view>
 	</view>
 </template>

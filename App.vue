@@ -395,4 +395,18 @@ li {
     -webkit-line-clamp: 1;
 }
 
+/* textarea样式 */
+.uni-textarea-wrapper{
+	margin-left:20px;
+}
+.myBorder uni-textarea[data-v-6879ed40] {
+    height: 45px;
+}
+/* 单选按钮 */
+.top uni-radio .uni-radio-input {
+    width: 16px !important;
+    height: 16px !important;
+    margin-left: 5px !important;
+}
+
 </style>
