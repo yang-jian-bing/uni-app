@@ -1,13 +1,14 @@
 import minRequest from "./minRequest";
 export default {
     // 这里统一管理api请求
-    uniapp(data) {
+    // 设被维修
+    RepairList(data) {
         return minRequest.get(
-            "/api/propertyManage/customerFiles/queryList",
+            "/api/propertyManage/facilitiesMaintenance/queryList",
             data
         );
     },
-    post1(data) {
+    RepairDelete(data) {
         return minRequest.post(
             "/api/propertyManage/facilitiesMaintenance/delete",
             data

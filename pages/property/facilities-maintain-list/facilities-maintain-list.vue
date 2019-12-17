@@ -2,8 +2,7 @@
     <view>
         <view class="top">
             <view class="search mui-input-row">
-                <image src="../../../static/property/search.png" />
-                <input type="text" class="mui-input-clear" placeholder="搜索">
+                <uni-search-bar radius="100" placeholder="请输入" @confirm="onSearch" style="80%"/>
             </view>
             <view v-for="(item,index) in list" :key="index">
                 <view class="joiList">
@@ -32,10 +31,11 @@
 </template>
 
 <script>
+    import uniSearchBar from '@/components/uni-search-bar/uni-search-bar.vue'
+    import uniSection from '@/components/uni-section/uni-section.vue'
     import {
         timerZero
     } from '@/common/util.js';
-    import {getHandle,postHandle} from '@/common/api.js'
     import uniLoadMore from '@/components/uni-load-more/uni-load-more.vue'
     export default {
         data() {
@@ -46,29 +46,29 @@
                     limit: 3,
                     page: 1
                 },
-                status:'more'
+                status: 'more'
             };
         },
         components: {
-            uniLoadMore
+            uniLoadMore,
+            uniSearchBar,
+            uniSection
         },
-        onLoad() {  
+        onLoad() {
             this.init()
         },
         onReachBottom() {
-            if (this.status==='more') {
+            if (this.status === 'more') {
                 this.init()
             }
         },
+        onNavigationBarSearchInputConfirmed(val) {
+            alert(val, 123)
+        },
         methods: {
             init() {
-                getHandle('/api/propertyManage/facilitiesMaintenance/queryList', this.obj).then(data => {
-                        uni.showToast({
-                            title: '请求成功',
-                            icon: 'success',
-                            mask: true
-                        });
-                    const list = data[1].data.body
+                this.$minApi.RepairList(this.obj).then(data => {
+                    const list = data.body
                     const totalNum = list.totalNum
                     for (let s of list.data) {
                         s.repairDate = timerZero(s.repairDate)
@@ -82,20 +82,24 @@
                     }
                 })
             },
-            deleteHandle(item){
-                postHandle('/api/propertyManage/facilitiesMaintenance/delete',{id:item.id}).then(data=>{
-                    this.list.splice(this.list.indexOf(item),1)
+            deleteHandle(item) {
+                this.$minApi.RepairDelete({
+                    id: item.id
+                }).then(data => {
+                    this.list.splice(this.list.indexOf(item), 1)
                     uni.showModal({
                         content: '删除成功',
                         showCancel: false
                     });
                 })
+            },
+            onSearch(val) {
+                console.log(val)
             }
         }
     }
 </script>
 
-<style>
-
+<style scoped>
 
 </style>
