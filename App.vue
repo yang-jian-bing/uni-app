@@ -252,6 +252,7 @@ li {
 .joiList {
     padding: 17px 15px 9px;
     display: flex;
+    border-top:10px solid #eee;
 }
 
 .serBox {
