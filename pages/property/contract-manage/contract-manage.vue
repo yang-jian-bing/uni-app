@@ -3,7 +3,7 @@
 		<view class="top">
             <view class="joiList">
                 <view class="serBox serindWid">
-                    <view class="propFlex serDrop">
+                    <view class="propFlex">
                         <p class="comWaiting">执行中</p>
                     </view>
                     <span class="actWz proFont">合同标题</span>
@@ -17,7 +17,7 @@
             <view class="line"></view>
             <view class="joiList">
                     <view class="serBox serindWid">
-                        <view class="propFlex serDrop">
+                        <view class="propFlex">
                             <p class="comWaiting">已终止</p>
                         </view>
                         <span class="actWz proFont">合同标题</span>
