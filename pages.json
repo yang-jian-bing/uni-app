@@ -1,20 +1,16 @@
 {
     "pages": [
-
-
         //物业
-
-
+		 {
+		    "path": "pages/property/index/index",
+		    "style": {
+		        "navigationBarTitleText": "首页"
+		    }
+		},
         {
             "path": "pages/property/facilities-maintain-details/facilities-maintain-details",
             "style": {
                 "navigationBarTitleText": "设施维修详情"
-            }
-        },
-        {
-            "path": "pages/property/index/index",
-            "style": {
-                "navigationBarTitleText": "uni-app"
             }
         },
         {
