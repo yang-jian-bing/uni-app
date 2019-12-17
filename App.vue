@@ -368,6 +368,17 @@ li {
     position: fixed;
     bottom: 0;
 }
+/* no图片 */
+.no-width {
+    width: 20px;
+    height: 10px;
+    margin-right: 3px;
+}
+.serwz {
+    font-size: 14px;
+    color: #898989;
+    line-height: 25px;
+}
 /* 省略号 */
 .elli {
     display: -webkit-box;

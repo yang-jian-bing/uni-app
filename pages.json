@@ -107,6 +107,12 @@
 				 "navigationBarTitleText": "日常收费"
 			}
 		},
+		{
+		    "path" : "pages/property/office-details/office-details",
+		    "style" : {
+				 "navigationBarTitleText": "办公室详情"
+			}
+		},
         // pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
         {
             "path": "pages/tabBar/component/component",

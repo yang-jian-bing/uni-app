@@ -18,6 +18,7 @@
 			<button @click="open('meetingroom-list/meetingroom-list')">会议室预定列表</button>
 			<button @click="open('payment-records/payment-records')">缴费记录</button>
 			<button @click="open('daily-charge/daily-charge')">日常收费</button>
+			<button @click="open('office-details/office-details')">办公室详情</button>
         </view>
 	</view>
 </template>
