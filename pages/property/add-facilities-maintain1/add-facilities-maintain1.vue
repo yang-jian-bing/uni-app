@@ -1,131 +1,127 @@
 <template>
-	<view>
-		  <div class="top cansaiBox">
-            <div class="actMid myBorder">
-                <span class="invmidWz">维修人员</span>
-                <div class="topmid diff">
-                    <div class="topmid diff">
-                        <input placeholder="请输入维修人员" />
-                    </div>
-                </div>
-            </div>
-            <div class="actMid myBorder">
-                <span class="invmidWz">维修费用</span>
-                <div class="topmid diff">
-                    <div class="topmid diff">
-                        <input placeholder="请输入维修费用" />
-                    </div>
-                </div>
-            </div>
-            <div class="actMid myBorder">
-                <span class="invmidWz">维修项目</span>
-                <div class="topmid diff">
-                    <div class="topmid diff">
-                        <input placeholder="请输入维修项目" />
-                    </div>
-                </div>
-            </div>
-            <div class="actMid myBorder">
-                <span class="invmidWz">维修工时</span>
-                <div class="topmid diff">
-                    <div class="topmid diff">
-                        <input placeholder="请输入维修工时" />
-                    </div>
-                </div>
-            </div>
-            <div class="actMid myBorder">
-                <span class="invmidWz">维修日期</span>
-                <div class="topmid diff">
-                    <div class="topmid diff showUserPicker" id="showUserPicker">
-                        <input placeholder="请选择维修日期" />
-                    </div>
-                </div>
-            </div>
-            
-            <div class="myBorder">
-                <span class="invmidWz">故障情况</span>
-                <textarea class="projectBox invmidWz" cols="50" rows="3" placeholder="请输入故障情况"></textarea>
-            </div>
-			<div class="myBorder">
-			    <span class="invmidWz">处理情况</span>
-			    <textarea class="projectBox invmidWz" cols="50" rows="3" placeholder="请输入处理情况"></textarea>
-			</div>
-        </div>
-        <!-- 底部 -->
-        <div class="serBuy ansPos serindWid">
-            提交
-        </div>
-	</view>
+    <view>
+        <view class="uni-padding-wrap uni-common-mt">
+            <form @submit="formSubmit" @reset="formReset">
+                <view class="uni-form-item uni-column">
+                    <view class="title">维修时间(必填)</view>
+                    <input ref="scanTextbox" class="uni-input" v-model="date" name="repairDate" @focus="open" />
+                    <!-- <view class="example-body">
+                        <button class="calendar-button" type="button" @click="open">打开日历</button>
+                    </view> -->
+                    <uni-calendar ref="calendar" :date="info.date" :insert="info.insert" :lunar="info.lunar" :startDate="info.startDate"
+                        :endDate="info.endDate" :range="info.range" @confirm="confirm" />
+                </view>
+                <view class="uni-form-item uni-column">
+                    <view class="title">维修人员(必填)</view>
+                    <input class="uni-input" name="repairPersion" placeholder="请输入姓名" />
+                </view>
+                <view class="uni-form-item uni-column">
+                    <view class="title">维修费用(必填)</view>
+                    <input class="uni-input" name="repairPrice" placeholder="请输入维修费用" />
+                </view>
+                <view class="uni-form-item uni-column">
+                    <view class="title">维修项目(必填)</view>
+                    <input class="uni-input" name="repairProject" placeholder="请输入项目" />
+                </view>
+                <view class="uni-form-item uni-column">
+                    <view class="title">维修工时(必填)</view>
+                    <input class="uni-input" name="repairTime" placeholder="请输入维修工时" />
+                </view>
+                <view class="uni-btn-v">
+                    <button form-type="submit">提交</button>
+                    <button type="default" form-type="reset">重置</button>
+                </view>
+            </form>
+        </view>
+    </view>
 </template>
-
 <script>
-	export default {
-		data() {
-			return {
-				
-			};
-		}
-	}
+    var graceChecker = require("../../../common/graceChecker.js");
+    import uniCalendar from '@/components/uni-calendar/uni-calendar.vue'
+    import {
+        nowDate
+    } from "@/common/util.js"
+    export default {
+        data() {
+            return {
+                info: {
+                    date: nowDate(),
+                    lunar: true,
+                    range: true,
+                    insert: false,
+                    selected: []
+                },
+                date: ''
+            }
+        },
+        components: {
+            uniCalendar
+        },
+        methods: {
+            open() {
+                this.$refs.scanTextbox.setAttribute('readonly', 'readonly');
+                setTimeout(() => {
+                    this.$refs.scanTextbox.removeAttribute('readonly');
+                    this.$refs.calendar.open()
+                }, 200);
+            },
+            formSubmit: function(e) {
+                console.log('form发生了submit事件，携带数据为：' + JSON.stringify(e.detail.value))
+                //定义表单规则
+                var rule = [{
+                        name: "repairDate",
+                        checkType: "date",
+                        errorMsg: "请选择时间或者确定时间格式(YYYY-MM-DD)"
+                    },
+                    {
+                        name: "repairPersion",
+                        checkType: "notnull",
+                        errorMsg: "请输入姓名"
+                    },
+                    {
+                        name: "repairPrice",
+                        checkType: "float",
+                        errorMsg: "请输入价格(允许保留两位小数点)"
+                    },
+                    {
+                        name: "repairTime",
+                        checkType: "notnull",
+                        errorMsg: "请输入工时"
+                    },
+                    {
+                        name: "repairProject",
+                        checkType: "notnull",
+                        errorMsg: "请输入项目"
+                    }
+                ];
+                //进行表单检查
+                var formData = e.detail.value;
+                var checkRes = graceChecker.check(formData, rule);
+                if (checkRes) {
+                    uni.showToast({
+                        title: "验证通过!",
+                        icon: "none"
+                    });
+                } else {
+                    uni.showToast({
+                        title: graceChecker.error,
+                        icon: "none"
+                    });
+                }
+            },
+            formReset: function(e) {
+                console.log('清空数据')
+            },
+            confirm(e) {
+                console.log('confirm 返回:', e)
+                this.date = e.fulldate
+            }
+        }
+    }
 </script>
 
 <style>
-/* 我提交的参赛申请 */
-.cansaiBox input {
-    border: none;
-    text-align: right;
-    font-size: 15px;
-    color: #1b1b1b;
-    background: #fff;
-    height: 20px;
-}
-
-.cansaiBox input[type="number"] {
-    -moz-appearance: textfield;
-}
-
-.cansaiBox input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-    -webkit-appearance: none !important;
-}
-
-.cansaiBox input::placeholder {
-    text-align: right;
-    font-size: 15px;
-    font-size: #898989;
-}
-.wishBox {
-    margin-bottom: 80px;
-}
-.myBorder textarea::-webkit-input-placeholder {
-    color: rgba(137, 137, 137, 1);
-    font-size: 15px;
-}
-
-.myBorder textarea {
-    font-size: 15px;
-    color: #1b1b1b;
-}
-.myBorder {
-    margin: 0;
-    padding: 15px;
-}
-p {
-    font-size: 14px;
-    color: #8f8f94;
-}
-.serBuy {
-    width: 75%;
-    background: #1e65e2;
-    color: #fff;
-    font-size: 16px;
-    line-height: 51px;
-    text-align: center;
-}
-.ansPos {
-    position: fixed;
-    bottom: 0;
-}
-.serindWid {
-    width: 100%;
-}
+    .uni-form-item .title {
+        padding: 20rpx 0;
+    }
 </style>

@@ -58,6 +58,9 @@
                 indicatorStyle: `height: ${Math.round(uni.getSystemInfoSync().screenWidth/(750/100))}px;`
             }
         },
+        onLoad() {
+            console.log(123)
+        },
         methods: {
             bindChange (e) {
                 const val = e.detail.value
@@ -70,7 +73,7 @@
 </script>
 
 <style>
-	
+
     picker-view {
         width: 100%;
         height: 600upx;

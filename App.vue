@@ -171,7 +171,6 @@
         margin: 10px 10px 10px;
         border: none;
         width: 100%;
-        padding-left: 50px;
         padding-right: 25px;
         height: 33px;
         border-radius: 30px !important;
@@ -455,7 +454,6 @@ li {
     margin: 10px 10px 10px;
     border: none;
     width:100%;
-    padding-left: 50px;
     padding-right: 25px;
     height: 33px;
     border-radius: 30px !important;

@@ -2,7 +2,7 @@
     <view>
         <view class="top">
             <view class="search mui-input-row">
-                <uni-search-bar radius="100" placeholder="请输入" @confirm="onSearch" style="80%"/>
+                <uni-search-bar radius="100" placeholder="请输入" @confirm="onSearch" style="80%" />
             </view>
             <view v-for="(item,index) in list" :key="index">
                 <view class="joiList">
@@ -70,16 +70,20 @@
                 this.$minApi.RepairList(this.obj).then(data => {
                     const list = data.body
                     const totalNum = list.totalNum
-                    for (let s of list.data) {
-                        s.repairDate = timerZero(s.repairDate)
-                        this.list.push(s)
-                    }
-                    if (this.obj.page * 3 > totalNum) {
-
+                    if (totalNum) {
+                        for (let s of list.data) {
+                            s.repairDate = timerZero(s.repairDate)
+                            this.list.push(s)
+                        }
+                        if (this.obj.page * 3 > totalNum) {
+                            this.status = 'noMore'
+                        } else {
+                            this.obj.page++
+                        }
+                    }else{
                         this.status = 'noMore'
-                    } else {
-                        this.obj.page++
                     }
+
                 })
             },
             deleteHandle(item) {
@@ -91,10 +95,20 @@
                         content: '删除成功',
                         showCancel: false
                     });
+                    if(this.list.length < 3){
+                        this.init()
+                    }
                 })
             },
             onSearch(val) {
-                console.log(val)
+                this.obj = {
+                    name: val.value,
+                    limit: 3,
+                    page: 1
+                }
+                this.status = 'more'
+                this.list = []
+                this.init()
             }
         }
     }
