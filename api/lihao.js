@@ -13,6 +13,12 @@ export default {
             data
         );
     },
+    dayPay(data) {                      //日常缴费
+        return minRequest.get(
+            "/api/propertyManage/feeBill/queryList",
+            data
+        );
+    },
     post1(data) {
         return minRequest.post(
             "/api/propertyManage/facilitiesMaintenance/delete",

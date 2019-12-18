@@ -74,7 +74,26 @@
         //上拉事件
         onReachBottom() {
             if (this.status === 'more') {
-                this.init()
+                this.$minApi.contractList({
+                    lesseeUserId: options.id,
+                    ...this.obj
+                }).then(res => {
+                    console.log(res)
+                    const list = res.body
+                    const totalNum = list.totalNum
+                    for (let s of list.data) {
+                        // s.repairDate = timerZero(s.repairDate)
+                        this.details.push(s)
+                    }
+                    if (this.obj.page * 3 > totalNum) {
+                
+                        this.status = 'noMore'
+                    } else {
+                        this.obj.page++
+                    }
+                }).catch(err => {
+                    console.log(err)
+                })
             }
         },
     }
