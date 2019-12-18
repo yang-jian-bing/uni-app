@@ -21,23 +21,25 @@
             <view class="actMid myBorder">
                 <span class="invmidWz">地址</span>
                 <view class="topmid diff">
-                    <view class="topmid diff showUserPicker" id="showUserPicker">
-                        <input placeholder="请选择地址" />
-                    </view>
+                    <picker class="topmid diff" >
+                        <input  placeholder="请选择地址" v-model='input1' />
+                    </picker>
                 </view>
             </view>
 			 <view class="actMid myBorder">
 			    <span class="invmidWz">报修来源</span>
 			    <view class="topmid diff">
-			        <view class="topmid diff showUserPicker" id="showUserPicker">
-			            <input placeholder="请选择报修来源" />
-			        </view>
+			        <picker class="topmid diff " @change="bindPickerChange" :value="index" :range="array" range-key="name">
+			            <!-- <input placeholder="请选择报修来源" /> -->
+						<view class="uni-input num">{{array[index].name}}</view>
+
+			        </picker>
 			    </view>
 			</view>
             <view class="actMid myBorder">
                 <span class="invmidWz">园区类型</span>
                 <view class="topmid diff">
-                    <view class="topmid diff showUserPicker" id="showUserPicker1">
+                    <view class="topmid diff" >
                         <!-- <input placeholder="请选择园区类型" /> -->
                         <span class='num'>请选择园区类型</span>
                     </view>
@@ -78,8 +80,16 @@
 	export default {
 		data() {
 			return {
-				
+				input1:'',
+				index:0,
+				array: [{name:'中国'},{name: '美国'}, {name:'巴西'}, {name:'日本'}]
 			};
+		},
+		methods:{
+			bindPickerChange: function(e) {
+				this.time = e.target.value
+			   }
+	
 		}
 	}
 </script>

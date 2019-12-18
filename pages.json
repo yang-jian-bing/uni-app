@@ -137,6 +137,12 @@
 				"navigationBarTitleText": "设施详情"
 			}
 		},
+		{
+            "path" : "pages/property/property-index/property-index",
+            "style" : {
+				"navigationBarTitleText": "物业管理系统"
+			}
+        },
         // pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
         {
             "path": "pages/tabBar/component/component",

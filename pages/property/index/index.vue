@@ -25,7 +25,7 @@
 			<button @click="open('add-facilities-maintain2/add-facilities-maintain2')">新增保养记录</button>
 			<button @click="open('resource-meetingroom-details/resource-meetingroom-details')">新增设施</button>
 			<button @click="open('facilities-details/facilities-details')">设施详情</button>
-			
+			<button @click="open('property-index/property-index')">物业管理系统首页</button>
         </view>
 	</view>
 </template>
