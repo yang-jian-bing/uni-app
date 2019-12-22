@@ -1,102 +1,131 @@
 <template>
 	<view>
 		<view class="top">
-            <view class="actMid myBorder">
-                <span class="invmidWz">创业大赛A座</span>
-                <view class="topmid diff">
-                    <image class='seleRight' src="../../../static/property/logo.png" alt="">
+        <view class="actMid myBorder">
+            <span class="invmidWz">{{pickerText}}</span>
+            <view class="topmid diff"  @click="showMulLinkageTwoPicker">
+                <image class='seleRight' src="../../../static/property/logo.png" alt="">
+            </view>
+        </view>
+        <mpvue-picker :themeColor="themeColor" ref="mpvuePicker" :mode="mode" :deepLength="deepLength" :pickerValueDefault="pickerValueDefault"
+  @onConfirm="onConfirm" @onCancel="onCancel" :pickerValueArray="pickerValueArray"></mpvue-picker>
+        <view class="line"></view>
+        <view class="title meet-mrl">
+            <view class="ansBox num"><span class="color-dotted cd1"></span>空置</view>
+            <view class="ansBox num"><span class="color-dotted cd4"></span>在租</view>
+            <view class="ansBox num"><span class="color-dotted cd5"></span>欠费</view>
+        </view>
+        <view class='invdiff' v-for="item in officeSummary" :key="item.id">
+            <p class="meet-p">{{item.storey}}层&nbsp;&nbsp;{{item.total}}间</p>
+            <view class='office-box'>
+                <span class='office-room' @click="officeDetails(office)" :class="{'cd1': office.state == 0, 'cd4': office.state == 1, 'cd5': office.isArrears == 1 }" v-for="office in item.offices" :key="office.id">{{office.name}}室</span>
+            </view>
+        </view>
+        <view class='office-bottom'>
+            <view class='bottom-box'>
+                <view class='bottom-b1'>
+                    <p>总数量</p>
+                    <p>{{total}}</p>
+                </view>
+                <view class='bottom-b1'>
+                    <p>出租数</p>
+                    <p>{{rentalNum}}</p>
+                </view>
+                <view class='bottom-b1'>
+                    <p>空置数</p>
+                    <p>{{vacantNum}}</p>
+                </view>
+                <view class='bottom-b1'>
+                    <p>空置率</p>
+                    <p>{{vacantRate}}%</p>
                 </view>
             </view>
-            <view class="line"></view>
-            <view class="title meet-mrl">
-                <view class="ansBox num"><span class="color-dotted cd1"></span>空置</view>
-                <view class="ansBox num"><span class="color-dotted cd4"></span>在租</view>
-                <view class="ansBox num"><span class="color-dotted cd5"></span>欠费</view>
-            </view>
-            <view class='invdiff'>
-                <p class="meet-p">1层&nbsp;&nbsp;30间</p>
-                <view class='office-box'>
-                    <span class='office-room r1'>101室</span>
-                    <span class='office-room r1'>101室</span>
-                    <span class='office-room r1'>101室</span>
-                    <span class='office-room r1'>101室</span>
-                    <span class='office-room r1'>101室</span>
-                    <span class='office-room r1'>101室</span>
-                    <span class='office-room r1'>101室</span>
-                    <span class='office-room r1'>101室</span>
-                    <span class='office-room r2'>101室</span>
-                    <span class='office-room r2'>101室</span>
-                    <span class='office-room r2'>101室</span>
-                    <span class='office-room r3'>101室</span>
-                    <span class='office-room r3'>101室</span>
-                    <span class='office-room r3'>101室</span>
-                </view>
-            </view>
-            <view class='invdiff'>
-                <p class="meet-p">2层&nbsp;&nbsp;30间</p>
-                <view class='office-box'>
-                    <span class='office-room r1'>101室</span>
-                    <span class='office-room r1'>101室</span>
-                    <span class='office-room r1'>101室</span>
-                    <span class='office-room r1'>101室</span>
-                    <span class='office-room r1'>101室</span>
-                    <span class='office-room r1'>101室</span>
-                    <span class='office-room r1'>101室</span>
-                    <span class='office-room r1'>101室</span>
-                    <span class='office-room r2'>101室</span>
-                    <span class='office-room r2'>101室</span>
-                    <span class='office-room r2'>101室</span>
-                    <span class='office-room r3'>101室</span>
-                    <span class='office-room r3'>101室</span>
-                    <span class='office-room r3'>101室</span>
-                </view>
-            </view>
-            <view class='office-bottom'>
-                <view class='bottom-box'>
-                    <view class='bottom-b1'>
-                        <p>总数量</p>
-                        <p>20</p>
-                    </view>
-                    <view class='bottom-b1'>
-                        <p>出租数</p>
-                        <p>20</p>
-                    </view>
-                    <view class='bottom-b1'>
-                        <p>空置数</p>
-                        <p>20</p>
-                    </view>
-                    <view class='bottom-b1'>
-                        <p>空置率</p>
-                        <p>11%</p>
-                    </view>
-                </view>
-            </view>
+        </view>
 		</view>
-
 	</view>
 </template>
 
 <script>
+import mpvuePicker from '../../../components/mpvue-picker/mpvuePicker.vue';
+import base from '@/common/app-base.js'
 export default {
+  components: {
+    mpvuePicker,
+  },
   data () {
-    console.log(this.$minApi)
     return {
-
+      mulLinkageTwoPicker: [],
+      cityPickerValueDefault: [0, 0, 1],
+      themeColor: '#007AFF',
+      pickerText: '',
+      mode: '',
+      deepLength: 1,
+      pickerValueDefault: [0],
+      pickerValueArray: [],
+      total: 0,
+      rentalNum: 0,
+      vacantNum: 0,
+      vacantRate: 0,
+      officeSummary: [],
     };
   },
   onShow () {
-    this.$minApi.uniapp({ type: 'list' }).then(res => {
-      this.res = res
-      console.log(res)
-    }).catch(err => {
-      console.log(err)
-    })
-    this.$minApi.post1({ id: '6196215c-f4d7-446c-9646-f03c7f7b3db5' }).then(res => {
-      this.res = res
-      console.log(res)
-    }).catch(err => {
-      console.log(err)
-    })
+    this.officePlanList()
+  },
+  methods: {
+    showMulLinkageTwoPicker () {
+      this.pickerValueArray = this.mulLinkageTwoPicker
+      this.mode = 'multiLinkageSelector'
+      this.deepLength = 2
+      this.pickerValueDefault = [0, 0]
+      this.$refs.mpvuePicker.show()
+    },
+    onConfirm (e) {
+      this.pickerText = e.label
+      this.getOfficeList(e.value[1])
+    },
+    officeDetails (data) {
+      let condition = {
+        id: data.id
+      }
+      let url = '/pages/property/office-details/office-details'
+      base.openPage(url, condition);
+    },
+    getOfficeList (buildingInfoId) {
+      let condition = {
+        buildingInfoId: buildingInfoId,
+        type: 'OFFICE'
+      }
+      this.$minApi.getOfficeList(condition).then(res => {
+        let data = res.body.data
+        this.total = data.total
+        this.rentalNum = data.rentalNum
+        this.vacantNum = data.vacantNum
+        this.vacantRate = data.vacantRate
+        this.officeSummary = data.officeSummary
+      }).catch(err => {
+        console.log(err)
+      })
+    },
+    officePlanList () {
+      let condition = {}
+      this.$minApi.officePlanList(condition).then(res => {
+        this.mulLinkageTwoPicker = res.body.data[0].children.map((item, index) => {
+          item.value = item.id
+          if (item.children.length > 0) {
+            item.children.map(build => {
+              build.value = build.id
+              return build
+            })
+          }
+          return item
+        })
+        this.pickerText = this.mulLinkageTwoPicker[0].label + '-' + this.mulLinkageTwoPicker[0].children[0].label
+        this.getOfficeList(this.mulLinkageTwoPicker[0].children[0].value)
+      }).catch(err => {
+        console.log(err)
+      })
+    }
   }
 }
 </script>
@@ -151,7 +180,7 @@ export default {
   margin: 5px 10px;
 }
 .office-room {
-  width: 82px;
+  width: 31%;
   height: 35px;
   line-height: 35px;
   border-radius: 5px;

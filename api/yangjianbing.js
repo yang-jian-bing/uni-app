@@ -1,15 +1,21 @@
 import minRequest from "./minRequest";
 export default {
     // 这里统一管理api请求
-    uniapp(data) {
+    officePlanList(data) {
         return minRequest.get(
-            "/api/propertyManage/customerFiles/queryList",
+            "/api/propertyManage/parkInfo/queryParkTreeInfo",
             data
         );
     },
-    post1(data) {
-        return minRequest.post(
-            "/api/propertyManage/facilitiesMaintenance/delete",
+    getOfficeList(data) {
+        return minRequest.get(
+            "/api/propertyManage/planSummary/queryList",
+            data
+        );
+    },
+    getOfficeDetails(data) {
+        return minRequest.get(
+            "/api/propertyManage/planSummary/queryDetail",
             data
         );
     }
