@@ -19,12 +19,12 @@ function parseParams(data) {
 }
 
 function openPage(url, params) {
-    console.log(url);
+	console.log(url)
     if (params) {
         url = url + "?" + parseParams(params);
     }
     uni.navigateTo({
-        url: url
+        url:  url
     });
 }
 

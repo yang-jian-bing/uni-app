@@ -274,8 +274,8 @@
     }
 
     .seleRight {
-        width: 7px;
-        height: 13px;
+        width: 13px;
+        height: 10px;
         margin-left: 10px;
     }
 
@@ -552,8 +552,8 @@ li {
     color: #555555;
 }
 .seleRight {
-    width: 7px;
-    height: 13px;
+    width: 13px;
+    height: 10px;
     margin-left: 10px;
 }
 .joiList {
@@ -671,6 +671,9 @@ li {
     font-size: 16px;
     line-height: 51px;
     text-align: center;
+}
+.resMin {
+  min-width: 25%;
 }
 .ansPos {
     position: fixed;
