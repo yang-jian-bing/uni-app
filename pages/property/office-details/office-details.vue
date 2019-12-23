@@ -25,27 +25,9 @@
           <view class="office-box">
             <image
               class="picter-size"
-              src="../../../static/property/logo.png"
-              alt=""
-            />
-            <image
-              class="picter-size"
-              src="../../../static/property/logo.png"
-              alt=""
-            />
-            <image
-              class="picter-size"
-              src="../../../static/property/logo.png"
-              alt=""
-            />
-            <image
-              class="picter-size"
-              src="../../../static/property/logo.png"
-              alt=""
-            />
-            <image
-              class="picter-size"
-              src="../../../static/property/logo.png"
+              v-for="(item, index) in fileInfo"
+              :key="index"
+              :src="item.fileId"
               alt=""
             />
           </view>
@@ -56,10 +38,12 @@
 </template>
 
 <script>
+import { imgPath } from '@/common/app-base.js'
 export default {
   data () {
     return {
-      details: {}
+      details: {},
+      fileInfo: []
     };
   },
   onLoad (option) {
@@ -72,6 +56,10 @@ export default {
       }
       this.$minApi.getOfficeDetails(condition).then(res => {
         this.details = res.body.data
+        this.fileInfo = res.body.data.fileInfo.map(item => {
+          item.fileId = imgPath(item.fileId)
+          return item
+        })
       }).catch(err => {
         console.log(err)
       })
@@ -90,7 +78,7 @@ export default {
   min-width: 25%;
 }
 .list {
-  padding:10px 15px;
+  padding: 10px 15px;
   display: flex;
   justify-content: space-between;
   align-items: center;
