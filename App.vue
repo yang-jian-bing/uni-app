@@ -93,312 +93,6 @@
     /* page{
 	background: #eeeeee;
 } */
-<<<<<<< HEAD
-    .top image {
-        max-width: 100% !important;
-        /* height: auto; */
-        background-size: cover;
-        object-fit: cover;
-    }
-
-
-    body,
-    ol,
-    ul,
-    li,
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6,
-    p,
-    th,
-    td,
-    dl,
-    dd,
-    form,
-    fieldset,
-    legend,
-    input,
-    textarea,
-    select,
-    figure,
-    figcaption {
-        max-width: 100%;
-        margin: 0;
-        padding: 0;
-    }
-
-
-
-    .english-overflow {
-        word-break: break-all;
-    }
-
-    .cansaiBox input {
-        margin: 0 !important;
-        padding: 0 !important;
-    }
-
-    ul,
-    li {
-        list-style: none;
-    }
-
-    .search {
-        display: flex;
-        align-items: center;
-        border-bottom: 3px solid #eeeeee;
-        position: relative;
-    }
-
-    .top .mui-input-row .mui-input-clear~.mui-icon-clear,
-    .mui-input-row .mui-input-speech~.mui-icon-speech,
-    .mui-input-row .mui-input-password~.mui-icon-eye {
-        font-size: 20px;
-        position: absolute;
-        z-index: 1;
-        top: 17px;
-        right: 5px;
-        width: 38px;
-        height: 38px;
-        text-align: center;
-        color: #999;
-    }
-
-    .search input {
-        margin: 10px 10px 10px;
-        border: none;
-        width: 100%;
-        padding-right: 25px;
-        height: 33px;
-        border-radius: 30px !important;
-        border: 1px solid #eeeeee;
-        text-decoration: none;
-        background: #f6f6f6;
-    }
-
-    .search input::-webkit-input-placeholder {
-        color: rgba(137, 137, 137, 1);
-        font-size: 17px;
-    }
-
-    .search image {
-        width: 21px !important;
-        height: 21px !important;
-        position: absolute;
-        left: 30px;
-        top: 16px;
-    }
-
-    .top {
-        width: 100%;
-        background: #fff;
-    }
-
-    .index-box {
-        width: 100%;
-        background: #fff;
-    }
-
-    .line {
-        width: 100%;
-        height: 10px;
-        background: #eeeeee;
-    }
-
-    .line1 {
-        width: 100%;
-        height: 1px;
-        background: #eeeeee;
-    }
-
-    .line3 {
-        width: 100%;
-        height: 2px;
-        background: #eeeeee;
-    }
-
-    .toptit {
-        font-size: 15px;
-        margin: 0px 15px 10px 15px;
-        padding-top: 14px;
-        color: #333333;
-    }
-
-    .topmid {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0 15px 6px;
-    }
-
-    .topwz {
-        font-size: 13px;
-        color: #898989;
-    }
-
-    .diff {
-        padding: 0;
-    }
-
-    .infor {
-        margin: 0 15px 0px 20px;
-        border-bottom: 1px solid #eeeeee;
-    }
-
-    .actMid {
-        display: flex;
-        padding: 15px 0;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-        margin: 0px 15px;
-        border-bottom: 1px solid #eeeeee;
-    }
-
-    .myBorder {
-        margin: 0;
-        padding: 15px;
-    }
-
-    .invmidWz {
-        font-size: 15px;
-        color: #1b1b1b;
-    }
-
-    .invmidWz1 {
-        font-size: 15px;
-        color: #555555;
-    }
-
-    .seleRight {
-        width: 13px;
-        height: 10px;
-        margin-left: 10px;
-    }
-
-    .joiList {
-        padding: 17px 15px 9px;
-        display: flex;
-    }
-
-    .serBox {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-    }
-
-    .serindWid {
-        width: 100%;
-    }
-
-    .propFlex {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .propFlex1 {
-        display: flex;
-        justify-content: space-between;
-    }
-
-    .num {
-        font-size: 15px;
-        color: #898989;
-    }
-
-    .invdiff {
-        padding-top: 18px;
-    }
-
-    .comWaiting {
-        color: #2B76FB;
-        font-size: 16px;
-    }
-
-    .joiList {
-        padding: 17px 15px 9px;
-        display: flex;
-    }
-
-    .joiPad {
-        padding: 15px 0;
-        border-top: 1px solid #eeeeee;
-        flex: 1;
-    }
-
-    .comFin {
-        color: #5edba8;
-        font-size: 15px;
-    }
-
-    .comNo {
-        color: #ea595d;
-        font-size: 15px;
-    }
-
-    .serDrop {
-        padding-bottom: 10px;
-    }
-
-    .serDrop1 {
-        padding-bottom: 5px;
-    }
-
-    .myserveWz {
-        font-size: 18px;
-        color: #898989;
-    }
-
-    .actWz {
-        font-size: 16px;
-        color: #333333;
-    }
-
-    .proFont {
-        font-weight: 600;
-    }
-
-    .projectBox {
-        margin-top: 5px;
-    }
-
-    .weWzpad {
-        padding-top: 12px;
-    }
-
-    .font14 {
-        font-size: 14px;
-        color: #898989;
-    }
-
-    .myPadtop {
-        padding-top: 5px;
-    }
-
-    /* 标签 */
-    .label {
-        display: flex;
-        flex-wrap: wrap;
-        flex: 1;
-    }
-
-    .label text {
-        font-size: 14px;
-        color: #1b1b1b;
-        padding: 4px 12px;
-        margin-left: 3px;
-        border: 1px solid #b3b3b3;
-        border-radius: 15px;
-    }
-
-    .flex-end {
-        justify-content: flex-end;
-    }
-=======
 .top image {
     max-width: 100% !important;
     /* height: auto; */
@@ -408,7 +102,7 @@
 
 
 body,ol,ul,li,h1,h2,h3,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select,figure,figcaption{
-    max-width: 100%; 
+    max-width: 100%;
     margin: 0;
     padding: 0;
 }
@@ -719,7 +413,6 @@ li {
     height: 16px !important;
     margin-left: 5px !important;
 }
->>>>>>> ac033485743deb1a79f89743bbb1cc5fd17e4832
 
     .serindWid {
         width: 100%;
@@ -792,5 +485,24 @@ li {
 
     /deep/ .search uni-input {
         padding-left: 0;
+    }
+    .btn-submit{
+        background: #1e65e2;
+        color: #fff;
+        border-radius: 0;
+        font-size: 16px;
+        height: 51px;
+        line-height: 51px;
+        position: fixed;
+        bottom: 0px;
+        width: 100%;
+        z-index: 200;
+    }
+    .btn-reset{
+        position: absolute;
+        bottom: 50px;
+        width: 100%;
+        color: #007AFF !important;
+        font-size: 16px;
     }
 </style>
