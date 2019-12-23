@@ -139,7 +139,7 @@ export default {
   justify-content: space-around;
 }
  .seleRight {
-        width: 13px;
+        width: 16px;
         height: 10px;
         margin-left: 10px;
     }
