@@ -4,7 +4,7 @@
             <form @submit="formSubmit" @reset="formReset">
                 <view class="uni-form-item uni-column">
                     <view class="title">维修时间(必填)</view>
-                    <input disabled class="uni-input" v-model="date" name="repairDate" @click="open" placeholder="请选择时间" />
+                    <input disabled class="uni-input" v-model="object.repairDate" name="repairDate" @click="open" placeholder="请选择时间" />
                     <!-- <view class="example-body">
                         <button class="calendar-button" type="button" @click="open">打开日历</button>
                     </view> -->
@@ -13,27 +13,27 @@
                 </view>
                 <view class="uni-form-item uni-column">
                     <view class="title">维修人员(必填)</view>
-                    <input class="uni-input" name="repairPersion" placeholder="请输入姓名" />
+                    <input class="uni-input" v-model="object.repairPersion" name="repairPersion" placeholder="请输入姓名" />
                 </view>
                 <view class="uni-form-item uni-column">
                     <view class="title">维修费用(必填)</view>
-                    <input class="uni-input" name="repairPrice" placeholder="请输入维修费用" />
+                    <input class="uni-input" v-model="object.repairPrice" name="repairPrice" placeholder="请输入维修费用" />
                 </view>
                 <view class="uni-form-item uni-column">
                     <view class="title">维修项目(必填)</view>
-                    <input class="uni-input" name="repairProject" placeholder="请输入项目" />
+                    <input class="uni-input" v-model="object.repairProject" name="repairProject" placeholder="请输入项目" />
                 </view>
                 <view class="uni-form-item uni-column">
                     <view class="title">维修工时(必填)</view>
-                    <input class="uni-input" name="repairTime" placeholder="请输入维修工时" />
+                    <input class="uni-input" v-model="object.repairTime" name="repairTime" placeholder="请输入维修工时" />
                 </view>
                 <view class="uni-form-item uni-column">
                     <view class="title">故障情况</view>
-                    <textarea name="failureCondition" placeholder="请输入故障情况" />
+                    <textarea v-model="object.failureCondition" name="failureCondition" placeholder="请输入故障情况" />
                     </view>
                 <view class="uni-form-item uni-column">
                     <view class="title">处理情况</view>
-                    <textarea name="handlingSituation" placeholder="请输入处理情况" />
+                    <textarea v-model="object.handlingSituation" name="handlingSituation" placeholder="请输入处理情况" />
                 </view>
                 <view style="height: 100px;width: 100%;"></view>
                 <button form-type="submit" class="btn-submit">提交</button>
@@ -45,9 +45,11 @@
 <script>
     var graceChecker = require("../../../common/graceChecker.js");
     import uniCalendar from '@/components/uni-calendar/uni-calendar.vue'
+    import {timerZero} from '@/common/util.js'
     import {
         nowDate
     } from "@/common/util.js"
+    import base from '@/common/app-base.js'
     export default {
         data() {
             return {
@@ -58,18 +60,36 @@
                     insert: false,
                     selected: []
                 },
-                date: ''
+                object:{
+                    data:'',
+                    repairPersion:'',
+                    repairPrice:'',
+                    repairProject:'',
+                    repairTime:'',
+                    failureCondition:'',
+                    handlingSituation:''
+                },
+                facilitiesArchivesId:''
             }
         },
         components: {
             uniCalendar
+        },
+        onLoad(option) {
+            if(option.update == 1){
+                this.$minApi.RepairDetail({id:option.id}).then(data=>{
+                    this.object = data.body.data
+                    this.object.repairDate = timerZero(this.object.repairDate)
+                })
+            }else{
+            this.facilitiesArchivesId = option.id
+            }
         },
         methods: {
             open() {
                 this.$refs.calendar.open()
             },
             formSubmit: function(e) {
-                console.log('form发生了submit事件，携带数据为：' + JSON.stringify(e.detail.value))
                 //定义表单规则
                 var rule = [{
                         name: "repairDate",
@@ -101,11 +121,17 @@
                 var formData = e.detail.value;
                 var checkRes = graceChecker.check(formData, rule);
                 if (checkRes) {
-                    
-                    uni.showToast({
-                        title: "验证通过!",
-                        icon: "none"
-                    });
+                    formData.facilitiesArchivesId = this.facilitiesArchivesId
+                    this.$minApi.RepairSave(formData).then(data=>{
+                        uni.showToast({
+                            title: "设施维修信息新增成功!",
+                            icon: "none"
+                        });
+                        setTimeout(()=>{
+                            base.openPage('/pages/property/facilities-maintain-list/facilities-maintain-list');
+                        },1100)
+
+                    })
                 } else {
                     uni.showToast({
                         title: graceChecker.error,
@@ -117,8 +143,7 @@
                 console.log('清空数据')
             },
             confirm(e) {
-                console.log('confirm 返回:', e)
-                this.date = e.fulldate
+                this.object.repairDate = e.fulldate
             }
         }
     }
