@@ -1,5 +1,6 @@
 module.exports = {
     showAlert: showAlert,
+    imgPath: imgPath,
     openPage: openPage
 };
 function parseParams(data) {
@@ -27,6 +28,9 @@ function openPage(url, params) {
     });
 }
 
+function imgPath(string, type) {
+    return "/api/fms/show/" + string + "_" + (type || "0");
+}
 function showAlert(msg) {
     uni.showModal({
         content: msg,
