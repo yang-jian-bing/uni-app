@@ -25,7 +25,7 @@
 					<view class="topmid">
 						<view class="index-flex index-pdt">
 							<image class="index-img" src="../../../static/property/custom.png" />
-							<view class="serindexWz index-padleft">
+							<view class="serindexWz1 index-padleft">
 								客户档案管理
 							</view>
 						</view>
@@ -43,7 +43,7 @@
 						</view>
 					</view>
 					<view class="dropdone">
-						<view class="drop1 serDrop"  @click="open('office-list/office-list')">
+						<view class="drop1 serDrop index-width"  @click="open('office-list/office-list')">
 							<img class="index-img" src="../../../static/property/office.png" />
 							<span class="serteachWz projectBox"> 独立办公室</span>
 						</view>
@@ -51,7 +51,7 @@
 							<img class="index-img" src="../../../static/property/gongwei.png" />
 							<span class="serteachWz projectBox"> 开放工位</span>
 						</view>
-						<view class="drop1 serDrop" >
+						<view class="drop1 serDrop index-width" >
 							<img class="index-img" src="../../../static/property/meetingroom.png" />
 							<span class="serteachWz projectBox"> 会议室</span>
 						</view>
@@ -70,7 +70,7 @@
 						</view>
 					</view>
 					<view class="dropdone">
-						<view class="drop1 serDrop"  @click="open('daily-charge/daily-charge')">
+						<view class="drop1 serDrop index-width"  @click="open('daily-charge/daily-charge')">
 							<img class="index-img" src="../../../static/property/shoufei1.png" />
 							<span class="serteachWz projectBox"> 日常收费</span>
 						</view>
@@ -78,7 +78,7 @@
 							<img class="index-img" src="../../../static/property/shoufei2.png" />
 							<span class="serteachWz projectBox"> 会议室预定信息</span>
 						</view>
-						<view class="drop1 serDrop" @click="open('add-meetingroom/add-meetingroom')">
+						<view class="drop1 serDrop index-width" @click="open('add-meetingroom/add-meetingroom')">
 							<img class="index-img" src="../../../static/property/shoufei3.png" />
 							<span class="serteachWz projectBox"> 预定会议室</span>
 						</view>
@@ -99,7 +99,7 @@
 					<view class="topmid">
 						<view class="index-flex index-pdt">
 							<image class="index-img" src="../../../static/property/repairs.png" />
-							<view class="serindexWz index-padleft">
+							<view class="serindexWz1 index-padleft">
 								报事报修
 							</view>
 						</view>
@@ -162,7 +162,9 @@
 		align-items: center;
 		padding: 0 15px 6px 25px;
 	}
-
+	.index-width{
+		width:65px;
+	}
 	.wePosition {
 		position: relative;
 	}
@@ -194,6 +196,10 @@
 		color: #000;
 		position: relative;
 		z-index: 6;
+	}
+	.serindexWz1 {
+		font-size: 15px;
+		color: #000;
 	}
 
 	.index-padleft {
