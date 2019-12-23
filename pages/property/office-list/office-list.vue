@@ -138,6 +138,11 @@ export default {
   align-items: center;
   justify-content: space-around;
 }
+ .seleRight {
+        width: 13px;
+        height: 10px;
+        margin-left: 10px;
+    }
 .meet-mrl {
   margin: 0 45px;
 }
