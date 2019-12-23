@@ -1,10 +1,10 @@
 <template>
     <view>
-        <view class="uni-padding-wrap uni-common-mt">
+        <view class="uni-padding-wrap uni-common-mt uniwrap">
             <form @submit="formSubmit" @reset="formReset">
                 <view class="uni-form-item uni-column">
                     <view class="title">维修时间(必填)</view>
-                    <input ref="scanTextbox" class="uni-input" v-model="date" name="repairDate" @focus="open" />
+                    <input disabled class="uni-input" v-model="date" name="repairDate" @click="open" placeholder="请选择时间" />
                     <!-- <view class="example-body">
                         <button class="calendar-button" type="button" @click="open">打开日历</button>
                     </view> -->
@@ -27,10 +27,17 @@
                     <view class="title">维修工时(必填)</view>
                     <input class="uni-input" name="repairTime" placeholder="请输入维修工时" />
                 </view>
-                <view class="uni-btn-v">
-                    <button form-type="submit">提交</button>
-                    <button type="default" form-type="reset">重置</button>
+                <view class="uni-form-item uni-column">
+                    <view class="title">故障情况</view>
+                    <textarea name="failureCondition" placeholder="请输入故障情况" />
+                    </view>
+                <view class="uni-form-item uni-column">
+                    <view class="title">处理情况</view>
+                    <textarea name="handlingSituation" placeholder="请输入处理情况" />
                 </view>
+                <view style="height: 100px;width: 100%;"></view>
+                <button form-type="submit" class="btn-submit">提交</button>
+                <button type="default" form-type="reset" class="btn-reset">重置</button>
             </form>
         </view>
     </view>
@@ -59,11 +66,7 @@
         },
         methods: {
             open() {
-                this.$refs.scanTextbox.setAttribute('readonly', 'readonly');
-                setTimeout(() => {
-                    this.$refs.scanTextbox.removeAttribute('readonly');
-                    this.$refs.calendar.open()
-                }, 200);
+                this.$refs.calendar.open()
             },
             formSubmit: function(e) {
                 console.log('form发生了submit事件，携带数据为：' + JSON.stringify(e.detail.value))
@@ -81,7 +84,7 @@
                     {
                         name: "repairPrice",
                         checkType: "float",
-                        errorMsg: "请输入价格(允许保留两位小数点)"
+                        errorMsg: "请输入价格或者查看格式是否正确(允许保留两位小数点的数字)"
                     },
                     {
                         name: "repairTime",
@@ -98,6 +101,7 @@
                 var formData = e.detail.value;
                 var checkRes = graceChecker.check(formData, rule);
                 if (checkRes) {
+                    
                     uni.showToast({
                         title: "验证通过!",
                         icon: "none"
@@ -121,7 +125,27 @@
 </script>
 
 <style>
+    .uni-form-item {
+        padding: 5rpx 20rpx 10px;
+        margin: 2rpx 0;
+        background: #fff;
+        box-sizing: border-box;
+    }
+
+    .uni-input,.uni-textarea-compute {
+        background: #eee;
+    }
+    .uni-textarea-compute{
+        width:100%;
+        }
     .uni-form-item .title {
-        padding: 20rpx 0;
+        padding: 0 12px;
+    }
+
+    uni-button:after {
+        border: none;
+    }
+    .uniwrap{
+        position:relative;padding: 0;margin-top: 0px;width: 100%;
     }
 </style>
