@@ -1,18 +1,18 @@
 {
     "pages": [
         //物业
-		{
-		    "path" : "pages/property/property-index/property-index",
-		    "style" : {
-				"navigationBarTitleText": "物业管理系统"
-			}
-		},
-		 {
-		    "path": "pages/property/index/index",
-		    "style": {
-		        "navigationBarTitleText": "首页"
-		    }
-		},
+        {
+            "path": "pages/property/property-index/property-index",
+            "style": {
+                "navigationBarTitleText": "物业管理系统"
+            }
+        },
+        {
+            "path": "pages/property/index/index",
+            "style": {
+                "navigationBarTitleText": "首页"
+            }
+        },
         {
             "path": "pages/property/facilities-maintain-details/facilities-maintain-details",
             "style": {
@@ -86,9 +86,39 @@
             }
         },
         {
-            "path": "pages/property/office-list/office-list",
+            "path": "pages/property/resource-manage/office-list",
             "style": {
                 "navigationBarTitleText": "办公室平面图"
+            }
+        },
+        {
+            "path": "pages/property/resource-manage/office-details",
+            "style": {
+                "navigationBarTitleText": "办公室详情"
+            }
+        },
+        {
+            "path": "pages/property/resource-manage/station-list",
+            "style": {
+                "navigationBarTitleText": "工位平面图"
+            }
+        },
+        {
+            "path": "pages/property/resource-manage/station-details",
+            "style": {
+                "navigationBarTitleText": "工位详情"
+            }
+        },
+        {
+            "path": "pages/property/resource-manage/meeting-room-list",
+            "style": {
+                "navigationBarTitleText": "会议室平面图"
+            }
+        },
+        {
+            "path": "pages/property/resource-manage/meeting-room-details",
+            "style": {
+                "navigationBarTitleText": "会议室详情"
             }
         },
         {
@@ -96,54 +126,50 @@
             "style": {
                 "navigationBarTitleText": "登录"
             }
-        }, {
+        },
+        {
             "path": "pages/property/meetingroom-list/meetingroom-list",
             "style": {
                 "navigationBarTitleText": "会议室预定列表"
             }
-        }, {
+        },
+        {
             "path": "pages/property/payment-records/payment-records",
             "style": {
                 "navigationBarTitleText": "缴费记录"
             }
         },
-		{
-		    "path" : "pages/property/daily-charge/daily-charge",
-		    "style" : {
-				 "navigationBarTitleText": "日常收费"
-			}
-		},
-		{
-		    "path" : "pages/property/office-details/office-details",
-		    "style" : {
-				 "navigationBarTitleText": "办公室详情"
-			}
-		},
-		{
-            "path" : "pages/property/resource-meetingroom-details/resource-meetingroom-details",
-            "style" : {
-				"navigationBarTitleText": "资源管理会议室详情"
-			}
+        {
+            "path": "pages/property/daily-charge/daily-charge",
+            "style": {
+                "navigationBarTitleText": "日常收费"
+            }
         },
-		{
-		    "path" : "pages/property/add-facilities-maintain1/add-facilities-maintain1",
-		    "style" : {
-				"navigationBarTitleText": "新增维修记录"
-			}
-		},
-		{
-		    "path" : "pages/property/add-facilities-maintain2/add-facilities-maintain2",
-		    "style" : {
-				"navigationBarTitleText": "新增保养记录"
-			}
-		},
-		{
-		    "path" : "pages/property/facilities-details/facilities-details",
-		    "style" : {
-				"navigationBarTitleText": "设施详情"
-			}
-		},
-		
+        {
+            "path": "pages/property/resource-meetingroom-details/resource-meetingroom-details",
+            "style": {
+                "navigationBarTitleText": "资源管理会议室详情"
+            }
+        },
+        {
+            "path": "pages/property/add-facilities-maintain1/add-facilities-maintain1",
+            "style": {
+                "navigationBarTitleText": "新增维修记录"
+            }
+        },
+        {
+            "path": "pages/property/add-facilities-maintain2/add-facilities-maintain2",
+            "style": {
+                "navigationBarTitleText": "新增保养记录"
+            }
+        },
+        {
+            "path": "pages/property/facilities-details/facilities-details",
+            "style": {
+                "navigationBarTitleText": "设施详情"
+            }
+        },
+
         // pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
         {
             "path": "pages/tabBar/component/component",
@@ -152,12 +178,14 @@
                 "app-plus": {
                     "bounce": "vertical",
                     "titleNView": {
-                        "buttons": [{
-                            "text": "\ue534",
-                            "fontSrc": "/static/uni.ttf",
-                            "fontSize": "22px",
-                            "color": "#FFFFFF"
-                        }]
+                        "buttons": [
+                            {
+                                "text": "\ue534",
+                                "fontSrc": "/static/uni.ttf",
+                                "fontSize": "22px",
+                                "color": "#FFFFFF"
+                            }
+                        ]
                     }
                 }
             }
@@ -168,12 +196,14 @@
                 "navigationBarTitleText": "接口",
                 "app-plus": {
                     "titleNView": {
-                        "buttons": [{
-                            "text": "\ue534",
-                            "fontSrc": "/static/uni.ttf",
-                            "fontSize": "22px",
-                            "color": "#FFFFFF"
-                        }]
+                        "buttons": [
+                            {
+                                "text": "\ue534",
+                                "fontSrc": "/static/uni.ttf",
+                                "fontSize": "22px",
+                                "color": "#FFFFFF"
+                            }
+                        ]
                     }
                 }
             }
@@ -184,12 +214,14 @@
                 "navigationBarTitleText": "模版",
                 "app-plus": {
                     "titleNView": {
-                        "buttons": [{
-                            "text": "\ue534",
-                            "fontSrc": "/static/uni.ttf",
-                            "fontSize": "22px",
-                            "color": "#FFFFFF"
-                        }]
+                        "buttons": [
+                            {
+                                "text": "\ue534",
+                                "fontSrc": "/static/uni.ttf",
+                                "fontSize": "22px",
+                                "color": "#FFFFFF"
+                            }
+                        ]
                     }
                 }
             }
@@ -200,12 +232,14 @@
                 "navigationBarTitleText": "扩展组件",
                 "app-plus": {
                     "titleNView": {
-                        "buttons": [{
-                            "text": "\ue534",
-                            "fontSrc": "/static/uni.ttf",
-                            "fontSize": "22px",
-                            "color": "#FFFFFF"
-                        }]
+                        "buttons": [
+                            {
+                                "text": "\ue534",
+                                "fontSrc": "/static/uni.ttf",
+                                "fontSize": "22px",
+                                "color": "#FFFFFF"
+                            }
+                        ]
                     }
                 }
             }
@@ -448,9 +482,11 @@
             }
         }
     ],
-    "subPackages": [{
+    "subPackages": [
+        {
             "root": "pages/API",
-            "pages": [{
+            "pages": [
+                {
                     "path": "login/login",
                     "style": {
                         "navigationBarTitleText": "授权登录"
@@ -463,38 +499,43 @@
                         "navigationBarTitleText": "SubNvue",
                         "app-plus": {
                             "titleNView": false,
-                            "subNVues": [{
-                                "id": "drawer",
-                                "path": "subnvue/subnvue/drawer",
-                                "type": "popup",
-                                "style": {
-                                    "width": "50%"
+                            "subNVues": [
+                                {
+                                    "id": "drawer",
+                                    "path": "subnvue/subnvue/drawer",
+                                    "type": "popup",
+                                    "style": {
+                                        "width": "50%"
+                                    }
+                                },
+                                {
+                                    "id": "popup",
+                                    "path": "subnvue/subnvue/popup",
+                                    "type": "popup",
+                                    "style": {
+                                        "margin": "auto",
+                                        "width": "80%",
+                                        "height": "600upx"
+                                    }
+                                },
+                                {
+                                    "id": "video_mask",
+                                    "path": "subnvue/subnvue/video-mask",
+                                    "style": {
+                                        "position": "absolute",
+                                        "bottom": "30px",
+                                        "left": "0",
+                                        "width": "230px",
+                                        "height": "110px",
+                                        "background": "transparent"
+                                    }
+                                },
+                                {
+                                    "id": "nav",
+                                    "path": "subnvue/subnvue/nav",
+                                    "type": "navigationBar"
                                 }
-                            }, {
-                                "id": "popup",
-                                "path": "subnvue/subnvue/popup",
-                                "type": "popup",
-                                "style": {
-                                    "margin": "auto",
-                                    "width": "80%",
-                                    "height": "600upx"
-                                }
-                            }, {
-                                "id": "video_mask",
-                                "path": "subnvue/subnvue/video-mask",
-                                "style": {
-                                    "position": "absolute",
-                                    "bottom": "30px",
-                                    "left": "0",
-                                    "width": "230px",
-                                    "height": "110px",
-                                    "background": "transparent"
-                                }
-                            }, {
-                                "id": "nav",
-                                "path": "subnvue/subnvue/nav",
-                                "type": "navigationBar"
-                            }]
+                            ]
                         }
                     }
                 },
@@ -816,7 +857,8 @@
         },
         {
             "root": "pages/extUI",
-            "pages": [{
+            "pages": [
+                {
                     "path": "badge/badge",
                     "style": {
                         "navigationBarTitleText": "Badge 数字角标"
@@ -834,11 +876,13 @@
                         "navigationBarTitleText": "Drawer 抽屉",
                         "app-plus": {
                             "titleNView": {
-                                "buttons": [{
-                                    "text": "",
-                                    "fontSrc": "/static/uni.ttf",
-                                    "fontSize": "22px"
-                                }]
+                                "buttons": [
+                                    {
+                                        "text": "",
+                                        "fontSrc": "/static/uni.ttf",
+                                        "fontSize": "22px"
+                                    }
+                                ]
                             },
                             "bounce": "none"
                         }
@@ -1027,7 +1071,8 @@
         },
         {
             "root": "pages/template",
-            "pages": [{
+            "pages": [
+                {
                     "path": "ucharts/ucharts",
                     "style": {
                         "navigationBarTitleText": "uCharts 图表"
@@ -1061,7 +1106,8 @@
                         "navigationBarTitleText": "导航栏带自定义按钮",
                         "app-plus": {
                             "titleNView": {
-                                "buttons": [{
+                                "buttons": [
+                                    {
                                         "type": "share"
                                     },
                                     {
@@ -1090,12 +1136,14 @@
                         "navigationBarTitleText": "导航栏带城市选择",
                         "app-plus": {
                             "titleNView": {
-                                "buttons": [{
-                                    "text": "北京市",
-                                    "fontSize": "14",
-                                    "select": true,
-                                    "width": "auto"
-                                }]
+                                "buttons": [
+                                    {
+                                        "text": "北京市",
+                                        "fontSize": "14",
+                                        "select": true,
+                                        "width": "auto"
+                                    }
+                                ]
                             }
                         }
                     }
@@ -1106,7 +1154,8 @@
                         "navigationBarTitleText": "导航栏带红点和角标",
                         "app-plus": {
                             "titleNView": {
-                                "buttons": [{
+                                "buttons": [
+                                    {
                                         "text": "消息",
                                         "fontSize": "14",
                                         "redDot": true
@@ -1130,14 +1179,16 @@
                                 "type": "transparent",
                                 "titleColor": "#fff",
                                 "backgroundColor": "#007AFF",
-                                "buttons": [{
-                                    "fontSrc": "/static/uni.ttf",
-                                    "text": "\ue537",
-                                    "width": "40px",
-                                    "fontSize": "28px",
-                                    "color": "#fff",
-                                    "background": "rgba(0,0,0,0)"
-                                }],
+                                "buttons": [
+                                    {
+                                        "fontSrc": "/static/uni.ttf",
+                                        "text": "\ue537",
+                                        "width": "40px",
+                                        "fontSize": "28px",
+                                        "color": "#fff",
+                                        "background": "rgba(0,0,0,0)"
+                                    }
+                                ],
                                 "searchInput": {
                                     "backgroundColor": "#fff",
                                     "borderRadius": "6px",
@@ -1156,13 +1207,15 @@
                             "titleNView": {
                                 "titleColor": "#fff",
                                 "backgroundColor": "#007AFF",
-                                "buttons": [{
-                                    "fontSrc": "/static/uni.ttf",
-                                    "text": "\ue537",
-                                    "width": "auto",
-                                    "fontSize": "28px",
-                                    "color": "#fff"
-                                }],
+                                "buttons": [
+                                    {
+                                        "fontSrc": "/static/uni.ttf",
+                                        "text": "\ue537",
+                                        "width": "auto",
+                                        "fontSize": "28px",
+                                        "color": "#fff"
+                                    }
+                                ],
                                 "searchInput": {
                                     "backgroundColor": "#fff",
                                     "borderRadius": "6px",
@@ -1188,9 +1241,11 @@
                         "app-plus": {
                             "titleNView": {
                                 "type": "transparent",
-                                "buttons": [{
-                                    "type": "share"
-                                }]
+                                "buttons": [
+                                    {
+                                        "type": "share"
+                                    }
+                                ]
                             }
                         },
                         "h5": {
@@ -1263,7 +1318,8 @@
         "selectedColor": "#007AFF",
         "borderStyle": "black",
         "backgroundColor": "#F8F8F8",
-        "list": [{
+        "list": [
+            {
                 "pagePath": "pages/tabBar/component/component",
                 "iconPath": "static/component.png",
                 "selectedIconPath": "static/componentHL.png",
@@ -1274,12 +1330,14 @@
                 "iconPath": "static/api.png",
                 "selectedIconPath": "static/apiHL.png",
                 "text": "接口"
-            }, {
+            },
+            {
                 "pagePath": "pages/tabBar/extUI/extUI",
                 "iconPath": "static/extui.png",
                 "selectedIconPath": "static/extuiHL.png",
                 "text": "扩展组件"
-            }, {
+            },
+            {
                 "pagePath": "pages/tabBar/template/template",
                 "iconPath": "static/template.png",
                 "selectedIconPath": "static/templateHL.png",
