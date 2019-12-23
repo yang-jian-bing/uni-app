@@ -154,6 +154,7 @@ export default {
 .cd1 {
   background: rgba(179, 212, 101, 0.2);
   border: 1px solid rgba(154, 197, 49, 1);
+	box-sizing:border-box;
 }
 .cd2 {
   background: rgba(179, 212, 101, 1);
@@ -180,7 +181,7 @@ export default {
   margin: 5px 10px;
 }
 .office-room {
-  width: 31%;
+  width:23%;
   height: 35px;
   line-height: 35px;
   border-radius: 5px;
@@ -192,7 +193,6 @@ export default {
 }
 .r1 {
   background: rgba(154, 197, 49, 0.2);
-  /* border:1px solid rgba(154,197,49,1); */
   color: rgba(154, 197, 49, 1);
 }
 .r2 {
@@ -214,7 +214,8 @@ export default {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  width: 82px;
+  /* width: 82px; */
+	width:23%;
   height: 68px;
   background: rgba(238, 238, 238, 1);
   border-radius: 5px;

@@ -35,6 +35,7 @@
 
 	export default {
 		data() {
+			
 			return {
 				title: 'Hello'
 			}
@@ -44,7 +45,7 @@
 		},
 		methods: {
 			open(url){
-				base.openPage(url);
+				base.openPage('/pages/property/'+ url);
 			}
 		}
 	}

@@ -149,7 +149,7 @@
 		},
 		methods: {
 			open(url){
-				base.openPage(url);
+				base.openPage('/pages/property/'+ url);
 			}
 		}
 	}
@@ -197,7 +197,7 @@
 	}
 
 	.index-padleft {
-		padding-left: 20px;
+		padding-left:10px;
 	}
 
 	.index-flex {
@@ -242,11 +242,12 @@
 	}
 
 	.index-box {
-		margin: 15px;
-		width: 346px;
+		/* width: 346px; */
+		width:95%;
 		box-shadow: 0px 6px 9px 0px rgba(194, 194, 194, 0.67);
 		border-radius: 13px;
 		margin-bottom: 10px;
+		margin:15px auto;
 	}
 
 	.index-body {
