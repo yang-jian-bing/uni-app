@@ -4,7 +4,7 @@
         <view class="actMid myBorder">
             <span class="invmidWz">{{pickerText}}</span>
             <view class="topmid diff"  @click="showMulLinkageTwoPicker">
-                <image class='seleRight' src="../../../static/property/logo.png" alt="">
+                <image class='seleRight' src="../../../static/property/sele.png" alt="">
             </view>
         </view>
         <mpvue-picker :themeColor="themeColor" ref="mpvuePicker" :mode="mode" :deepLength="deepLength" :pickerValueDefault="pickerValueDefault"

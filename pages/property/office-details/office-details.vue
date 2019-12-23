@@ -87,10 +87,10 @@ export default {
   padding: 15px;
 }
 .resMin {
-  min-width: 20%;
+  min-width: 25%;
 }
 .list {
-  padding: 14px 18px 16px 8px;
+  padding:10px 15px;
   display: flex;
   justify-content: space-between;
   align-items: center;
