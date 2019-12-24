@@ -14,10 +14,33 @@
             <swiper :current="tabIndex" class="swiper-box" style="flex: 1;" :duration="300" @change="ontabchange">
                 <!-- 已缴费 -->
                 <swiper-item class="swiper-item" v-if="tabIndex==0">
-                    <await></await>
+                    <view class="joiList" v-for="(item,index) in details" :key="index">
+                        <view class="serBox serindWid">
+                            <view class='chouList'>
+                                <view class="propFlex">
+                                    <p class="actWz proFont">{{item.typeName}}</p>
+                                    <span class="invmidWz">应收：￥{{item.originalMoney}}&nbsp;&nbsp;应缴：￥{{item.realMoney}}</span>
+                                </view>
+                                <div class='infotit serwz'>
+                                    <image class='no-width' src="../../../static/property/No.png" alt="">
+                                </div>
+                            </view>
+                            <view class='weWzpad'>
+                                <p class='font14'>租户：{{item.lesseeName}}</p>
+                                <p class='font14'>费用时间：{{item.startTime}}<span class='invmidWz'>&nbsp;~&nbsp;</span>{{item.endTime}}</p>
+                                <p class='font14'>资源：{{item.resourceName}}</p>
+                            </view>
+                            <view class="label projectBox flex-end">
+                                <text href="">终止缴费</text>
+                                <text href="">支付记录</text>
+                            </view>
+                        </view>
+                    </view>
                 </swiper-item>
+                <view class="example-body">
+                    <uni-load-more :status="status" />
+                </view>
             </swiper>
-
         </view>
     </view>
 </template>
@@ -25,17 +48,25 @@
 <script>
     import uniSearchBar from '@/components/uni-search-bar/uni-search-bar.vue'
     import Tabbar from '@/pages/template/tabbar/tabbar.nvue'
-    import Await from './components/await.vue'
+    import uniLoadMore from '@/components/uni-load-more/uni-load-more.vue'
+
     export default {
         components: {
             uniSearchBar,
             Tabbar,
-            Await
+            uniLoadMore,
         },
         data() {
             return {
                 tabIndex: 0,
                 scrollInto: '',
+                details: [],//待缴费
+                searchVal:'',//搜索
+                obj: {
+                    limit: 3,
+                    page: 1
+                },
+                status: 'more',//加载更多
                 tabBars: [{
                     name: '待缴费',
                     id: '0'
@@ -51,9 +82,15 @@
                 }],
             };
         },
+        onLoad(options) {
+            this.init()
+        },
         methods: {
+            //搜索
             onSearch(val) {
                 console.log(val)
+                this.searchVal=val.value
+                this.init()
             },
             ontabtap(e) {
                 let index = e.target.dataset.current || e.currentTarget.dataset.current;
@@ -61,7 +98,36 @@
                 this.tabIndex = e.currentTarget.dataset.current
             },
             ontabchange(e) {},
+            //待缴费接口调用
+            init() {
+                this.$minApi.dayPay({
+                    payStatus: 0,
+                    // ...this.obj,
+                    lesseeName:this.searchVal
+                }).then(res => {
+                    console.log(res)
+                    const list = res.body
+                    const totalNum = list.totalNum
+                    for (let s of list.data) {
+                        this.details.push(s)
+                    }
+                    console.log(this.details)
+                    if (this.obj.page * 3 > totalNum) {
 
+                        this.status = 'noMore'
+                    } else {
+                        this.obj.page++
+                    }
+                }).catch(err => {
+                    console.log(err)
+                })
+            },
+            //上拉事件
+            onReachBottom() {
+                if (this.status === 'more') {
+                    this.init()
+                }
+            },
         }
     }
 </script>
@@ -147,7 +213,7 @@
     }
 
     .swiper-box {
-        height: 218px;
+        height: 2300px;
         flex: 1;
     }
 
@@ -235,4 +301,45 @@
         font-size: 28upx;
         color: #999;
     }
+    /* 提示窗口 */
+    	.uni-tip {
+    		/* #ifndef APP-NVUE */
+    		display: flex;
+    		flex-direction: column;
+    		/* #endif */
+    		padding: 15px;
+    		width: 300px;
+    		background-color: #fff;
+    		border-radius: 10px;
+    	}
+
+    	.uni-tip-title {
+    		margin-bottom: 10px;
+    		text-align: center;
+    		font-weight: bold;
+    		font-size: 16px;
+    		color: #333;
+    	}
+
+    	.uni-tip-content {
+    		/* padding: 15px;
+    */
+    		font-size: 14px;
+    		color: #666;
+    	}
+
+    	.uni-tip-group-button {
+    		/* #ifndef APP-NVUE */
+    		display: flex;
+    		/* #endif */
+    		flex-direction: row;
+    		margin-top: 20px;
+    	}
+
+    	.uni-tip-button {
+    		flex: 1;
+    		text-align: center;
+    		font-size: 14px;
+    		color: #3b4144;
+    	}
 </style>
