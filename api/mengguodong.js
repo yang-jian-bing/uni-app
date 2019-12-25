@@ -13,5 +13,30 @@ export default {
             "/api/propertyManage/facilitiesMaintenance/delete",
             data
         );
+    },
+	RepairSave(data) {
+	    return minRequest.post(
+	        "/api/propertyManage/facilitiesMaintenance/save",
+	        data
+	    );
+	},
+    RepairDetail(data){
+        return minRequest.get(
+            "/api/propertyManage/facilitiesMaintenance/queryDetail",
+            data
+        );
+    },
+    //设施档案
+    InfraList(data) {
+        return minRequest.get(
+            "/api/propertyManage/facilitiesArchives/queryList",
+            data
+        );
+    },
+    InfraDelete(data) {
+        return minRequest.post(
+            "/api/propertyManage/facilitiesArchives/delete",
+            data
+        );
     }
 };

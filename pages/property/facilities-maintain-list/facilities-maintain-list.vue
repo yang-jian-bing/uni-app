@@ -2,7 +2,7 @@
     <view>
         <view class="top">
             <view class="search mui-input-row">
-                <uni-search-bar radius="100" placeholder="请输入" @confirm="onSearch" style="80%" />
+                <uni-search-bar radius="100" placeholder="请输入设备名称" @confirm="onSearch" style="80%" />
             </view>
             <view v-for="(item,index) in list" :key="index">
                 <view class="joiList">
@@ -16,7 +16,7 @@
                             <p class='font14'>维修信息：{{item.repairPersion}}（{{item.repairDate}}）</p>
                         </view>
                         <view class="label projectBox flex-end">
-                            <text href="">编辑</text>
+                            <text @tap="update(item.id)">编辑</text>
                             <text @tap="deleteHandle(item)">删除</text>
                         </view>
                     </view>
@@ -109,6 +109,11 @@
                 this.status = 'more'
                 this.list = []
                 this.init()
+            },
+            update(id){
+                uni.navigateTo({
+                    url: '/pages/property/add-facilities-maintain1/add-facilities-maintain1?id=' + id + '&update=1'
+                });
             }
         }
     }

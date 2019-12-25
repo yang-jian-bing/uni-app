@@ -4,6 +4,7 @@ const minRequest = new MinRequest();
 
 // 请求拦截器
 minRequest.interceptors.request(request => {
+    request.data.userAccId = 1
     return request;
 });
 
