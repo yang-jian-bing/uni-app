@@ -19,9 +19,33 @@ export default {
             data
         );
     },
-    post1(data) {
+    costDetails(data) {                      //费用详情
+        return minRequest.get(
+            "/api/propertyManage/feeBill/queryDetail",
+            data
+        );
+    },
+    payRecord(data) {                      //缴费记录
+        return minRequest.get(
+            "/api/propertyManage/payRecord/queryList",
+            data
+        );
+    },
+    meetingList(data) {                      //会议室预定列表
+        return minRequest.get(
+            "/api/propertyManage/meetingReserve/queryList",
+            data
+        );
+    },
+    stopReserve(data) {                    //弹出框取消预定
         return minRequest.post(
-            "/api/propertyManage/facilitiesMaintenance/delete",
+            "/api/propertyManage/meetingReserve/cancelReserve",
+            data
+        );
+    },
+    stopEnds(data) {                    //弹出框使用结束
+        return minRequest.post(
+            "/api/propertyManage/meetingReserve/useFinish",
             data
         );
     }

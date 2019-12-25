@@ -2,34 +2,34 @@
 	<view>
 		<view class="top">
             <view class="myBorder cashBox">
-                <p>杨凌农业云</p>
-                <p>45.00<span class="invmidWz">元</span></p>
+                <p>{{details.payee}}</p>
+                <p>{{details.amount}}<span class="invmidWz">元</span></p>
             </view>
             <view class="line"></view>
             <view class="num actDistance">账单信息</view>
             <label class="propFlex pwyment-pd">
                 <p class="invmidWz">费用类型</p>
-                <span class="invmidWz">物业费</span>
+                <span class="invmidWz">{{details.typeName}}</span>
             </label>
 
             <label class="propFlex pwyment-pd">
                 <p class="invmidWz">收款方式</p>
-                <span class="invmidWz">支付宝微信</span>
+                <span class="invmidWz">{{details.channel}}</span>
             </label>
-            <label class="propFlex pwyment-pd">
+           <!-- <label class="propFlex pwyment-pd">
                 <p class="invmidWz">费用时间段</p>
-                <span class="invmidWz">2020-01-12-2021-02-12</span>
-            </label>
+                <span class="invmidWz">{{details.channel}}</span>
+            </label> -->
             <view class="line"></view>
             <view class="num actDistance">支付信息</view>
             <label class="propFlex pwyment-pd">
                 <p class="invmidWz">订单号</p>
-                <span class="invmidWz">20202021012</span>
+                <span class="invmidWz">{{details.orderNo}}</span>
             </label>
 
             <label class="propFlex pwyment-pd">
                 <p class="invmidWz">缴费时间</p>
-                <span class="invmidWz">2020-01-12</span>
+                <span class="invmidWz">{{details.created}}</span>
             </label>
 
         </view>
@@ -40,9 +40,13 @@
 	export default {
 		data() {
 			return {
-				
+details:{}
 			};
-		}
+		},
+        onLoad(options){
+            console.log(options)
+            this.details=options
+        }
 	}
 </script>
 

@@ -60,6 +60,7 @@
                 for (let s of list.data) {
                     // s.repairDate = timerZero(s.repairDate)
                     this.details.push(s)
+                     console.log(this.details)
                 }
                 if (this.obj.page * 3 > totalNum) {
 
@@ -86,7 +87,7 @@
                         this.details.push(s)
                     }
                     if (this.obj.page * 3 > totalNum) {
-                
+
                         this.status = 'noMore'
                     } else {
                         this.obj.page++

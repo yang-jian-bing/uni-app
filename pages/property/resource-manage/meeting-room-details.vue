@@ -2,26 +2,31 @@
   <view>
     <view class="top">
       <view class="dasanMargin topmid diff">
-        <span class="topwz resMin">办公室名称</span>
+        <span class="topwz resMin">会议室名称</span>
         <span class="invmidWz proFont">{{ details.name }}</span>
       </view>
       <view class="line"></view>
       <view class="list dasanMargin">
         <view class="serindWid">
           <view class="topmid diff myPadtop">
-            <span class="topwz resMin">租户名称</span>
-            <span class="invmidWz">{{ details.trueName }}</span>
+            <span class="topwz resMin">可预约时间段</span>
+            <span class="invmidWz"
+              >{{ details.startTime }}~{{ details.endTime }}</span
+            >
           </view>
           <view class="topmid diff myPadtop">
-            <span class="topwz resMin">办公室面积</span>
+            <span class="topwz resMin">会议室面积</span>
             <span class="invmidWz">{{ details.area }}平方米</span>
           </view>
-
+          <view class="topmid diff myPadtop">
+            <span class="topwz resMin">可容纳人数</span>
+            <span class="invmidWz">{{ details.holdNum }}</span>
+          </view>
           <view class="topmid diff myPadtop">
             <span class="topwz resMin">配套设施</span>
             <span class="invmidWz">{{ details.supportingFacility }}</span>
           </view>
-          <span class="topwz resMin myPadtop">办公室图片</span>
+          <span class="topwz resMin myPadtop">会议室图片</span>
           <view class="office-box">
             <image
               class="picter-size"

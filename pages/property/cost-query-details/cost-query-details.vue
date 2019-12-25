@@ -3,34 +3,34 @@
 		<view class="top">
             <view class="dasanMargin topmid diff">
                 <span class="topwz resMin">租户</span>
-                <span class="invmidWz proFont">神舟数码</span>
+                <span class="invmidWz proFont">{{details.lesseeName}}</span>
             </view>
             <view class="line"></view>
             <view class="list dasanMargin">
                 <view class="serindWid">
                     <view class="topmid diff myPadtop">
                         <span class="topwz resMin">资源</span>
-                        <span class="invmidWz">创新大厦A座1层</span>
+                        <span class="invmidWz">{{details.resourceName}}</span>
                     </view>
                     <view class="topmid diff myPadtop">
                         <span class="topwz resMin">费用类型</span>
-                        <span class="invmidWz">物业费</span>
+                        <span class="invmidWz" v-if="details.feeType">{{details.feeType.name}}</span>
                     </view>
                     <view class="topmid diff myPadtop">
                         <span class="topwz resMin">应收金额</span>
-                        <span class="invmidWz">￥30</span>
+                        <span class="invmidWz">￥{{details.originalMoney}}</span>
                     </view>
                     <view class="topmid diff myPadtop">
                         <span class="topwz resMin">费用开始时间</span>
-                        <span class="invmidWz">2020-09-18</span>
+                        <span class="invmidWz">{{details.startTime}}</span>
                     </view>
                     <view class="topmid diff myPadtop">
                         <span class="topwz resMin">费用结束时间</span>
-                        <span class="invmidWz">2020-10-01</span>
+                        <span class="invmidWz">{{details.endTime}}</span>
                     </view>
                     <view class="topmid diff myPadtop">
                         <span class="topwz resMin">备注</span>
-                        <span class="invmidWz">备注备注备注备注备注</span>
+                        <span class="invmidWz">{{details.remark}}</span>
                     </view>
                 </view>
             </view>
@@ -44,12 +44,38 @@
 </template>
 
 <script>
+    import {
+        costDetails
+    } from '@/api/lihao.js'
+    import {
+        timerZero
+    } from '@/common/util.js';
 	export default {
 		data() {
 			return {
-				
+                details:[]
 			};
-		}
+		},
+        onLoad(){
+            this.init()
+        },
+        methods:{
+           init() {
+               this.$minApi.costDetails({
+                   id: '7d83f34f-d075-4599-9a26-a56645d31a3b',
+               }).then(res => {
+
+                   this.details=res.body.data
+                   this.details.startTime = timerZero(this.details.startTime)
+                   this.details.endTime = timerZero(this.details.endTime)
+
+                   console.log(this.details)
+
+               }).catch(err => {
+                   console.log(err)
+               })
+           },
+        }
 	}
 </script>
 
