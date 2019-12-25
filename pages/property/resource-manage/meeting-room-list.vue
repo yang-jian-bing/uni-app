@@ -27,7 +27,6 @@
                 <span class='office-room' @click="officeDetails(office)" :class="{'cd1': office.state == 0, 'cd4': office.state == 1, 'cd5': office.isArrears == 1 }" v-for="office in item.offices" :key="office.id" ></span>
             </view>
         </view>
-
 		</view>
 	</view>
 </template>
