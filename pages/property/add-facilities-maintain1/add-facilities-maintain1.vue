@@ -4,7 +4,8 @@
             <form @submit="formSubmit" @reset="formReset">
                 <view class="uni-form-item uni-column">
                     <view class="title">维修时间(必填)</view>
-                    <input disabled class="uni-input" v-model="object.repairDate" name="repairDate" @click="open" placeholder="请选择时间" />
+                    <input disabled class="uni-input" v-model="object.repairDate" name="repairDate" @click="open"
+                        placeholder="请选择时间" />
                     <!-- <view class="example-body">
                         <button class="calendar-button" type="button" @click="open">打开日历</button>
                     </view> -->
@@ -121,10 +122,13 @@
                 var formData = e.detail.value;
                 var checkRes = graceChecker.check(formData, rule);
                 if (checkRes) {
-                    formData.facilitiesArchivesId = this.facilitiesArchivesId
+                    formData.facilitiesArchivesId = this.facilitiesArchivesId || this.object.facilitiesArchivesId
+                    if(this.object.id){
+                        formData.id = this.object.id
+                    }
                     this.$minApi.RepairSave(formData).then(data=>{
                         uni.showToast({
-                            title: "设施维修信息新增成功!",
+                            title: "设施维修信息新增/修改成功!",
                             icon: "none"
                         });
                         setTimeout(()=>{

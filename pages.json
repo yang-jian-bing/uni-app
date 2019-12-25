@@ -40,7 +40,7 @@
         {
             "path": "pages/property/add-repairs/add-repairs",
             "style": {
-                "navigationBarTitleText": "新增报修"
+                "navigationBarTitleText": "新增/编辑报修"
             }
         },
         {
@@ -154,13 +154,19 @@
         {
             "path": "pages/property/add-facilities-maintain1/add-facilities-maintain1",
             "style": {
-                "navigationBarTitleText": "新增维修记录"
+                "navigationBarTitleText": "新增/编辑维修记录"
             }
         },
         {
             "path": "pages/property/add-facilities-maintain2/add-facilities-maintain2",
             "style": {
-                "navigationBarTitleText": "新增保养记录"
+                "navigationBarTitleText": "新增/编辑保养记录"
+            }
+        },
+        {
+            "path": "pages/property/add-facilities/add-facilities",
+            "style": {
+                "navigationBarTitleText": "新增/编辑设施"
             }
         },
         {
