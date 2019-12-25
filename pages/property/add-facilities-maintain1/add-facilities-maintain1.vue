@@ -1,14 +1,4 @@
 <template>
-<<<<<<< HEAD
-    <view>
-        <view class="uni-padding-wrap uni-common-mt uniwrap">
-            <form @submit="formSubmit" @reset="formReset">
-                <view class="uni-form-item uni-column">
-                    <view class="title">维修时间(必填)</view>
-                    <input disabled class="uni-input" v-model="object.repairDate" name="repairDate" @click="open"
-                        placeholder="请选择时间" />
-                    <!-- <view class="example-body">
-=======
   <view>
     <view class="uni-padding-wrap uni-common-mt uniwrap">
       <form @submit="formSubmit" @reset="formReset">
@@ -23,9 +13,8 @@
             placeholder="请选择时间"
           />
           <!-- <view class="example-body">
->>>>>>> b4a0ad7c35394f383d4af6f305480e80bc05bf08
                         <button class="calendar-button" type="button" @click="open">打开日历</button>
-                    </view> -->
+          </view>-->
           <uni-calendar
             ref="calendar"
             :date="info.date"
@@ -97,113 +86,6 @@
   </view>
 </template>
 <script>
-<<<<<<< HEAD
-    var graceChecker = require("../../../common/graceChecker.js");
-    import uniCalendar from '@/components/uni-calendar/uni-calendar.vue'
-    import {timerZero} from '@/common/util.js'
-    import {
-        nowDate
-    } from "@/common/util.js"
-    import base from '@/common/app-base.js'
-    export default {
-        data() {
-            return {
-                info: {
-                    date: nowDate(),
-                    lunar: true,
-                    range: true,
-                    insert: false,
-                    selected: []
-                },
-                object:{
-                    data:'',
-                    repairPersion:'',
-                    repairPrice:'',
-                    repairProject:'',
-                    repairTime:'',
-                    failureCondition:'',
-                    handlingSituation:''
-                },
-                facilitiesArchivesId:''
-            }
-        },
-        components: {
-            uniCalendar
-        },
-        onLoad(option) {
-            if(option.update == 1){
-                this.$minApi.RepairDetail({id:option.id}).then(data=>{
-                    this.object = data.body.data
-                    this.object.repairDate = timerZero(this.object.repairDate)
-                })
-            }else{
-            this.facilitiesArchivesId = option.id
-            }
-        },
-        methods: {
-            open() {
-                this.$refs.calendar.open()
-            },
-            formSubmit: function(e) {
-                //定义表单规则
-                var rule = [{
-                        name: "repairDate",
-                        checkType: "date",
-                        errorMsg: "请选择时间或者确定时间格式(YYYY-MM-DD)"
-                    },
-                    {
-                        name: "repairPersion",
-                        checkType: "notnull",
-                        errorMsg: "请输入姓名"
-                    },
-                    {
-                        name: "repairPrice",
-                        checkType: "float",
-                        errorMsg: "请输入价格或者查看格式是否正确(允许保留两位小数点的数字)"
-                    },
-                    {
-                        name: "repairTime",
-                        checkType: "notnull",
-                        errorMsg: "请输入工时"
-                    },
-                    {
-                        name: "repairProject",
-                        checkType: "notnull",
-                        errorMsg: "请输入项目"
-                    }
-                ];
-                //进行表单检查
-                var formData = e.detail.value;
-                var checkRes = graceChecker.check(formData, rule);
-                if (checkRes) {
-                    formData.facilitiesArchivesId = this.facilitiesArchivesId || this.object.facilitiesArchivesId
-                    if(this.object.id){
-                        formData.id = this.object.id
-                    }
-                    this.$minApi.RepairSave(formData).then(data=>{
-                        uni.showToast({
-                            title: "设施维修信息新增/修改成功!",
-                            icon: "none"
-                        });
-                        setTimeout(()=>{
-                            base.openPage('/pages/property/facilities-maintain-list/facilities-maintain-list');
-                        },1100)
-
-                    })
-                } else {
-                    uni.showToast({
-                        title: graceChecker.error,
-                        icon: "none"
-                    });
-                }
-            },
-            formReset: function(e) {
-                console.log('清空数据')
-            },
-            confirm(e) {
-                this.object.repairDate = e.fulldate
-            }
-=======
 var graceChecker = require("../../../common/graceChecker.js");
 import uniCalendar from '@/components/uni-calendar/uni-calendar.vue'
 import { timerZero } from '@/common/util.js'
@@ -212,7 +94,7 @@ import {
 } from "@/common/util.js"
 import base from '@/common/app-base.js'
 export default {
-  data () {
+  data() {
     return {
       info: {
         date: nowDate(),
@@ -236,7 +118,7 @@ export default {
   components: {
     uniCalendar
   },
-  onLoad (option) {
+  onLoad(option) {
     if (option.update == 1) {
       this.$minApi.RepairDetail({ id: option.id }).then(data => {
         this.object = data.body.data
@@ -247,7 +129,7 @@ export default {
     }
   },
   methods: {
-    open () {
+    open() {
       this.$refs.calendar.open()
     },
     formSubmit: function (e) {
@@ -285,7 +167,6 @@ export default {
         formData.facilitiesArchivesId = this.facilitiesArchivesId || this.object.facilitiesArchivesId
         if (this.object.id) {
           formData.id = this.object.id
->>>>>>> b4a0ad7c35394f383d4af6f305480e80bc05bf08
         }
         this.$minApi.RepairSave(formData).then(data => {
           uni.showToast({
@@ -307,7 +188,7 @@ export default {
     formReset: function (e) {
       console.log('清空数据')
     },
-    confirm (e) {
+    confirm(e) {
       this.object.repairDate = e.fulldate
     }
   }
