@@ -7,27 +7,40 @@
                 <image class='seleRight' src="../../../static/property/sele.png" alt="">
             </view>
         </view>
-         <view class="uni-form-item uni-column">
-            <input disabled class="uni-input" v-model="date" name="repairDate" @click="open" placeholder="请选择时间" />
-            <uni-calendar ref="calendar" :date="info.date" :insert="info.insert" :lunar="info.lunar" :startDate="info.startDate"
-                :endDate="info.endDate" :range="info.range" @confirm="confirm" />
-        </view>
-        <mpvue-picker :themeColor="themeColor" ref="mpvuePicker" :mode="mode" :deepLength="deepLength" 
-        :pickerValueDefault="pickerValueDefault" @onConfirm="onConfirm" @onCancel="onCancel" 
-        :pickerValueArray="pickerValueArray"></mpvue-picker>
+        <mpvue-picker :themeColor="themeColor" ref="mpvuePicker" :mode="mode" :deepLength="deepLength" :pickerValueDefault="pickerValueDefault"
+  @onConfirm="onConfirm" @onCancel="onCancel" :pickerValueArray="pickerValueArray"></mpvue-picker>
         <view class="line"></view>
         <view class="title meet-mrl">
-            <view class="ansBox num"><span class="color-dotted cd1"></span>可预订</view>
-            <view class="ansBox num"><span class="color-dotted cd4"></span>已预订</view>
-            <view class="ansBox num"><span class="color-dotted cd5"></span>不可预定</view>
+            <view class="ansBox num"><span class="color-dotted cd1"></span>空置</view>
+            <view class="ansBox num"><span class="color-dotted cd4"></span>在租</view>
+            <view class="ansBox num"><span class="color-dotted cd5"></span>欠费</view>
         </view>
-        <view class='invdiff' v-for="item in meetingList" :key="item.id">
-            <p class="meet-p">{{item.name}}</p>
+        <view class='invdiff' v-for="item in officeSummary" :key="item.id">
+            <p class="meet-p">{{item.storey}}层&nbsp;&nbsp;{{item.total}}间</p>
             <view class='office-box'>
-                <span class='office-room' @click="officeDetails(office)" :class="{'cd1': office.state == 0, 'cd4': office.state == 1, 'cd5': office.isArrears == 1 }" v-for="office in item.offices" :key="office.id" ></span>
+                <span class='office-room' @click="officeDetails(office)" :class="{'cd1': office.state == 0, 'cd4': office.state == 1, 'cd5': office.isArrears == 1 }" v-for="office in item.offices" :key="office.id">{{office.name}}室</span>
             </view>
         </view>
-
+        <view class='office-bottom'>
+            <view class='bottom-box'>
+                <view class='bottom-b1'>
+                    <p>总数量</p>
+                    <p>{{total}}</p>
+                </view>
+                <view class='bottom-b1'>
+                    <p>出租数</p>
+                    <p>{{rentalNum}}</p>
+                </view>
+                <view class='bottom-b1'>
+                    <p>空置数</p>
+                    <p>{{vacantNum}}</p>
+                </view>
+                <view class='bottom-b1'>
+                    <p>空置率</p>
+                    <p>{{vacantRate}}%</p>
+                </view>
+            </view>
+        </view>
 		</view>
 	</view>
 </template>
@@ -35,14 +48,9 @@
 <script>
 import mpvuePicker from '../../../components/mpvue-picker/mpvuePicker.vue';
 import base from '@/common/app-base.js'
-import uniCalendar from '@/components/uni-calendar/uni-calendar.vue'
-import {
-  nowDate
-} from "@/common/util.js"
 export default {
   components: {
     mpvuePicker,
-    uniCalendar
   },
   data () {
     return {
@@ -51,7 +59,6 @@ export default {
       themeColor: '#007AFF',
       pickerText: '',
       mode: '',
-      meetingList: [],
       deepLength: 1,
       pickerValueDefault: [0],
       pickerValueArray: [],
@@ -60,23 +67,12 @@ export default {
       vacantNum: 0,
       vacantRate: 0,
       officeSummary: [],
-      info: {
-        date: nowDate(),
-        lunar: true,
-        range: true,
-        insert: false,
-        selected: []
-      },
-      date: 0
     };
   },
   onShow () {
     this.officePlanList()
   },
   methods: {
-    open () {
-      this.$refs.calendar.open()
-    },
     showMulLinkageTwoPicker () {
       this.pickerValueArray = this.mulLinkageTwoPicker
       this.mode = 'multiLinkageSelector'
@@ -84,28 +80,29 @@ export default {
       this.pickerValueDefault = [0, 0]
       this.$refs.mpvuePicker.show()
     },
-    confirm (e) {
-      console.log('confirm 返回:', e)
-      this.date = e.fulldate
-    },
     onConfirm (e) {
       this.pickerText = e.label
-      this.getMeetingList(e.value[1])
+      this.getOfficeList(e.value[1])
     },
     officeDetails (data) {
       let condition = {
         id: data.id
       }
-      let url = '/pages/property/resource-manage/meeting-room-details'
+      let url = '/pages/property/resource-manage/office-details'
       base.openPage(url, condition);
     },
-    getMeetingList (buildingInfoId) {
+    getOfficeList (buildingInfoId) {
       let condition = {
         buildingInfoId: buildingInfoId,
-        date: '2019-12-19'
+        type: 'OFFICE'
       }
-      this.$minApi.getMeetingList(condition).then(res => {
-        this.meetingList = res.body.data
+      this.$minApi.getOfficeList(condition).then(res => {
+        let data = res.body.data
+        this.total = data.total
+        this.rentalNum = data.rentalNum
+        this.vacantNum = data.vacantNum
+        this.vacantRate = data.vacantRate
+        this.officeSummary = data.officeSummary
       }).catch(err => {
         console.log(err)
       })
@@ -124,7 +121,7 @@ export default {
           return item
         })
         this.pickerText = this.mulLinkageTwoPicker[0].label + '-' + this.mulLinkageTwoPicker[0].children[0].label
-        this.getMeetingList(this.mulLinkageTwoPicker[0].children[0].value)
+        this.getOfficeList(this.mulLinkageTwoPicker[0].children[0].value)
       }).catch(err => {
         console.log(err)
       })
@@ -141,11 +138,11 @@ export default {
   align-items: center;
   justify-content: space-around;
 }
-.seleRight {
-  width: 16px;
-  height: 10px;
-  margin-left: 10px;
-}
+ .seleRight {
+        width: 16px;
+        height: 10px;
+        margin-left: 10px;
+    }
 .meet-mrl {
   margin: 0 45px;
 }
@@ -162,7 +159,7 @@ export default {
 .cd1 {
   background: rgba(179, 212, 101, 0.2);
   border: 1px solid rgba(154, 197, 49, 1);
-  box-sizing: border-box;
+	box-sizing:border-box;
 }
 .cd2 {
   background: rgba(179, 212, 101, 1);
@@ -189,9 +186,12 @@ export default {
   margin: 5px 10px;
 }
 .office-room {
-  width: 20px;
-  height: 10px;
-  line-height: 10px;
+  width:23%;
+  height: 35px;
+  line-height: 35px;
+  border-radius: 5px;
+  margin-left: 6px;
+  margin-bottom: 6px;
   font-size: 15px;
   font-weight: 400;
   text-align: center;
@@ -220,7 +220,7 @@ export default {
   justify-content: center;
   flex-direction: column;
   /* width: 82px; */
-  width: 23%;
+	width:23%;
   height: 68px;
   background: rgba(238, 238, 238, 1);
   border-radius: 5px;

@@ -2,7 +2,7 @@
   <view>
     <view class="top">
       <view class="dasanMargin topmid diff">
-        <span class="topwz resMin">办公室名称</span>
+        <span class="topwz resMin">工位名称</span>
         <span class="invmidWz proFont">{{ details.name }}</span>
       </view>
       <view class="line"></view>
@@ -13,7 +13,7 @@
             <span class="invmidWz">{{ details.trueName }}</span>
           </view>
           <view class="topmid diff myPadtop">
-            <span class="topwz resMin">办公室面积</span>
+            <span class="topwz resMin">工位面积</span>
             <span class="invmidWz">{{ details.area }}平方米</span>
           </view>
 
@@ -21,7 +21,7 @@
             <span class="topwz resMin">配套设施</span>
             <span class="invmidWz">{{ details.supportingFacility }}</span>
           </view>
-          <span class="topwz resMin myPadtop">办公室图片</span>
+          <span class="topwz resMin myPadtop">工位图片</span>
           <view class="office-box">
             <image
               class="picter-size"

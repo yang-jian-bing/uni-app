@@ -88,13 +88,13 @@ export default {
       let condition = {
         id: data.id
       }
-      let url = '/pages/property/office-details/office-details'
+      let url = '/pages/property/resource-manage/station-details'
       base.openPage(url, condition);
     },
     getOfficeList (buildingInfoId) {
       let condition = {
         buildingInfoId: buildingInfoId,
-        type: 'OFFICE'
+        type: 'WORKSTATION'
       }
       this.$minApi.getOfficeList(condition).then(res => {
         let data = res.body.data
