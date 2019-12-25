@@ -7,8 +7,8 @@
                 <image class='seleRight' src="../../../static/property/sele.png" alt="">
             </view>
         </view>
-         <view class="uni-form-item uni-column">
-            <input disabled class="uni-input" v-model="date" name="repairDate" @click="open" placeholder="请选择时间" />
+        <view class="uni-form-item uni-column">
+            <input disabled class="uni-input text-center" v-model="date" name="repairDate" @click="open" placeholder="请选择时间" />
             <uni-calendar ref="calendar" :date="info.date" :insert="info.insert" :lunar="info.lunar" :startDate="info.startDate"
                 :endDate="info.endDate" :range="info.range" @confirm="confirm" />
         </view>
@@ -22,19 +22,17 @@
             <view class="ansBox num"><span class="color-dotted cd5"></span>不可预定</view>
         </view>
         <view class='invdiff' v-for="item in meetingList" :key="item.id">
-            <p class="meet-p">{{item.name}}</p>
+            <p class="meet-p" @click="officeDetails(item)" >{{item.name}}</p>
             <view class='office-box'>
-                <span  @click="officeDetails(item)" 
+                <span   
                  v-if="name !== 'id' && name !== 'name'"
                  v-for="(value,name) in item" :key="name"
                   >
-                  <div class='office-room' :class="{'cd1': value == 0, 'cd4': value == 1, 'cd5': value == 2 }"></div>
-                  <div class='office-room m-t-5' v-if='name.split("key")[1]%2===0'> {{name.split('key')[1]}}</div>
-                  <div class='office-room m-t-5 no-show' v-else>0</div>
+                  <div class='office-room' :style="boxStyle" :class="{'cd1': value == 0, 'cd4': value == 1, 'cd5': value == 2 }"></div>
+                  <div class='office-room m-t-5' :style="boxStyle" v-if='name.split("key")[1]%2===0'> {{name.split('key')[1]}}</div>
+                  <div class='office-room m-t-5 no-show' :style="boxStyle" v-else>0</div>
                </span>
-                  
             </view>
-         
         </view>
   		</view>
 	</view>
@@ -58,6 +56,11 @@ export default {
       cityPickerValueDefault: [0, 0, 1],
       themeColor: '#007AFF',
       pickerText: '',
+      boxStyle: {
+        height: '20px',
+        width: '20px',
+      },
+      buildingInfoId: '',
       mode: '',
       meetingList: [],
       deepLength: 1,
@@ -75,7 +78,7 @@ export default {
         insert: false,
         selected: []
       },
-      date: 0
+      date: this.formatDate()
     };
   },
   onShow () {
@@ -85,6 +88,15 @@ export default {
     open () {
       this.$refs.calendar.open()
     },
+    formatDate () {
+      let date = new Date()
+      let y = date.getFullYear();
+      let m = date.getMonth() + 1;
+      m = m < 10 ? '0' + m : m;
+      let d = date.getDate();
+      d = d < 10 ? ('0' + d) : d;
+      return y + '-' + m + '-' + d;//这里可以写格式
+    },
     showMulLinkageTwoPicker () {
       this.pickerValueArray = this.mulLinkageTwoPicker
       this.mode = 'multiLinkageSelector'
@@ -93,12 +105,13 @@ export default {
       this.$refs.mpvuePicker.show()
     },
     confirm (e) {
-      console.log('confirm 返回:', e)
       this.date = e.fulldate
+      this.getMeetingList()
     },
     onConfirm (e) {
       this.pickerText = e.label
-      this.getMeetingList(e.value[1])
+      this.buildingInfoId = e.value[1]
+      this.getMeetingList()
     },
     officeDetails (data) {
       let condition = {
@@ -107,13 +120,17 @@ export default {
       let url = '/pages/property/resource-manage/meeting-room-details'
       base.openPage(url, condition);
     },
-    getMeetingList (buildingInfoId) {
+    getMeetingList () {
       let condition = {
-        buildingInfoId: buildingInfoId,
-        date: '2019-12-19'
+        buildingInfoId: this.buildingInfoId,
+        date: this.date
       }
       this.$minApi.getMeetingList(condition).then(res => {
+        let width = (document.body.offsetWidth - 20) / (Object.keys(res.body.data[0]).length - 2)
         this.meetingList = res.body.data
+        console.log(width)
+        this.boxStyle.height = width + 'px'
+        this.boxStyle.width = width + 'px'
       }).catch(err => {
         console.log(err)
       })
@@ -132,7 +149,8 @@ export default {
           return item
         })
         this.pickerText = this.mulLinkageTwoPicker[0].label + '-' + this.mulLinkageTwoPicker[0].children[0].label
-        this.getMeetingList(this.mulLinkageTwoPicker[0].children[0].value)
+        this.buildingInfoId = this.mulLinkageTwoPicker[0].children[0].value
+        this.getMeetingList()
       }).catch(err => {
         console.log(err)
       })
@@ -195,8 +213,6 @@ export default {
   margin: 5px 10px;
 }
 .office-room {
-  width: 20px;
-  height: 20px;
   line-height: 10px;
   font-size: 15px;
   font-weight: 400;
