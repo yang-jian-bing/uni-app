@@ -37,9 +37,15 @@ export default {
             data
         );
     },
-    post1(data) {
+    stopReserve(data) {                    //弹出框取消预定
         return minRequest.post(
-            "/api/propertyManage/facilitiesMaintenance/delete",
+            "/api/propertyManage/meetingReserve/cancelReserve",
+            data
+        );
+    },
+    stopEnds(data) {                    //弹出框使用结束
+        return minRequest.post(
+            "/api/propertyManage/meetingReserve/useFinish",
             data
         );
     }

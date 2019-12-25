@@ -59,9 +59,11 @@
 		},
 		methods: {
 			close() {
-				this._change('showDrawer', 'visibleSync', false)
+                console.log(132)
+				 this._change('showDrawer', 'visibleSync', false)
 			},
 			open() {
+                console.log(666)
 				this._change('visibleSync', 'showDrawer', true)
 			},
 			_change(param1, param2, status) {
