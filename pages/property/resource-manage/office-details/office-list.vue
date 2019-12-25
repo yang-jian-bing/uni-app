@@ -138,11 +138,11 @@ export default {
   align-items: center;
   justify-content: space-around;
 }
-.seleRight {
-  width: 16px;
-  height: 10px;
-  margin-left: 10px;
-}
+ .seleRight {
+        width: 16px;
+        height: 10px;
+        margin-left: 10px;
+    }
 .meet-mrl {
   margin: 0 45px;
 }
@@ -159,7 +159,7 @@ export default {
 .cd1 {
   background: rgba(179, 212, 101, 0.2);
   border: 1px solid rgba(154, 197, 49, 1);
-  box-sizing: border-box;
+	box-sizing:border-box;
 }
 .cd2 {
   background: rgba(179, 212, 101, 1);
@@ -186,7 +186,7 @@ export default {
   margin: 5px 10px;
 }
 .office-room {
-  width: 23%;
+  width:23%;
   height: 35px;
   line-height: 35px;
   border-radius: 5px;
@@ -220,7 +220,7 @@ export default {
   justify-content: center;
   flex-direction: column;
   /* width: 82px; */
-  width: 23%;
+	width:23%;
   height: 68px;
   background: rgba(238, 238, 238, 1);
   border-radius: 5px;

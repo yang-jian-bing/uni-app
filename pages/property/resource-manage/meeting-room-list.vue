@@ -7,50 +7,50 @@
                 <image class='seleRight' src="../../../static/property/sele.png" alt="">
             </view>
         </view>
-        <mpvue-picker :themeColor="themeColor" ref="mpvuePicker" :mode="mode" :deepLength="deepLength" :pickerValueDefault="pickerValueDefault"
-  @onConfirm="onConfirm" @onCancel="onCancel" :pickerValueArray="pickerValueArray"></mpvue-picker>
+         <view class="uni-form-item uni-column">
+            <input disabled class="uni-input" v-model="date" name="repairDate" @click="open" placeholder="请选择时间" />
+            <uni-calendar ref="calendar" :date="info.date" :insert="info.insert" :lunar="info.lunar" :startDate="info.startDate"
+                :endDate="info.endDate" :range="info.range" @confirm="confirm" />
+        </view>
+        <mpvue-picker :themeColor="themeColor" ref="mpvuePicker" :mode="mode" :deepLength="deepLength" 
+        :pickerValueDefault="pickerValueDefault" @onConfirm="onConfirm" @onCancel="onCancel" 
+        :pickerValueArray="pickerValueArray"></mpvue-picker>
         <view class="line"></view>
         <view class="title meet-mrl">
-            <view class="ansBox num"><span class="color-dotted cd1"></span>空置</view>
-            <view class="ansBox num"><span class="color-dotted cd4"></span>在租</view>
-            <view class="ansBox num"><span class="color-dotted cd5"></span>欠费</view>
+            <view class="ansBox num"><span class="color-dotted cd1"></span>可预订</view>
+            <view class="ansBox num"><span class="color-dotted cd4"></span>已预订</view>
+            <view class="ansBox num"><span class="color-dotted cd5"></span>不可预定</view>
         </view>
-        <view class='invdiff' v-for="item in officeSummary" :key="item.id">
-            <p class="meet-p">{{item.storey}}层&nbsp;&nbsp;{{item.total}}间</p>
+        <view class='invdiff' v-for="item in meetingList" :key="item.id">
+            <p class="meet-p">{{item.name}}</p>
             <view class='office-box'>
-                <span class='office-room' @click="officeDetails(office)" :class="{'cd1': office.state == 0, 'cd4': office.state == 1, 'cd5': office.isArrears == 1 }" v-for="office in item.offices" :key="office.id">{{office.name}}室</span>
+                <span  @click="officeDetails(item)" 
+                 v-if="name !== 'id' && name !== 'name'"
+                 v-for="(value,name) in item" :key="name"
+                  >
+                  <div class='office-room' :class="{'cd1': value == 0, 'cd4': value == 1, 'cd5': value == 2 }"></div>
+                  <div class='office-room m-t-5' v-if='name.split("key")[1]%2===0'> {{name.split('key')[1]}}</div>
+                  <div class='office-room m-t-5 no-show' v-else>0</div>
+               </span>
+                  
             </view>
+         
         </view>
-        <view class='office-bottom'>
-            <view class='bottom-box'>
-                <view class='bottom-b1'>
-                    <p>总数量</p>
-                    <p>{{total}}</p>
-                </view>
-                <view class='bottom-b1'>
-                    <p>出租数</p>
-                    <p>{{rentalNum}}</p>
-                </view>
-                <view class='bottom-b1'>
-                    <p>空置数</p>
-                    <p>{{vacantNum}}</p>
-                </view>
-                <view class='bottom-b1'>
-                    <p>空置率</p>
-                    <p>{{vacantRate}}%</p>
-                </view>
-            </view>
-        </view>
-		</view>
+  		</view>
 	</view>
 </template>
 
 <script>
 import mpvuePicker from '../../../components/mpvue-picker/mpvuePicker.vue';
 import base from '@/common/app-base.js'
+import uniCalendar from '@/components/uni-calendar/uni-calendar.vue'
+import {
+  nowDate
+} from "@/common/util.js"
 export default {
   components: {
     mpvuePicker,
+    uniCalendar
   },
   data () {
     return {
@@ -59,6 +59,7 @@ export default {
       themeColor: '#007AFF',
       pickerText: '',
       mode: '',
+      meetingList: [],
       deepLength: 1,
       pickerValueDefault: [0],
       pickerValueArray: [],
@@ -67,12 +68,23 @@ export default {
       vacantNum: 0,
       vacantRate: 0,
       officeSummary: [],
+      info: {
+        date: nowDate(),
+        lunar: true,
+        range: true,
+        insert: false,
+        selected: []
+      },
+      date: 0
     };
   },
   onShow () {
     this.officePlanList()
   },
   methods: {
+    open () {
+      this.$refs.calendar.open()
+    },
     showMulLinkageTwoPicker () {
       this.pickerValueArray = this.mulLinkageTwoPicker
       this.mode = 'multiLinkageSelector'
@@ -80,29 +92,28 @@ export default {
       this.pickerValueDefault = [0, 0]
       this.$refs.mpvuePicker.show()
     },
+    confirm (e) {
+      console.log('confirm 返回:', e)
+      this.date = e.fulldate
+    },
     onConfirm (e) {
       this.pickerText = e.label
-      this.getOfficeList(e.value[1])
+      this.getMeetingList(e.value[1])
     },
     officeDetails (data) {
       let condition = {
         id: data.id
       }
-      let url = '/pages/property/office-details/office-details'
+      let url = '/pages/property/resource-manage/meeting-room-details'
       base.openPage(url, condition);
     },
-    getOfficeList (buildingInfoId) {
+    getMeetingList (buildingInfoId) {
       let condition = {
         buildingInfoId: buildingInfoId,
-        type: 'OFFICE'
+        date: '2019-12-19'
       }
-      this.$minApi.getOfficeList(condition).then(res => {
-        let data = res.body.data
-        this.total = data.total
-        this.rentalNum = data.rentalNum
-        this.vacantNum = data.vacantNum
-        this.vacantRate = data.vacantRate
-        this.officeSummary = data.officeSummary
+      this.$minApi.getMeetingList(condition).then(res => {
+        this.meetingList = res.body.data
       }).catch(err => {
         console.log(err)
       })
@@ -121,7 +132,7 @@ export default {
           return item
         })
         this.pickerText = this.mulLinkageTwoPicker[0].label + '-' + this.mulLinkageTwoPicker[0].children[0].label
-        this.getOfficeList(this.mulLinkageTwoPicker[0].children[0].value)
+        this.getMeetingList(this.mulLinkageTwoPicker[0].children[0].value)
       }).catch(err => {
         console.log(err)
       })
@@ -158,8 +169,6 @@ export default {
 }
 .cd1 {
   background: rgba(179, 212, 101, 0.2);
-  border: 1px solid rgba(154, 197, 49, 1);
-  box-sizing: border-box;
 }
 .cd2 {
   background: rgba(179, 212, 101, 1);
@@ -186,12 +195,9 @@ export default {
   margin: 5px 10px;
 }
 .office-room {
-  width: 23%;
-  height: 35px;
-  line-height: 35px;
-  border-radius: 5px;
-  margin-left: 6px;
-  margin-bottom: 6px;
+  width: 20px;
+  height: 20px;
+  line-height: 10px;
   font-size: 15px;
   font-weight: 400;
   text-align: center;
@@ -232,5 +238,8 @@ export default {
 }
 .bottom-box p:nth-child(2) {
   font-weight: 600;
+}
+.no-show {
+  opacity: 0;
 }
 </style>

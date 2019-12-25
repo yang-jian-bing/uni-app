@@ -18,5 +18,11 @@ export default {
             "/api/propertyManage/planSummary/queryDetail",
             data
         );
+    },
+    getMeetingList(data) {
+        return minRequest.get(
+            "/api/propertyManage/planSummary/queryMeetingList",
+            data
+        );
     }
 };
