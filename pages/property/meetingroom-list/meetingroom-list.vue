@@ -2,130 +2,180 @@
   <view>
     <view class="top">
       <view class="search mui-input-row">
-        <uni-search-bar radius="100" placeholder="请输入" @confirm="onSearch" style="80%" />
+        <uni-search-bar
+          radius="100"
+          placeholder="请输入"
+          @confirm="onSearch"
+          style="80%"
+        />
       </view>
 
       <!-- 待使用 -->
-      <view class="joiList" v-for="(item,index) in details" :key="index">
+      <view class="joiList" v-for="(item, index) in details" :key="index">
         <view class="serBox serindWid">
           <view class="propFlex serDrop">
-            <p
-              class="comWaiting"
-            >{{item.useStatus==0? '待使用':(item.useStatus==1? '已使用':( item.useStatus==2? '已取消':''))}}</p>
-            <span class="invmidWz">预计时长：{{item.planHours}}h&nbsp;&nbsp;预计收费：￥{{item.originalMoney}}</span>
+            <p class="comWaiting">
+              {{
+                item.useStatus == 0
+                  ? "待使用"
+                  : item.useStatus == 1
+                  ? "已使用"
+                  : item.useStatus == 2
+                  ? "已取消"
+                  : ""
+              }}
+            </p>
+            <span class="invmidWz"
+              >预计时长：{{ item.planHours }}h&nbsp;&nbsp;预计收费：￥{{
+                item.originalMoney
+              }}</span
+            >
           </view>
           <navigator
-            :url="'/pages/property/meetingroom-details/meetingroom-details?parkResourcesName='+item.parkResourcesName+'&meetingTopic='+item.meetingTopic+'&companyName='+item.companyName+'&reserveTime='+item.reserveTime+'&contactMan='+item.contactMan+'&contactPhone='+item.contactPhone+'&meetingAddress='+item.meetingAddress+'&remark='+item.remark"
+            :url="
+              '/pages/property/meetingroom-details/meetingroom-details?parkResourcesName=' +
+                item.parkResourcesName +
+                '&meetingTopic=' +
+                item.meetingTopic +
+                '&companyName=' +
+                item.companyName +
+                '&reserveTime=' +
+                item.reserveTime +
+                '&contactMan=' +
+                item.contactMan +
+                '&contactPhone=' +
+                item.contactPhone +
+                '&meetingAddress=' +
+                item.meetingAddress +
+                '&remark=' +
+                item.remark
+            "
             hover-class="navigator-hover"
           >
-            <span class="actWz proFont">{{item.parkResourcesName}}</span>
+            <span class="actWz proFont">{{ item.parkResourcesName }}</span>
             <view class="weWzpad">
-              <p class="font14">会议主题：{{item.meetingTopic}}</p>
-              <p class="font14">预定时间：{{item.reserveTime}}</p>
-              <p class="font14">联系人信息：{{item.contactMan}} {{item.contactPhone}}</p>
+              <p class="font14">会议主题：{{ item.meetingTopic }}</p>
+              <p class="font14">预定时间：{{ item.reserveTime }}</p>
+              <p class="font14">
+                联系人信息：{{ item.contactMan }} {{ item.contactPhone }}
+              </p>
             </view>
           </navigator>
           <!-- 弹出框 -->
           <view class="example-body">
-            <view v-if="item.useStatus==0">
+            <view v-if="item.useStatus == 0">
               <view
                 class="stopMeet"
                 hover-class="word-btn--hover"
                 :hover-start-time="20"
                 :hover-stay-time="70"
                 @click="show('left1')"
-              >取消会议</view>
+                >取消会议</view
+              >
             </view>
-            <view v-if="item.useStatus==1&&item.feeBillNo==null">
+            <view v-if="item.useStatus == 1 && item.feeBillNo == null">
               <view
                 class="stopMeet"
                 hover-class="word-btn--hover"
                 :hover-start-time="20"
                 :hover-stay-time="70"
                 @click="show('left2')"
-              >使用结束</view>
+                >使用结束</view
+              >
             </view>
-            <view v-if="item.useStatus==1&&item.feeBillNo">
+            <view v-if="item.useStatus == 1 && item.feeBillNo">
               <view
                 class="stopMeet"
                 hover-class="word-btn--hover"
                 :hover-start-time="20"
                 :hover-stay-time="70"
                 @click="show('left3')"
-              >关联缴费单</view>
+                >关联缴费单</view
+              >
             </view>
-            <view v-if="item.useStatus==2">
+            <view v-if="item.useStatus == 2">
               <view
                 class="stopMeet"
                 hover-class="word-btn--hover"
                 :hover-start-time="20"
                 :hover-stay-time="70"
                 @click="show('left4')"
-              >取消原因</view>
+                >取消原因</view
+              >
             </view>
             <!-- <view class="word-btn draw-cotrol-btn" hover-class="word-btn--hover" :hover-start-time="20"
             :hover-stay-time="70" @click="show('left')"><text class="word-btn-white">取消会议</text></view>-->
-            <view>
-              <!-- 弹窗部分1 -->
-              <uni-drawer :visible="showLeft1" mode="left1" @close="closeDrawer('left1')">
-                <view>请输入取消会议的原因</view>
-                <view class="uni-textarea">
-                  <textarea @blur="bindTextAreaBlur" auto-height />
-                </view>
-                <view class="close">
-                  <text class="stopMeet" @click="hide" style="margin-right: 10px;">取消</text>
-                  <text class="stopMeet" @click="stopMeet(item.id)">确认</text>
-                </view>
-              </uni-drawer>
-            </view>
-            <view class>
-              <!-- 弹窗部分2 -->
-              <uni-drawer :visible="showLeft2" mode="left" @close="closeDrawer('left2')">
-                <view class="uni-form-item uni-column">
-                  <view>应收金额</view>
-                  <input class="uni-input" style="border:1px solid #3b4144" v-model="moneys" />
-                </view>
-                <view class="uni-textarea">
-                  <view>备注信息</view>
-                  <textarea @blur="bindTextAreaBlur2" auto-height style="border:1px solid #3b4144" />
-                </view>
-                <view class="close">
-                  <text class="stopMeet" @click="hide" style="margin-right: 10px;">取消</text>
-                  <text class="stopMeet" @click="stopEnd(item.id)">确认</text>
-                </view>
-              </uni-drawer>
-            </view>
-            <view class>
-              <!-- 弹窗部分3 -->
-              <uni-drawer :visible="showLeft3" mode="left" @close="closeDrawer('left3')">
-                <view class="uni-form-item uni-column">
-                  <view>应收金额：{{item.originalMoney}}</view>
-                </view>
-                <view class="uni-textarea">
-                  <view>备注信息：{{item.remark}}</view>
-                </view>
-                <view class="close">
-                  <text class="stopMeet" @click="hide">我知道了</text>
-                </view>
-              </uni-drawer>
-            </view>
-            <view>
-              <!-- 弹窗部分4 -->
-              <uni-drawer :visible="showLeft4" mode="left" @close="closeDrawer('left4')">
-                <view class="uni-form-item uni-column">
-                  <view>取消原因：{{item.finishRemark}}</view>
-                </view>
-                <view class="close">
-                  <text class="stopMeet" @click="hide">我知道了</text>
-                </view>
-              </uni-drawer>
-            </view>
           </view>
         </view>
       </view>
       <view class="example-body1">
         <uni-load-more :status="status" />
       </view>
+      <uni-popup ref="showLeft1" :mask-click="true">
+        <view class="uni-tip">
+          <text class="uni-tip-title">提示</text>
+          <view>请输入取消会议的原因</view>
+          <view class="uni-textarea">
+            <textarea @blur="bindTextAreaBlur" auto-height />
+          </view>
+          <view class="uni-tip-group-button">
+            <text class="uni-tip-button" @click="cancel('tip')">取消</text>
+            <text class="uni-tip-button" @click="stopMeet()">确定</text>
+          </view>
+        </view>
+      </uni-popup>
+      <uni-popup ref="showLeft2" :mask-click="true">
+        <view class="uni-tip">
+          <text class="uni-tip-title">提示</text>
+          <view class="uni-form-item uni-column">
+            <view>应收金额</view>
+            <input
+              class="uni-input"
+              style="border:1px solid #3b4144"
+              v-model="moneys"
+            />
+          </view>
+          <view class="uni-textarea">
+            <view>备注信息</view>
+            <textarea
+              @blur="bindTextAreaBlur2"
+              auto-height
+              style="border:1px solid #3b4144"
+            />
+          </view>
+          <view class="uni-tip-group-button">
+            <text class="uni-tip-button" @click="cancel('tip')">取消</text>
+            <text class="uni-tip-button" @click="stopMeet()">确定</text>
+          </view>
+        </view>
+      </uni-popup>
+      <uni-popup ref="showLeft3" :mask-click="true">
+        <view class="uni-tip">
+          <text class="uni-tip-title">提示</text>
+          <view class="uni-form-item uni-column">
+            <view>应收金额：12</view>
+          </view>
+          <view class="uni-textarea">
+            <view>备注信息：12</view>
+          </view>
+          <view class="uni-tip-group-button">
+            <text class="uni-tip-button" @click="cancel('tip')">取消</text>
+            <text class="uni-tip-button" @click="stopMeet()">确定</text>
+          </view>
+        </view>
+      </uni-popup>
+      <uni-popup ref="showLeft4" :mask-click="true">
+        <view class="uni-tip">
+          <text class="uni-tip-title">提示</text>
+          <view class="uni-form-item uni-column">
+            <view>取消原因：12</view>
+          </view>
+          <view class="uni-tip-group-button">
+            <text class="uni-tip-button" @click="cancel('tip')">取消</text>
+            <text class="uni-tip-button" @click="stopMeet()">确定</text>
+          </view>
+        </view>
+      </uni-popup>
     </view>
   </view>
 </template>
@@ -145,6 +195,7 @@ import uniList from '@/components/uni-list/uni-list.vue'
 import uniListItem from '@/components/uni-list-item/uni-list-item.vue'
 import textarea from '@/pages/component/textarea/textarea.vue'
 import input from '@/pages/component/input/input.vue'
+import uniPopup from '@/components/uni-popup/uni-popup.vue'
 export default {
   components: {
     uniLoadMore,
@@ -152,9 +203,10 @@ export default {
     uniDrawer,
     uniSection,
     uniList,
-    uniListItem
+    uniListItem,
+    uniPopup
   },
-  data() {
+  data () {
     return {
       showLeft1: false,
       showLeft2: false,
@@ -174,13 +226,20 @@ export default {
       status: 'more'
     };
   },
-  onLoad() {
+  onLoad () {
     this.init()
   },
   methods: {
     // 搜索
-
-    onSearch(val) {
+    cancel () {
+      this.$refs['showtip'].close()
+    },
+    togglePopup () {
+      this.$nextTick(() => {
+        this.$refs['showtip'].open()
+      })
+    },
+    onSearch (val) {
       this.details = []
       this.obj = {
         limit: 3,
@@ -190,7 +249,7 @@ export default {
       this.init()
     },
     // 初始化
-    init() {
+    init () {
       this.$minApi.meetingList({
         parkResourcesName: this.searchVal,
         ...this.obj
@@ -212,33 +271,33 @@ export default {
       })
     },
     //上拉事件
-    onReachBottom() {
+    onReachBottom () {
       if (this.status === 'more') {
         this.init()
       }
     },
     //抽屉
-    show(e) {
+    show (e) {
       if (e === 'left1') {
-        this.showLeft1 = true
+        this.$refs['showLeft1'].open()
       }
       if (e === 'left2') {
-        this.showLeft2 = true
+        this.$refs['showLeft2'].open()
       }
       if (e === 'left3') {
-        this.showLeft3 = true
+        this.$refs['showLeft3'].open()
       }
       if (e === 'left4') {
-        this.showLeft4 = true
+        this.$refs['showLeft4'].open()
       }
     },
-    hide() {
+    hide () {
       this.showLeft1 = false
       this.showLeft2 = false
       this.showLeft3 = false
       this.showLeft4 = false
     },
-    closeDrawer(e) {
+    closeDrawer (e) {
       if (e === 'left1') {
         this.showLeft1 = false
       }
@@ -253,7 +312,7 @@ export default {
       }
       console.log(this.showLeft3)
     },
-    confirm() { },
+    confirm () { },
     // 输入框内容
     bindTextAreaBlur: function (e) {
       console.log(e.detail.value)
@@ -264,7 +323,7 @@ export default {
       this.txtValue2 = e.detail.value
     },
     //取消会议
-    stopMeet(val) {
+    stopMeet (val) {
       this.$minApi.stopReserve({
         id: val,
         finishRemark: this.txtValue
@@ -276,7 +335,7 @@ export default {
       })
     },
     //使用结束
-    stopEnd(val) {
+    stopEnd (val) {
       this.$minApi.stopEnds({
         id: val,
         realMoney: this.moneys,
@@ -290,10 +349,10 @@ export default {
     }
 
   },
-  onNavigationBarButtonTap(e) {
+  onNavigationBarButtonTap (e) {
     this.showRight = !this.showRight
   },
-  onBackPress() {
+  onBackPress () {
     if (this.showRight) {
       this.hide()
       return true
