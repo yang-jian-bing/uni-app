@@ -24,10 +24,19 @@
         <view class='invdiff' v-for="item in meetingList" :key="item.id">
             <p class="meet-p">{{item.name}}</p>
             <view class='office-box'>
-                <span class='office-room' @click="officeDetails(office)" :class="{'cd1': office.state == 0, 'cd4': office.state == 1, 'cd5': office.isArrears == 1 }" v-for="office in item.offices" :key="office.id" ></span>
+                <span  @click="officeDetails(item)" 
+                 v-if="name !== 'id' && name !== 'name'"
+                 v-for="(value,name) in item" :key="name"
+                  >
+                  <div class='office-room' :class="{'cd1': value == 0, 'cd4': value == 1, 'cd5': value == 2 }"></div>
+                  <div class='office-room m-t-5' v-if='name.split("key")[1]%2===0'> {{name.split('key')[1]}}</div>
+                  <div class='office-room m-t-5 no-show' v-else>0</div>
+               </span>
+                  
             </view>
+         
         </view>
-		</view>
+  		</view>
 	</view>
 </template>
 
@@ -160,8 +169,6 @@ export default {
 }
 .cd1 {
   background: rgba(179, 212, 101, 0.2);
-  border: 1px solid rgba(154, 197, 49, 1);
-  box-sizing: border-box;
 }
 .cd2 {
   background: rgba(179, 212, 101, 1);
@@ -189,7 +196,7 @@ export default {
 }
 .office-room {
   width: 20px;
-  height: 10px;
+  height: 20px;
   line-height: 10px;
   font-size: 15px;
   font-weight: 400;
@@ -231,5 +238,8 @@ export default {
 }
 .bottom-box p:nth-child(2) {
   font-weight: 600;
+}
+.no-show {
+  opacity: 0;
 }
 </style>
