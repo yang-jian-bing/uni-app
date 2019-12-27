@@ -9,6 +9,7 @@ import store from "./store";
 import MinRequest from "./common/MinRequest.js";
 import minRequest from "./api/index.js";
 Vue.config.productionTip = false;
+const requestUrl = '/api';
 
 Vue.prototype.$store = store;
 Vue.prototype.$backgroundAudioData = {

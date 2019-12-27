@@ -102,31 +102,24 @@
     "mp-toutiao": {
         "usingComponents": true
     },
-    "h5": {
-        "template": "template.h5.html",
-        "router": {
-            "mode": "history",
-            "base": ""
-        },
-        "sdkConfigs": {
-            "maps": {
-                "qqmap": {
-                    "key": ""
-                }
-            }
-        },
-        "async": {
-            "timeout": 20000
-        },
-        "devServer": {
-            "disableHostCheck": true,
-            "proxy": {
-                "/api": {
-                    "target": "http://61.150.65.204:9090", //目标接口域名
-                    "changeOrigin": true,
-                    "secure": true // 设置支持https协议的代理
-                }
-            }
-        }
-    }
+   "h5" : {
+       "devServer" : {
+           "port" : 8081,
+           "https" : false,
+           "disableHostCheck" : true,
+           "proxy" : {
+               "/api" : {
+                   "target" : "http://www.ylibi.com/horizon/horizon",
+                   "changeOrigin" : true,
+                   "secure" : false,
+                   "pathRewrite" : {
+                       "^/api" : ""
+                   }
+               }
+           }
+       },
+       "router" : {
+           "mode" : "hash"
+       }
+   }
 }
