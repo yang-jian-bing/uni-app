@@ -26,6 +26,12 @@
             }
         },
         {
+            "path": "pages/property/keep-list/keep-list",
+            "style": {
+                "navigationBarTitleText": "设施保养记录"
+            }
+        },
+        {
             "path": "pages/property/facilities-manage-list/facilities-manage-list",
             "style": {
                 "navigationBarTitleText": "设施管理"

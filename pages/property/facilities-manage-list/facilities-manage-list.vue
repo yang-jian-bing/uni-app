@@ -24,8 +24,12 @@
             <view class="label projectBox flex-end">
               <text @tap="update(item.id)">编辑</text>
               <text @tap="deleteHandle(item)">删除</text>
-              <text>添加保养记录</text>
-              <text @tap="repairLink(item.id)">添加维修记录</text>
+              <text
+                @tap="repairLink(item.id,'/pages/property/add-facilities-maintain2/add-facilities-maintain2')"
+              >添加保养记录</text>
+              <text
+                @tap="repairLink(item.id,'/pages/property/add-facilities-maintain1/add-facilities-maintain1')"
+              >添加维修记录</text>
             </view>
           </view>
         </view>
@@ -129,8 +133,8 @@ export default {
       this.init()
     },
     // 跳转添加维修
-    repairLink(id) {
-      base.openPage('/pages/property/add-facilities-maintain1/add-facilities-maintain1', { id });
+    repairLink(id, url) {
+      base.openPage(url, { id });
     },
     trigger() {
       base.openPage('/pages/property/add-facilities/add-facilities');

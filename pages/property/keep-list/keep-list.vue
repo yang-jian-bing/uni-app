@@ -7,23 +7,16 @@
       <view v-for="(item,index) in list" :key="index">
         <view class="joiList">
           <view class="serBox serindWid">
-            <view class="chouList">
-              <view class="propFlex">
-                <span class="actWz proFont">{{item.repairTypeName}}</span>
-                <span class="invmidWz">{{item.repairDate}}</span>
-              </view>
-              <div class="infotit serwz">
-                <image class="no-width" src="../../../static/property/No.png" alt />
-                {{item.orderNo}}
-              </div>
-            </view>
+            <p class="actWz proFont">{{item.careProject}}</p>
+            <view class="font14">保养工时：{{item.careTime}}&nbsp;&nbsp;保养费用：￥{{item.carePrice}}</view>
             <view class="weWzpad">
-              <p class="font14">报修人信息：{{item.repairPersion}} {{item.connectPhone}}</p>
-              <p class="font14">报修人地点：{{item.repairAddress}}</p>
-              <p class="font14">报修来源：{{item.repairSourceName}}</p>
+              <p class="font14">所属园区：{{item.parkName}}</p>
+              <p class="font14">设备名称：{{item.name}}</p>
+              <p class="font14">保养信息：{{item.carePersion}}（{{item.careDate}}）</p>
             </view>
             <view class="label projectBox flex-end">
-              <text v-if="!['APP_DECLARE','ONLINE_DECLARE'].includes(item.repairSourceCode)" href>编辑</text>
+              <text @tap="update(item.id)">编辑</text>
+              <text @tap="deleteHandle(item)">删除</text>
             </view>
           </view>
         </view>
@@ -33,13 +26,6 @@
         <uni-load-more :status="status" />
       </view>
     </view>
-    <uni-fab
-      ref="fab"
-      @tapLink="trigger"
-      horizontal="right"
-      vertical="bottom"
-      :pattern="{buttonColor:'#007aff'}"
-    />
   </view>
 </template>
 
@@ -50,14 +36,12 @@ import {
   timerZero
 } from '@/common/util.js';
 import uniLoadMore from '@/components/uni-load-more/uni-load-more.vue'
-import base from '@/common/app-base.js'
-import uniFab from '@/components/uni-fab/uni-fab.vue'
 export default {
   data() {
     return {
       list: [],
       obj: {
-        repairTypeName: '',
+        name: '',
         limit: 3,
         page: 1
       },
@@ -67,8 +51,7 @@ export default {
   components: {
     uniLoadMore,
     uniSearchBar,
-    uniSection,
-    uniFab
+    uniSection
   },
   onLoad() {
     this.init()
@@ -83,7 +66,7 @@ export default {
   },
   methods: {
     init() {
-      this.$minApi.ReportingList(this.obj).then(data => {
+      this.$minApi.KeepList(this.obj).then(data => {
         const list = data.body
         const totalNum = list.totalNum
         if (totalNum) {
@@ -102,9 +85,23 @@ export default {
 
       })
     },
+    deleteHandle(item) {
+      this.$minApi.KeepDelete({
+        id: item.id
+      }).then(data => {
+        this.list.splice(this.list.indexOf(item), 1)
+        uni.showModal({
+          content: '删除成功',
+          showCancel: false
+        });
+        if (this.list.length < 3) {
+          this.init()
+        }
+      })
+    },
     onSearch(val) {
       this.obj = {
-        repairTypeName: val.value,
+        name: val.value,
         limit: 3,
         page: 1
       }
@@ -116,10 +113,7 @@ export default {
       uni.navigateTo({
         url: '/pages/property/add-facilities-maintain2/add-facilities-maintain2?id=' + id + '&update=1'
       });
-    },
-    trigger() {
-      base.openPage('/pages/property/add-repairs/add-repairs');
-    },
+    }
   }
 }
 </script>

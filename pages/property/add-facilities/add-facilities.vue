@@ -72,7 +72,12 @@ export default {
   data() {
     return {
       object: {
-
+        id: '',
+        address: '',
+        name: '',
+        type: '',
+        code: '',
+        specifications: ''
       },
       index: 0,
       parkIndex: 0,
@@ -88,12 +93,14 @@ export default {
   onLoad(option) {
     this.$minApi.ParkInfo({}).then(data => {
       this.arrayPark = data.body.data
+      if (option.id) {
+        this.$minApi.InfraDetail({ id: option.id }).then(data => {
+          this.object = data.body.data
+          this.index = this.arrayStatus.findIndex(item => item.id === this.object.facilitiesStatusCode)
+          this.parkIndex = this.arrayPark.findIndex(item => item.id === this.object.parkId)
+        })
+      }
     })
-    if (option.id) {
-      this.$minApi.ParkInfo({}).then(data => {
-        this.arrayPark = data.body.data
-      })
-    }
   },
   methods: {
     formSubmit: function (e) {
@@ -126,7 +133,9 @@ export default {
       if (checkRes) {
         formData.parkId = this.arrayPark[formData.parkId].id
         formData.facilitiesStatusCode = this.arrayStatus[formData.facilitiesStatusCode].id
-        console.log(formData)
+        if (this.object.id) {
+          formData.id = this.object.id
+        }
         this.$minApi.InfraSave(formData).then(data => {
           uni.showToast({
             title: "设施新增/修改成功!",
