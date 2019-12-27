@@ -2,12 +2,7 @@
   <view>
     <view class="top">
       <view class="search mui-input-row">
-        <uni-search-bar
-          radius="100"
-          placeholder="请输入"
-          @confirm="onSearch"
-          style="80%"
-        />
+        <uni-search-bar radius="100" placeholder="请输入" @confirm="onSearch" style="80%" />
       </view>
 
       <!-- 待使用 -->
@@ -16,39 +11,25 @@
           <view class="propFlex serDrop">
             <p class="comWaiting">
               {{
-                item.useStatus == 0
-                  ? "待使用"
-                  : item.useStatus == 1
-                  ? "已使用"
-                  : item.useStatus == 2
-                  ? "已取消"
-                  : ""
+              item.useStatus == 0
+              ? "待使用"
+              : item.useStatus == 1
+              ? "已使用"
+              : item.useStatus == 2
+              ? "已取消"
+              : ""
               }}
             </p>
-            <span class="invmidWz"
-              >预计时长：{{ item.planHours }}h&nbsp;&nbsp;预计收费：￥{{
-                item.originalMoney
-              }}</span
-            >
+            <span class="invmidWz">
+              预计时长：{{ item.planHours }}h&nbsp;&nbsp;预计收费：￥{{
+              item.originalMoney
+              }}
+            </span>
           </view>
           <navigator
             :url="
-              '/pages/property/meetingroom-details/meetingroom-details?parkResourcesName=' +
-                item.parkResourcesName +
-                '&meetingTopic=' +
-                item.meetingTopic +
-                '&companyName=' +
-                item.companyName +
-                '&reserveTime=' +
-                item.reserveTime +
-                '&contactMan=' +
-                item.contactMan +
-                '&contactPhone=' +
-                item.contactPhone +
-                '&meetingAddress=' +
-                item.meetingAddress +
-                '&remark=' +
-                item.remark
+              '/pages/property/meetingroom-details/meetingroom-details?id=' +
+                item.id
             "
             hover-class="navigator-hover"
           >
@@ -56,9 +37,7 @@
             <view class="weWzpad">
               <p class="font14">会议主题：{{ item.meetingTopic }}</p>
               <p class="font14">预定时间：{{ item.reserveTime }}</p>
-              <p class="font14">
-                联系人信息：{{ item.contactMan }} {{ item.contactPhone }}
-              </p>
+              <p class="font14">联系人信息：{{ item.contactMan }} {{ item.contactPhone }}</p>
             </view>
           </navigator>
           <!-- 弹出框 -->
@@ -70,8 +49,7 @@
                 :hover-start-time="20"
                 :hover-stay-time="70"
                 @click="show('left1',item.id)"
-                >取消会议</view
-              >
+              >取消会议</view>
             </view>
             <view v-if="item.useStatus == 1 && item.feeBillNo == null">
               <view
@@ -80,8 +58,7 @@
                 :hover-start-time="20"
                 :hover-stay-time="70"
                 @click="show('left2',item.id)"
-                >使用结束</view
-              >
+              >使用结束</view>
             </view>
             <view v-if="item.useStatus == 1 && item.feeBillNo">
               <view
@@ -90,8 +67,7 @@
                 :hover-start-time="20"
                 :hover-stay-time="70"
                 @click="show('left3',item.feeBillNo,item.remark)"
-                >关联缴费单</view
-              >
+              >关联缴费单</view>
             </view>
             <view v-if="item.useStatus == 2">
               <view
@@ -100,8 +76,7 @@
                 :hover-start-time="20"
                 :hover-stay-time="70"
                 @click="show('left4',item.finishRemark)"
-                >取消原因</view
-              >
+              >取消原因</view>
             </view>
             <!-- <view class="word-btn draw-cotrol-btn" hover-class="word-btn--hover" :hover-start-time="20"
             :hover-stay-time="70" @click="show('left')"><text class="word-btn-white">取消会议</text></view>-->
@@ -129,19 +104,11 @@
           <text class="uni-tip-title">提示</text>
           <view class="uni-form-item uni-column">
             <view>应收金额</view>
-            <input
-              class="uni-input"
-              style="border:1px solid #3b4144"
-              v-model="moneys"
-            />
+            <input class="uni-input" style="border:1px solid #3b4144" v-model="moneys" />
           </view>
           <view class="uni-textarea">
             <view>备注信息</view>
-            <textarea
-              @blur="bindTextAreaBlur2"
-              auto-height
-              style="border:1px solid #3b4144"
-            />
+            <textarea @blur="bindTextAreaBlur2" auto-height style="border:1px solid #3b4144" />
           </view>
           <view class="uni-tip-group-button">
             <text class="uni-tip-button" @click="cancel('left2')">取消</text>
@@ -206,7 +173,7 @@ export default {
     uniListItem,
     uniPopup
   },
-  data () {
+  data() {
     return {
       showLeft1: false,
       showLeft2: false,
@@ -219,14 +186,14 @@ export default {
       txtValue: '',
       txtValue2: '',
       moneys: '',
-      stopId:'',
-      meetId:'',
-      payList:{
-          remark:"",
-          feeBillNo:""
+      stopId: '',
+      meetId: '',
+      payList: {
+        remark: "",
+        feeBillNo: ""
       },
-      why:{
-          finishRemark:''
+      why: {
+        finishRemark: ''
       },
       obj: {
         limit: 3,
@@ -235,13 +202,13 @@ export default {
       status: 'more'
     };
   },
-  onLoad () {
+  onLoad() {
     this.init()
   },
   methods: {
     // 搜索
 
-    cancel (e) {
+    cancel(e) {
 
       if (e === 'left1') {
         this.$refs['showLeft1'].close()
@@ -258,12 +225,12 @@ export default {
     },
 
 
-    togglePopup () {
+    togglePopup() {
       this.$nextTick(() => {
         this.$refs['showtip'].open()
       })
     },
-    onSearch (val) {
+    onSearch(val) {
       this.details = []
       this.obj = {
         limit: 3,
@@ -273,7 +240,7 @@ export default {
       this.init()
     },
     // 初始化
-    init () {
+    init() {
       this.$minApi.meetingList({
         parkResourcesName: this.searchVal,
         ...this.obj
@@ -295,38 +262,38 @@ export default {
       })
     },
     //上拉事件
-    onReachBottom () {
+    onReachBottom() {
       if (this.status === 'more') {
         this.init()
       }
     },
     //抽屉
-    show (e,val,val2) {
+    show(e, val, val2) {
       if (e === 'left1') {
         this.$refs['showLeft1'].open()
-        this.meetId=val
+        this.meetId = val
       }
       if (e === 'left2') {
         this.$refs['showLeft2'].open()
-        this.stopId=val
+        this.stopId = val
       }
       if (e === 'left3') {
         this.$refs['showLeft3'].open()
-        this.payList.feeBillNo=val
-        this.payList.remark=val2
+        this.payList.feeBillNo = val
+        this.payList.remark = val2
       }
       if (e === 'left4') {
         this.$refs['showLeft4'].open()
-        this.why.finishRemark=val
+        this.why.finishRemark = val
       }
     },
-    hide () {
+    hide() {
       this.showLeft1 = false
       this.showLeft2 = false
       this.showLeft3 = false
       this.showLeft4 = false
     },
-    closeDrawer (e) {
+    closeDrawer(e) {
       if (e === 'left1') {
         this.showLeft1 = false
       }
@@ -341,7 +308,7 @@ export default {
       }
       console.log(this.showLeft3)
     },
-    confirm () { },
+    confirm() { },
     // 输入框内容
     bindTextAreaBlur: function (e) {
       console.log(e.detail.value)
@@ -352,7 +319,7 @@ export default {
       this.txtValue2 = e.detail.value
     },
     //取消会议
-    stopMeet () {
+    stopMeet() {
       this.$minApi.stopReserve({
         id: this.meetId,
         finishRemark: this.txtValue
@@ -364,7 +331,7 @@ export default {
       })
     },
     //使用结束
-    stopEnd () {
+    stopEnd() {
       this.$minApi.stopEnds({
         id: this.stopId,
         realMoney: this.moneys,
@@ -378,10 +345,10 @@ export default {
     }
 
   },
-  onNavigationBarButtonTap (e) {
+  onNavigationBarButtonTap(e) {
     this.showRight = !this.showRight
   },
-  onBackPress () {
+  onBackPress() {
     if (this.showRight) {
       this.hide()
       return true

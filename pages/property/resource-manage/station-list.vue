@@ -69,7 +69,7 @@ export default {
       officeSummary: [],
     };
   },
-  onShow () {
+  onLoad () {
     this.officePlanList()
   },
   methods: {
