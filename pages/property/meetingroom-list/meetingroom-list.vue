@@ -69,7 +69,7 @@
                 hover-class="word-btn--hover"
                 :hover-start-time="20"
                 :hover-stay-time="70"
-                @click="show('left1')"
+                @click="show('left1',item.id)"
                 >取消会议</view
               >
             </view>
@@ -79,7 +79,7 @@
                 hover-class="word-btn--hover"
                 :hover-start-time="20"
                 :hover-stay-time="70"
-                @click="show('left2')"
+                @click="show('left2',item.id)"
                 >使用结束</view
               >
             </view>
@@ -89,7 +89,7 @@
                 hover-class="word-btn--hover"
                 :hover-start-time="20"
                 :hover-stay-time="70"
-                @click="show('left3')"
+                @click="show('left3',item.feeBillNo,item.remark)"
                 >关联缴费单</view
               >
             </view>
@@ -99,7 +99,7 @@
                 hover-class="word-btn--hover"
                 :hover-start-time="20"
                 :hover-stay-time="70"
-                @click="show('left4')"
+                @click="show('left4',item.finishRemark)"
                 >取消原因</view
               >
             </view>
@@ -119,7 +119,7 @@
             <textarea @blur="bindTextAreaBlur" auto-height />
           </view>
           <view class="uni-tip-group-button">
-            <text class="uni-tip-button" @click="cancel('tip')">取消</text>
+            <text class="uni-tip-button" @click="cancel('left1')">取消</text>
             <text class="uni-tip-button" @click="stopMeet()">确定</text>
           </view>
         </view>
@@ -144,8 +144,8 @@
             />
           </view>
           <view class="uni-tip-group-button">
-            <text class="uni-tip-button" @click="cancel('tip')">取消</text>
-            <text class="uni-tip-button" @click="stopMeet()">确定</text>
+            <text class="uni-tip-button" @click="cancel('left2')">取消</text>
+            <text class="uni-tip-button" @click="stopEnd()">确定</text>
           </view>
         </view>
       </uni-popup>
@@ -153,14 +153,14 @@
         <view class="uni-tip">
           <text class="uni-tip-title">提示</text>
           <view class="uni-form-item uni-column">
-            <view>应收金额：12</view>
+            <view>缴费单编号：{{payList.feeBillNo}}</view>
           </view>
           <view class="uni-textarea">
-            <view>备注信息：12</view>
+            <view>备注信息：{{payList.remark}}</view>
           </view>
           <view class="uni-tip-group-button">
-            <text class="uni-tip-button" @click="cancel('tip')">取消</text>
-            <text class="uni-tip-button" @click="stopMeet()">确定</text>
+            <text class="uni-tip-button" @click="cancel('left3')">我知道了</text>
+            <!-- <text class="uni-tip-button" @click="stopMeet()">确定</text> -->
           </view>
         </view>
       </uni-popup>
@@ -168,11 +168,11 @@
         <view class="uni-tip">
           <text class="uni-tip-title">提示</text>
           <view class="uni-form-item uni-column">
-            <view>取消原因：12</view>
+            <view>取消原因：{{why.finishRemark}}</view>
           </view>
           <view class="uni-tip-group-button">
-            <text class="uni-tip-button" @click="cancel('tip')">取消</text>
-            <text class="uni-tip-button" @click="stopMeet()">确定</text>
+            <text class="uni-tip-button" @click="cancel('left4')">我知道了</text>
+            <!-- <text class="uni-tip-button" @click="stopMeet()">确定</text> -->
           </view>
         </view>
       </uni-popup>
@@ -219,6 +219,15 @@ export default {
       txtValue: '',
       txtValue2: '',
       moneys: '',
+      stopId:'',
+      meetId:'',
+      payList:{
+          remark:"",
+          feeBillNo:""
+      },
+      why:{
+          finishRemark:''
+      },
       obj: {
         limit: 3,
         page: 1
@@ -231,9 +240,24 @@ export default {
   },
   methods: {
     // 搜索
-    cancel () {
-      this.$refs['showtip'].close()
+
+    cancel (e) {
+
+      if (e === 'left1') {
+        this.$refs['showLeft1'].close()
+      }
+      if (e === 'left2') {
+        this.$refs['showLeft2'].close()
+      }
+      if (e === 'left3') {
+        this.$refs['showLeft3'].close()
+      }
+      if (e === 'left4') {
+        this.$refs['showLeft4'].close()
+      }
     },
+
+
     togglePopup () {
       this.$nextTick(() => {
         this.$refs['showtip'].open()
@@ -277,18 +301,23 @@ export default {
       }
     },
     //抽屉
-    show (e) {
+    show (e,val,val2) {
       if (e === 'left1') {
         this.$refs['showLeft1'].open()
+        this.meetId=val
       }
       if (e === 'left2') {
         this.$refs['showLeft2'].open()
+        this.stopId=val
       }
       if (e === 'left3') {
         this.$refs['showLeft3'].open()
+        this.payList.feeBillNo=val
+        this.payList.remark=val2
       }
       if (e === 'left4') {
         this.$refs['showLeft4'].open()
+        this.why.finishRemark=val
       }
     },
     hide () {
@@ -323,26 +352,26 @@ export default {
       this.txtValue2 = e.detail.value
     },
     //取消会议
-    stopMeet (val) {
+    stopMeet () {
       this.$minApi.stopReserve({
-        id: val,
+        id: this.meetId,
         finishRemark: this.txtValue
       }).then(res => {
         console.log('取消成功')
-        this.showLeft1 = false
+        this.$refs['showLeft1'].close()
       }).catch(err => {
         console.log(err)
       })
     },
     //使用结束
-    stopEnd (val) {
+    stopEnd () {
       this.$minApi.stopEnds({
-        id: val,
+        id: this.stopId,
         realMoney: this.moneys,
         finishRemark: this.txtValue2
       }).then(res => {
         console.log('结束成功')
-        this.showLeft2 = false
+        this.$refs['showLeft2'].close()
       }).catch(err => {
         console.log(err)
       })
