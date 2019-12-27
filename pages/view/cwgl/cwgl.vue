@@ -11,7 +11,7 @@
                 </view>
                  <p class="serwz ">总金额：{{item.amount}}</p>
                  <p class="serwz ">缴费渠道：<span  v-if="item.channel==1">支付宝支付</span><span v-else-if="item.channel==2">微信支付</span><span v-else-if="item.channel==3">手动写入</span></p>
-                <p class="serwz">缴费时间：2019-10-12 10:00:00</p>
+                <p class="serwz">缴费时间：{{item.created}}</p>
             </view>
 
 
