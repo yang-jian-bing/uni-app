@@ -1,9 +1,12 @@
-const requestUrl = 'http://61.150.65.204:9090'
+const requestUrl = '/api'
 function getHandle(url, data) {
     return new Promise((resolve, reject) => {
         uni.request({
             url: requestUrl + url,
-            data
+            data:data,
+            header: {
+                 'content-Type':"application/x-www-form-urlencoded", //自定义请求头信息
+            },
         }).then(res => {
             resolve(res)
         }).catch(err => {
@@ -12,7 +15,7 @@ function getHandle(url, data) {
                 content: err.errMsg,
                 showCancel: false
             });
-            reject(res)
+            reject(err)
         });
     })
 }
@@ -34,6 +37,7 @@ function postHandle(url, data) {
         });
     })
 }
+
 module.exports =  {
     getHandle,postHandle
 }

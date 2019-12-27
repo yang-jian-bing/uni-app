@@ -47,6 +47,12 @@ export default {
       data
     );
   },
+  facilityDetail(data) {
+    return minRequest.get(
+      "/api/propertyManage/facilitiesArchives/queryDetail",
+      data
+    );
+  },
   InfraDelete(data) {
     return minRequest.post(
       "/api/propertyManage/facilitiesArchives/delete",

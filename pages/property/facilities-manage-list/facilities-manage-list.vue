@@ -7,19 +7,21 @@
       <view v-for="(item,index) in list" :key="index">
         <view class="joiList">
           <view class="serBox serindWid">
-            <view class="chouList">
-              <view class="propFlex">
-                <span class="actWz proFont">{{item.name}}</span>
-                <span class="invmidWz">保养次数：{{item.careNum}} 维修次数：{{item.repairNum}}</span>
+            <view @tap="runDetail(item.id)">
+              <view class="chouList">
+                <view class="propFlex">
+                  <span class="actWz proFont">{{item.name}}</span>
+                  <span class="invmidWz">保养次数：{{item.careNum}} 维修次数：{{item.repairNum}}</span>
+                </view>
+                <div class="infotit serwz">
+                  <!-- <image class='no-width' src="../../../static/property/No.png" alt=""> -->
+                  {{item.code}}
+                </div>
               </view>
-              <div class="infotit serwz">
-                <!-- <image class='no-width' src="../../../static/property/No.png" alt=""> -->
-                {{item.code}}
-              </div>
-            </view>
-            <view class="weWzpad">
-              <p class="font14">所属园区：{{item.parkName}}</p>
-              <p class="font14">已用时长：{{item.useTime}}</p>
+              <view class="weWzpad">
+                <p class="font14">所属园区：{{item.parkName}}</p>
+                <p class="font14">已用时长：{{item.useTime}}</p>
+              </view>
             </view>
             <view class="label projectBox flex-end">
               <text @tap="update(item.id)">编辑</text>
@@ -141,6 +143,11 @@ export default {
     },
     update(id) {
       base.openPage('/pages/property/add-facilities/add-facilities', { id });
+    },
+    runDetail(val) {
+      uni.navigateTo({
+        url: "/pages/property/facilities-details/facilities-details?id=" + val
+      });
     }
   }
 }

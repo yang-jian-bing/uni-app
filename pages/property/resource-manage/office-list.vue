@@ -7,8 +7,9 @@
                 <image class='seleRight' src="../../../static/property/sele.png" alt="">
             </view>
         </view>
-        <mpvue-picker :themeColor="themeColor" ref="mpvuePicker" :mode="mode" :deepLength="deepLength" :pickerValueDefault="pickerValueDefault"
-  @onConfirm="onConfirm" @onCancel="onCancel" :pickerValueArray="pickerValueArray"></mpvue-picker>
+        <mpvue-picker :themeColor="themeColor" ref="mpvuePicker" :mode="mode" :deepLength="deepLength"
+         :pickerValueDefault="pickerValueDefault" @onConfirm="onConfirm" @onCancel="onCancel"
+          :pickerValueArray="pickerValueArray"></mpvue-picker>
         <view class="line"></view>
         <view class="title meet-mrl">
             <view class="ansBox num"><span class="color-dotted cd1"></span>空置</view>
@@ -69,7 +70,7 @@ export default {
       officeSummary: [],
     };
   },
-  onShow () {
+  onLoad () {
     this.officePlanList()
   },
   methods: {
