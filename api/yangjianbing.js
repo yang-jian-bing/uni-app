@@ -24,5 +24,17 @@ export default {
             "/api/propertyManage/planSummary/queryMeetingList",
             data
         );
+    },
+    getMeetingDetails(data) {
+        return minRequest.get(
+            "/api/propertyManage/meetingReserve/queryDetail",
+            data
+        );
+    },
+    queryReserveManInfo(data) {
+        return minRequest.get(
+            "/api/propertyManage/planSummary/queryReserveManInfo",
+            data
+        );
     }
 };

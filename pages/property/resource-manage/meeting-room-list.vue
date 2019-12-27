@@ -27,6 +27,7 @@
                 <span   
                  v-if="name !== 'id' && name !== 'name'"
                  v-for="(value,name) in item" :key="name"
+                 @click="officeBookDetails(item.id, name, value)"
                   >
                   <div class='office-room' :style="boxStyle" :class="{'cd1': value == 0, 'cd4': value == 1, 'cd5': value == 2 }"></div>
                   <div class='office-room m-t-5' :style="boxStyle" v-if='name.split("key")[1]%2===0'> {{name.split('key')[1]}}</div>
@@ -34,21 +35,41 @@
                </span>
             </view>
         </view>
+        <uni-popup ref="showLeft1" :mask-click="true">
+          <view class="uni-tip">
+            <text class="uni-tip-title">提示</text>
+            <view class="uni-form-item uni-column">
+              <view>联系人：{{details.contactMan}}</view>
+            </view>
+            <view class="uni-textarea">
+              <view>联系电话：{{details.contactMan}}</view>
+            </view>
+             <view class="uni-textarea">
+              <view>单位名称：{{details.contactMan}}</view>
+            </view>
+            <view class="uni-tip-group-button">
+              <text class="uni-tip-button" @click="cancel()">取消</text>
+            </view>
+          </view>
+        </uni-popup>
   		</view>
 	</view>
+  
 </template>
 
 <script>
 import mpvuePicker from '../../../components/mpvue-picker/mpvuePicker.vue';
 import base from '@/common/app-base.js'
 import uniCalendar from '@/components/uni-calendar/uni-calendar.vue'
+import uniPopup from '@/components/uni-popup/uni-popup.vue'
 import {
   nowDate
 } from "@/common/util.js"
 export default {
   components: {
     mpvuePicker,
-    uniCalendar
+    uniCalendar,
+    uniPopup
   },
   data () {
     return {
@@ -60,6 +81,7 @@ export default {
         height: '20px',
         width: '20px',
       },
+      details: {},
       buildingInfoId: '',
       mode: '',
       meetingList: [],
@@ -87,6 +109,23 @@ export default {
   methods: {
     open () {
       this.$refs.calendar.open()
+    },
+    cancel () {
+      this.$refs['showLeft1'].close()
+    },
+    officeBookDetails (id, name, value) {
+      if (value == 1) {
+        this.$minApi.queryReserveManInfo({
+          id: id,
+          date: this.date,
+          time: name.split("key")[1] + ':00'
+        }).then(res => {
+          this.details = res.body.data
+        }).catch(err => {
+          console.log(err)
+        })
+        this.$refs['showLeft1'].open()
+      }
     },
     formatDate () {
       let date = new Date()
