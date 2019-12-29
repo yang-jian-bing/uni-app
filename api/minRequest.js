@@ -16,7 +16,7 @@ minRequest.interceptors.response(response => {
 
 // 设置默认配置
 minRequest.setConfig(config => {
-  config.baseURL = "";
+  config.baseURL = "http://61.150.65.204:9090";
   return config;
 });
 
