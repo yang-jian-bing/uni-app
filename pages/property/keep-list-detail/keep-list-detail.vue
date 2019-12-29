@@ -3,28 +3,33 @@
     <view class="top">
       <view class="list dasanMargin">
         <view class="serindWid">
-          <view>
-            <span class="listTit proFont">{{details.parkName}}</span>
+          <view class="topmid diff myPadtop">
+            <span class="topwz resMin">设施名称</span>
+            <span class="topwz">{{details.name}}</span>
           </view>
           <view class="topmid diff myPadtop">
-            <span class="topwz resMin">报修分类</span>
-            <span class="topwz">{{details.repairTypeName}}</span>
+            <span class="topwz resMin">维修日期</span>
+            <span class="topwz">{{details.careDate}}</span>
           </view>
           <view class="topmid diff myPadtop">
-            <span class="topwz resMin">报修地点</span>
-            <span class="topwz">{{details.repairSourceName}}</span>
+            <span class="topwz resMin">维修人员</span>
+            <span class="topwz">{{details.carePersion}}</span>
           </view>
           <view class="topmid diff myPadtop">
-            <span class="topwz resMin">联系人</span>
-            <span class="topwz">{{details.repairPersion}}</span>
+            <span class="topwz resMin">维修费用</span>
+            <span class="topwz">{{details.carePrice}}</span>
           </view>
           <view class="topmid diff myPadtop">
-            <span class="topwz resMin">联系电话</span>
-            <span class="topwz">{{details.connectPhone}}</span>
+            <span class="topwz resMin">维修项目</span>
+            <span class="topwz">{{details.careProject}}</span>
           </view>
           <view class="topmid diff myPadtop">
-            <span class="topwz resMin">地址</span>
-            <span class="topwz">{{details.repairAddress}}</span>
+            <span class="topwz resMin">维修工时 </span>
+            <span class="topwz">{{details.careTime}}</span>
+          </view>
+          <view class="topmid diff myPadtop">
+            <span class="topwz resMin">维修情况</span>
+            <span class="topwz">{{details.careDetail}}</span>
           </view>
         </view>
       </view>
@@ -38,7 +43,9 @@
 </template>
 
 <script>
-
+import {
+  timerZero
+} from '@/common/util.js';
 export default {
   data() {
     return {
@@ -46,10 +53,11 @@ export default {
     };
   },
   onLoad(options) {
-    this.$minApi.ReportingDetail({
+    this.$minApi.KeepDetail({
       id: options.id,
     }).then(res => {
       this.details = res.body.data
+      this.details.careDate = timerZero( this.details.careDate)
     }).catch(err => {
       console.log(err)
     })

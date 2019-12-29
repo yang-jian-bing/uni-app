@@ -17,11 +17,13 @@
                 {{item.orderNo}}
               </div>
             </view>
+             <navigator :url="'/pages/property/repairs-details/repairs-details?id='+item.id">
             <view class="weWzpad">
               <p class="font14">报修人信息：{{item.repairPersion}} {{item.connectPhone}}</p>
               <p class="font14">报修人地点：{{item.repairAddress}}</p>
               <p class="font14">报修来源：{{item.repairSourceName}}</p>
             </view>
+             </navigator>
             <view class="label projectBox flex-end">
               <text v-if="!['APP_DECLARE','ONLINE_DECLARE'].includes(item.repairSourceCode)" href>编辑</text>
             </view>

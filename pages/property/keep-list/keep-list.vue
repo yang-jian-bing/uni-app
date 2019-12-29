@@ -8,12 +8,14 @@
         <view class="joiList">
           <view class="serBox serindWid">
             <p class="actWz proFont">{{item.careProject}}</p>
+             <navigator :url="'/pages/property/keep-list-detail/keep-list-detail?id='+item.id">
             <view class="font14">保养工时：{{item.careTime}}&nbsp;&nbsp;保养费用：￥{{item.carePrice}}</view>
             <view class="weWzpad">
               <p class="font14">所属园区：{{item.parkName}}</p>
               <p class="font14">设备名称：{{item.name}}</p>
               <p class="font14">保养信息：{{item.carePersion}}（{{item.careDate}}）</p>
             </view>
+             </navigator>
             <view class="label projectBox flex-end">
               <text @tap="update(item.id)">编辑</text>
               <text @tap="deleteHandle(item)">删除</text>
