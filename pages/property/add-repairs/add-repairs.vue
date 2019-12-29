@@ -50,7 +50,12 @@
         </view>
         <view class="uni-form-item uni-column">
           <view class="title">报修地点</view>
-          <input class="uni-input" v-model="object.address" name="address" placeholder="请输入地点" />
+          <input
+            class="uni-input"
+            v-model="object.repairAddress"
+            name="repairAddress"
+            placeholder="请输入地点"
+          />
         </view>
         <view class="uni-form-item uni-column">
           <view class="title">报修日期(必填)</view>
@@ -115,7 +120,7 @@ export default {
         repairAddress: '',
         repairDetail: '',
         repairPersion: '',
-        connectPhone: ''
+        connectPhone: '',
       },
       parkIndex: 0,
       typeIndex: 0,
@@ -134,10 +139,11 @@ export default {
     this.$minApi.ParkInfo({}).then(data => {
       this.arrayPark = data.body.data
       if (option.id) {
-        this.$minApi.InfraDetail({ id: option.id }).then(data => {
+        this.$minApi.ReportingDetail({ id: option.id }).then(data => {
           this.object = data.body.data
-          this.index = this.arrayStatus.findIndex(item => item.id === this.object.facilitiesStatusCode)
           this.parkIndex = this.arrayPark.findIndex(item => item.id === this.object.parkId)
+          this.typeIndex = this.typeList.findIndex(item => item.code === this.object.repairTypeCode)
+          this.SourceIndex = this.sourceList.findIndex(item => item.repairSourceCode === this.object.repairSourceCode)
         })
       }
     })
@@ -172,11 +178,12 @@ export default {
       ];
       //进行表单检查
       var formData = e.detail.value;
+      console.log(formData)
       var checkRes = graceChecker.check(formData, rule);
       if (checkRes) {
         formData.parkId = this.arrayPark[formData.parkId].id
         formData.repairSourceCode = this.sourceList[formData.repairSourceCode].repairSourceCode
-        formData.repairTypeCode = this.typeList[formData.repairTypeCode].repairTypeCode
+        formData.repairTypeCode = this.typeList[formData.repairTypeCode].code
         if (this.object.id) {
           formData.id = this.object.id
         }

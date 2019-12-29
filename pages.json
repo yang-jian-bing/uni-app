@@ -1,372 +1,374 @@
 {
-    "pages": [
-        {
-            "path":"pages/index/index",
-             "style": {
-                 "navigationBarTitleText": "首页",
-                 "app-plus":{
-                 	"titleNView":false
-                 }
-             }
-        },
-        //
-		{
-		    "path": "pages/property/index/index",
-		    "style": {
-		        "navigationBarTitleText": "首页"
-		    }
-		},
-        //首页九宫格
-        {
-        	"path":"pages/view/aqscgl/aqscgl",
-        	"style": {
-        		"navigationBarTitleText": "安全生产管理"
-        	}
-        },
-        {
-        	"path":"pages/view/cwgl/cwgl",
-        	"style": {
-        		"navigationBarTitleText": "缴费记录"
-        	}
-        },
-        {
-        	"path":"pages/view/dagl/dagl",
-        	"style": {
-        		"navigationBarTitleText": "档案管理"
-        	}
-        },
-        {
-        	"path":"pages/view/djgl/djgl",
-        	"style": {
-        		"navigationBarTitleText": "党建管理"
-        	}
-        },
-        //党建下级目录
-        {
-            "path" : "pages/view/djgl/nbdy/nbdy",
-            "style" : {
-        		"navigationBarTitleText": "内部党员列表"
-        	}
-        },
-        {
-            "path" : "pages/view/djgl/nbdy/nbdydetail",
-            "style" : {
-        		"navigationBarTitleText": "内部党员详情"
-        	}
+  "pages": [
+    {
+      "path": "pages/index/index",
+      "style": {
+        "navigationBarTitleText": "首页",
+        "app-plus": {
+          "titleNView": false
         }
-        ,{
-            "path" : "pages/view/djgl/wbdy/wbdy",
-            "style" : {
-        		"navigationBarTitleText": "外部党员列表"
-        	}
-        }
-        ,{
-            "path" : "pages/view/djgl/learning/learning",
-            "style" : {
-        		"navigationBarTitleText": "党建学习材料"
-        	}
-        }
-        ,{
-            "path" : "pages/view/djgl/shyk/shyk",
-            "style" : {
-        		"navigationBarTitleText": "三会一课"
-        	}
-        }
-        ,{
-            "path" : "pages/view/djgl/mzshh/mzshh",
-            "style" : {
-        		"navigationBarTitleText": "民主生活会"
-        	}
-        }
-        ,{
-            "path" : "pages/view/djgl/dypb/dypb",
-            "style" : {
-        		"navigationBarTitleText": "党员评比"
-        	}
-        }
-        ,{
-            "path" : "pages/view/djgl/options/options",
-            "style" : {
-        		"navigationBarTitleText": "意见建议"
-        	}
-        },
-        {
-        	"path":"pages/view/gwgl/gwgl",
-        	"style": {
-        		"navigationBarTitleText": "公文管理"
-        		// "enablePullDownRefresh":true
-        	}
-        },
-        {
-        	"path":"pages/view/htgl/htgl",
-        	"style": {
-        		"navigationBarTitleText": "合同管理"
-        	}
-        },
-        {
-        	"path":"pages/view/kqgl/kqgl",
-        	"style": {
-        		"navigationBarTitleText": "考勤管理"
-        	}
-        },
-        {
-        	"path":"pages/view/xmgl/xmgl",
-        	"style": {
-        		"navigationBarTitleText": "项目管理"
-        	}
-        },
-        {
-        	"path":"pages/view/zpgl/zpgl",
-        	"style": {
-        		"navigationBarTitleText": "招聘管理"
-        	}
-        },
-        //物业
-        {
-            "path": "pages/property/property-index/property-index",
-            "style": {
-                "navigationBarTitleText": "物业管理系统"
-            }
-        },
-
-        {
-            "path": "pages/property/facilities-maintain-details/facilities-maintain-details",
-            "style": {
-                "navigationBarTitleText": "设施维修详情"
-            }
-        },
-        {
-            "path": "pages/property/facilities-maintain-list/facilities-maintain-list",
-            "style": {
-                "navigationBarTitleText": "设施维修记录"
-            }
-        },
-        {
-            "path": "pages/property/keep-list/keep-list",
-            "style": {
-                "navigationBarTitleText": "设施保养记录"
-            }
-        },
-        {
-            "path": "pages/property/facilities-manage-list/facilities-manage-list",
-            "style": {
-                "navigationBarTitleText": "设施管理"
-            }
-        },
-        {
-            "path": "pages/property/repairs-details/repairs-details",
-            "style": {
-                "navigationBarTitleText": "报修详情"
-            }
-        },
-        {
-            "path": "pages/property/add-repairs/add-repairs",
-            "style": {
-                "navigationBarTitleText": "新增/编辑报修"
-            }
-        },
-        {
-            "path": "pages/property/repairs-list/repairs-list",
-            "style": {
-                "navigationBarTitleText": "报事报修"
-            }
-        },
-        {
-            "path": "pages/property/add-meetingroom/add-meetingroom",
-            "style": {
-                "navigationBarTitleText": "会议室预定"
-            }
-        },
-        {
-            "path": "pages/property/meetingroom-details/meetingroom-details",
-            "style": {
-                "navigationBarTitleText": "会议室预定详情"
-            }
-        },
-        {
-            "path": "pages/property/payment-details/payment-details",
-            "style": {
-                "navigationBarTitleText": "缴费详情"
-            }
-        },
-        {
-            "path": "pages/property/contract-manage/contract-manage",
-            "style": {
-                "navigationBarTitleText": "合同列表"
-            }
-        },
-        {
-            "path": "pages/property/cost-query-details/cost-query-details",
-            "style": {
-                "navigationBarTitleText": "费用详情"
-            }
-        },
-        {
-            "path": "pages/property/customer-archives/customer-archives",
-            "style": {
-                "navigationBarTitleText": "客户档案"
-            }
-        },
-        {
-            "path": "pages/property/resource-manage/office-list",
-            "style": {
-                "navigationBarTitleText": "办公室平面图"
-            }
-        },
-        {
-            "path": "pages/property/resource-manage/office-details",
-            "style": {
-                "navigationBarTitleText": "办公室详情"
-            }
-        },
-        {
-            "path": "pages/property/resource-manage/station-list",
-            "style": {
-                "navigationBarTitleText": "工位平面图"
-            }
-        },
-        {
-            "path": "pages/property/resource-manage/station-details",
-            "style": {
-                "navigationBarTitleText": "工位详情"
-            }
-        },
-        {
-            "path": "pages/property/resource-manage/meeting-room-list",
-            "style": {
-                "navigationBarTitleText": "会议室平面图"
-            }
-        },
-        {
-            "path": "pages/property/resource-manage/meeting-room-details",
-            "style": {
-                "navigationBarTitleText": "会议室详情"
-            }
-        },
-        {
-            "path": "pages/property/login/login",
-            "style": {
-                "navigationBarTitleText": "登录"
-            }
-        },
-        {
-            "path": "pages/property/meetingroom-list/meetingroom-list",
-            "style": {
-                "navigationBarTitleText": "会议室预定列表"
-            }
-        },
-        {
-            "path": "pages/property/payment-records/payment-records",
-            "style": {
-                "navigationBarTitleText": "缴费记录"
-            }
-        },
-        {
-            "path": "pages/property/daily-charge/daily-charge",
-            "style": {
-                "navigationBarTitleText": "日常收费"
-            }
-        },
-        {
-            "path": "pages/property/resource-meetingroom-details/resource-meetingroom-details",
-            "style": {
-                "navigationBarTitleText": "资源管理会议室详情"
-            }
-        },
-        {
-            "path": "pages/property/add-facilities-maintain1/add-facilities-maintain1",
-            "style": {
-                "navigationBarTitleText": "新增/编辑维修记录"
-            }
-        },
-        {
-            "path": "pages/property/add-facilities-maintain2/add-facilities-maintain2",
-            "style": {
-                "navigationBarTitleText": "新增/编辑保养记录"
-            }
-        },
-        {
-            "path": "pages/property/add-facilities/add-facilities",
-            "style": {
-                "navigationBarTitleText": "新增/编辑设施"
-            }
-        },
-        {
-            "path": "pages/property/facilities-details/facilities-details",
-            "style": {
-                "navigationBarTitleText": "设施详情"
-            }
-        }
-    ],
-    "subPackages": [],
-    "globalStyle": {
-        "navigationBarTextStyle": "white",
-        "navigationBarTitleText": "Hello uniapp",
-        "navigationBarBackgroundColor": "#007AFF",
-        "backgroundColor": "#F8F8F8",
-        "backgroundColorTop": "#F4F5F6",
-        "backgroundColorBottom": "#F4F5F6"
+      }
     },
-    "tabBar":{
-    	"color":"#808080",
-    	"selectedColor":"#467BEB",
-    	"list":[
-    		{
-    			"pagePath":"pages/index/index",
-    			"text":"首页",
-    			"iconPath":"static/homeDef.png",
-    			"selectedIconPath":"static/homePre.png"
-    		},
-    		{
-    			"pagePath":"pages/commission/commission",
-    			"text":"待办审批",
-    			"iconPath":"static/donDef.png",
-    			"selectedIconPath":"static/donPre.png"
-    		},
-    		{
-    			"pagePath":"pages/property/property-index/property-index",
-    			"text":"物业",
-    			"iconPath":"static/proDef.png",
-    			"selectedIconPath":"static/proPre.png"
-    		},
-    		{
-    			"pagePath":"pages/my/my",
-    			"text":"我的",
-    			"iconPath":"static/mDef.png",
-    			"selectedIconPath":"static/mPre.png"
-    		}
-    	]
+    //
+    {
+      "path": "pages/property/index/index",
+      "style": {
+        "navigationBarTitleText": "首页"
+      }
+    },
+    //首页九宫格
+    {
+      "path": "pages/view/aqscgl/aqscgl",
+      "style": {
+        "navigationBarTitleText": "安全生产管理"
+      }
+    },
+    {
+      "path": "pages/view/cwgl/cwgl",
+      "style": {
+        "navigationBarTitleText": "缴费记录"
+      }
+    },
+    {
+      "path": "pages/view/dagl/dagl",
+      "style": {
+        "navigationBarTitleText": "档案管理"
+      }
+    },
+    {
+      "path": "pages/view/djgl/djgl",
+      "style": {
+        "navigationBarTitleText": "党建管理"
+      }
+    },
+    //党建下级目录
+    {
+      "path": "pages/view/djgl/nbdy/nbdy",
+      "style": {
+        "navigationBarTitleText": "内部党员列表"
+      }
+    },
+    {
+      "path": "pages/view/djgl/nbdy/nbdydetail",
+      "style": {
+        "navigationBarTitleText": "内部党员详情"
+      }
+    },
+    {
+      "path": "pages/view/djgl/wbdy/wbdy",
+      "style": {
+        "navigationBarTitleText": "外部党员列表"
+      }
+    },
+    {
+      "path": "pages/view/djgl/learning/learning",
+      "style": {
+        "navigationBarTitleText": "党建学习材料"
+      }
+    },
+    {
+      "path": "pages/view/djgl/shyk/shyk",
+      "style": {
+        "navigationBarTitleText": "三会一课"
+      }
+    },
+    {
+      "path": "pages/view/djgl/mzshh/mzshh",
+      "style": {
+        "navigationBarTitleText": "民主生活会"
+      }
+    },
+    {
+      "path": "pages/view/djgl/dypb/dypb",
+      "style": {
+        "navigationBarTitleText": "党员评比"
+      }
+    },
+    {
+      "path": "pages/view/djgl/options/options",
+      "style": {
+        "navigationBarTitleText": "意见建议"
+      }
+    },
+    {
+      "path": "pages/view/gwgl/gwgl",
+      "style": {
+        "navigationBarTitleText": "公文管理"
+        // "enablePullDownRefresh":true
+      }
+    },
+    {
+      "path": "pages/view/htgl/htgl",
+      "style": {
+        "navigationBarTitleText": "合同管理"
+      }
+    },
+    {
+      "path": "pages/view/kqgl/kqgl",
+      "style": {
+        "navigationBarTitleText": "考勤管理"
+      }
+    },
+    {
+      "path": "pages/view/xmgl/xmgl",
+      "style": {
+        "navigationBarTitleText": "项目管理"
+      }
+    },
+    {
+      "path": "pages/view/zpgl/zpgl",
+      "style": {
+        "navigationBarTitleText": "招聘管理"
+      }
+    },
+    //物业
+    {
+      "path": "pages/property/property-index/property-index",
+      "style": {
+        "navigationBarTitleText": "物业管理系统"
+      }
+    },
+    {
+      "path": "pages/property/facilities-maintain-details/facilities-maintain-details",
+      "style": {
+        "navigationBarTitleText": "设施维修详情"
+      }
+    },
+    {
+      "path": "pages/property/facilities-maintain-list/facilities-maintain-list",
+      "style": {
+        "navigationBarTitleText": "设施维修记录"
+      }
+    },
+    {
+      "path": "pages/property/keep-list/keep-list",
+      "style": {
+        "navigationBarTitleText": "设施保养记录"
+      }
+    },
+    {
+      "path": "pages/property/facilities-manage-list/facilities-manage-list",
+      "style": {
+        "navigationBarTitleText": "设施管理"
+      }
+    },
+    {
+      "path": "pages/property/repairs-details/repairs-details",
+      "style": {
+        "navigationBarTitleText": "报修详情"
+      }
+    },
+    {
+      "path": "pages/property/add-repairs/add-repairs",
+      "style": {
+        "navigationBarTitleText": "新增/编辑报修"
+      }
+    },
+    {
+      "path": "pages/property/repairs-list/repairs-list",
+      "style": {
+        "navigationBarTitleText": "报事报修"
+      }
+    },
+    {
+      "path": "pages/property/add-meetingroom/add-meetingroom",
+      "style": {
+        "navigationBarTitleText": "会议室预定"
+      }
+    },
+    {
+      "path": "pages/property/meetingroom-details/meetingroom-details",
+      "style": {
+        "navigationBarTitleText": "会议室预定详情"
+      }
+    },
+    {
+      "path": "pages/property/payment-details/payment-details",
+      "style": {
+        "navigationBarTitleText": "缴费详情"
+      }
+    },
+    {
+      "path": "pages/property/contract-manage/contract-manage",
+      "style": {
+        "navigationBarTitleText": "合同列表"
+      }
+    },
+    {
+      "path": "pages/property/cost-query-details/cost-query-details",
+      "style": {
+        "navigationBarTitleText": "费用详情"
+      }
+    },
+    {
+      "path": "pages/property/customer-archives/customer-archives",
+      "style": {
+        "navigationBarTitleText": "客户档案"
+      }
+    },
+    {
+      "path": "pages/property/resource-manage/office-list",
+      "style": {
+        "navigationBarTitleText": "办公室平面图"
+      }
+    },
+    {
+      "path": "pages/property/resource-manage/office-details",
+      "style": {
+        "navigationBarTitleText": "办公室详情"
+      }
+    },
+    {
+      "path": "pages/property/resource-manage/station-list",
+      "style": {
+        "navigationBarTitleText": "工位平面图"
+      }
+    },
+    {
+      "path": "pages/property/resource-manage/station-details",
+      "style": {
+        "navigationBarTitleText": "工位详情"
+      }
+    },
+    {
+      "path": "pages/property/resource-manage/meeting-room-list",
+      "style": {
+        "navigationBarTitleText": "会议室平面图"
+      }
+    },
+    {
+      "path": "pages/property/resource-manage/meeting-room-details",
+      "style": {
+        "navigationBarTitleText": "会议室详情"
+      }
+    },
+    {
+      "path": "pages/property/login/login",
+      "style": {
+        "navigationBarTitleText": "登录"
+      }
+    },
+    {
+      "path": "pages/property/meetingroom-list/meetingroom-list",
+      "style": {
+        "navigationBarTitleText": "会议室预定列表"
+      }
+    },
+    {
+      "path": "pages/property/payment-records/payment-records",
+      "style": {
+        "navigationBarTitleText": "缴费记录"
+      }
+    },
+    {
+      "path": "pages/property/daily-charge/daily-charge",
+      "style": {
+        "navigationBarTitleText": "日常收费"
+      }
+    },
+    {
+      "path": "pages/property/resource-meetingroom-details/resource-meetingroom-details",
+      "style": {
+        "navigationBarTitleText": "资源管理会议室详情"
+      }
+    },
+    {
+      "path": "pages/property/add-facilities-maintain1/add-facilities-maintain1",
+      "style": {
+        "navigationBarTitleText": "新增/编辑维修记录"
+      }
+    },
+    {
+      "path": "pages/property/add-facilities-maintain2/add-facilities-maintain2",
+      "style": {
+        "navigationBarTitleText": "新增/编辑保养记录"
+      }
+    },
+    {
+      "path": "pages/property/add-facilities/add-facilities",
+      "style": {
+        "navigationBarTitleText": "新增/编辑设施"
+      }
+    },
+    {
+      "path": "pages/property/facilities-details/facilities-details",
+      "style": {
+        "navigationBarTitleText": "设施详情"
+      }
     }
-    // "tabBar": {
-    //     "color": "#7A7E83",
-    //     "selectedColor": "#007AFF",
-    //     "borderStyle": "black",
-    //     "backgroundColor": "#F8F8F8",
-    //     "list": [
-    //         {
-    //             "pagePath": "pages/tabBar/component/component",
-    //             "iconPath": "static/component.png",
-    //             "selectedIconPath": "static/componentHL.png",
-    //             "text": "内置组件"
-    //         },
-    //         {
-    //             "pagePath": "pages/tabBar/API/API",
-    //             "iconPath": "static/api.png",
-    //             "selectedIconPath": "static/apiHL.png",
-    //             "text": "接口"
-    //         },
-    //         {
-    //             "pagePath": "pages/tabBar/extUI/extUI",
-    //             "iconPath": "static/extui.png",
-    //             "selectedIconPath": "static/extuiHL.png",
-    //             "text": "扩展组件"
-    //         },
-    //         {
-    //             "pagePath": "pages/tabBar/template/template",
-    //             "iconPath": "static/template.png",
-    //             "selectedIconPath": "static/templateHL.png",
-    //             "text": "模板"
-    //         }
-    //     ]
-    // }
+  ],
+  "subPackages": [],
+  "globalStyle": {
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "Hello uniapp",
+    "navigationBarBackgroundColor": "#007AFF",
+    "backgroundColor": "#F8F8F8",
+    "backgroundColorTop": "#F4F5F6",
+    "backgroundColorBottom": "#F4F5F6",
+    "usingComponents": {
+      "ly-tree-node": "/components/ly-tree/ly-tree-node"
+    }
+  },
+  "tabBar": {
+    "color": "#808080",
+    "selectedColor": "#467BEB",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "static/homeDef.png",
+        "selectedIconPath": "static/homePre.png"
+      },
+      {
+        "pagePath": "pages/commission/commission",
+        "text": "待办审批",
+        "iconPath": "static/donDef.png",
+        "selectedIconPath": "static/donPre.png"
+      },
+      {
+        "pagePath": "pages/property/property-index/property-index",
+        "text": "物业",
+        "iconPath": "static/proDef.png",
+        "selectedIconPath": "static/proPre.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的",
+        "iconPath": "static/mDef.png",
+        "selectedIconPath": "static/mPre.png"
+      }
+    ]
+  }
+  // "tabBar": {
+  //     "color": "#7A7E83",
+  //     "selectedColor": "#007AFF",
+  //     "borderStyle": "black",
+  //     "backgroundColor": "#F8F8F8",
+  //     "list": [
+  //         {
+  //             "pagePath": "pages/tabBar/component/component",
+  //             "iconPath": "static/component.png",
+  //             "selectedIconPath": "static/componentHL.png",
+  //             "text": "内置组件"
+  //         },
+  //         {
+  //             "pagePath": "pages/tabBar/API/API",
+  //             "iconPath": "static/api.png",
+  //             "selectedIconPath": "static/apiHL.png",
+  //             "text": "接口"
+  //         },
+  //         {
+  //             "pagePath": "pages/tabBar/extUI/extUI",
+  //             "iconPath": "static/extui.png",
+  //             "selectedIconPath": "static/extuiHL.png",
+  //             "text": "扩展组件"
+  //         },
+  //         {
+  //             "pagePath": "pages/tabBar/template/template",
+  //             "iconPath": "static/template.png",
+  //             "selectedIconPath": "static/templateHL.png",
+  //             "text": "模板"
+  //         }
+  //     ]
+  // }
 }

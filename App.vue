@@ -51,6 +51,8 @@ export default {
 @import "./common/common.css";
 @import "./common/popup.css";
 
+@import url("components/ly-tree/ly-tree.css");
+
 /* 以下样式用于 hello uni-app 演示所需 */
 page {
   background-color: #f4f5f6;

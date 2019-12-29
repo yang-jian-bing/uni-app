@@ -1,6 +1,27 @@
 import minRequest from "./minRequest";
 export default {
   // 这里统一管理api请求 
+  // 获取预订信息 /api/propertyManage/meetingReserve/queryReserveInfo
+  ReserveInfo(data) {
+    return minRequest.get(
+      "/api/propertyManage/meetingReserve/queryReserveInfo",
+      data
+    );
+  },
+  // 获取树状图 /api/propertyManage/meetingReserve/queryReserveTreeInfo
+  TreeInfo(data) {
+    return minRequest.get(
+      "/api/propertyManage/meetingReserve/queryReserveTreeInfo",
+      data
+    );
+  },
+  // 提交会议室预定 /api/propertyManage/meetingReserve/save
+  MeetingSave(data) {
+    return minRequest.post(
+      "/api/propertyManage/meetingReserve/save",
+      data
+    );
+  },
   // 保修种类 /api/propertyManage/busData/queryList
   busData(data) {
     return minRequest.get(

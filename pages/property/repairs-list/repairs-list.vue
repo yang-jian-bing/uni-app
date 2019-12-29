@@ -23,7 +23,10 @@
               <p class="font14">报修来源：{{item.repairSourceName}}</p>
             </view>
             <view class="label projectBox flex-end">
-              <text v-if="!['APP_DECLARE','ONLINE_DECLARE'].includes(item.repairSourceCode)" href>编辑</text>
+              <text
+                v-if="!['APP_DECLARE','ONLINE_DECLARE'].includes(item.repairSourceCode)"
+                @tap="update(item.id)"
+              >编辑</text>
             </view>
           </view>
         </view>
@@ -114,12 +117,12 @@ export default {
     },
     update(id) {
       uni.navigateTo({
-        url: '/pages/property/add-facilities-maintain2/add-facilities-maintain2?id=' + id + '&update=1'
+        url: '/pages/property/add-repairs/add-repairs?id=' + id + '&update=1'
       });
     },
     trigger() {
       base.openPage('/pages/property/add-repairs/add-repairs');
-    },
+    }
   }
 }
 </script>
