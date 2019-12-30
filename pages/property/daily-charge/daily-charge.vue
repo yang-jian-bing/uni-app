@@ -26,160 +26,148 @@
         </view>
       </scroll-view>
       <view class="line-h"></view>
-      <swiper
-        :current="tabIndex"
-        class="swiper-box"
-        style="flex: 1;"
-        :duration="300"
-        @change="ontabchange"
-      >
-        <!-- 待缴费 -->
-        <swiper-item class="swiper-item" v-if="tabIndex==0">
-          <view class="joiList" v-for="(item,index) in details" :key="index">
-            <view class="serBox serindWid">
-              <view class="chouList">
-                <view class="propFlex">
-                  <p class="actWz proFont">{{item.typeName}}</p>
-                  <span
-                    class="invmidWz"
-                  >应收：￥{{item.originalMoney}}&nbsp;&nbsp;已缴：￥{{item.realMoney}}</span>
-                </view>
-                <div class="infotit serwz">
-                  <image class="no-width" src="../../../static/property/No.png" alt />
-                </div>
+      <!-- 待缴费 -->
+      <view class="view" v-if="tabIndex==0">
+        <view class="joiList" v-for="(item,index) in details" :key="index">
+          <view class="serBox serindWid">
+            <view class="chouList">
+              <view class="propFlex">
+                <p class="actWz proFont">{{item.typeName}}</p>
+                <span class="invmidWz">应收：￥{{item.originalMoney}}&nbsp;&nbsp;已缴：￥{{item.realMoney}}</span>
               </view>
-              <navigator :url="'/pages/property/cost-query-details/cost-query-details?id='+item.id">
-                <view class="weWzpad">
-                  <p class="font14">租户：{{item.lesseeName}}</p>
-                  <p class="font14">
-                    费用时间：{{item.startTime}}
-                    <span class="invmidWz">&nbsp;~&nbsp;</span>
-                    {{item.endTime}}
-                  </p>
-                  <p class="font14">资源：{{item.resourceName}}</p>
-                </view>
-              </navigator>
-              <view class="label projectBox flex-end">
-                <text href @click="show('left1',item.id)">终止缴费</text>
-                <text href v-if="item.realMoney" @click="payList(item.id)">支付记录</text>
+              <div class="infotit serwz">
+                <image class="no-width" src="../../../static/property/No.png" alt />
+                <text style="font-size:12px">{{item.feeBillNo}}</text>
+              </div>
+            </view>
+            <navigator :url="'/pages/property/cost-query-details/cost-query-details?id='+item.id">
+              <view class="weWzpad">
+                <p class="font14">租户：{{item.lesseeName}}</p>
+                <p class="font14">
+                  费用时间：{{item.startTime}}
+                  <span class="invmidWz">&nbsp;~&nbsp;</span>
+                  {{item.endTime}}
+                </p>
+                <p class="font14">资源：{{item.resourceName}}</p>
               </view>
+            </navigator>
+            <view class="label projectBox flex-end">
+              <text href v-if="item.isCanFinish === 1" @click="show('left1',item.id)">终止缴费</text>
+              <text href v-if="item.realMoney" @click="payList(item.id)">支付记录</text>
             </view>
           </view>
-        </swiper-item>
-        <!-- 欠费 -->
-        <swiper-item class="swiper-item" v-if="tabIndex==1">
-          <view class="joiList" v-for="(item,index) in details" :key="index">
-            <view class="serBox serindWid">
-              <view class="chouList">
-                <view class="propFlex">
-                  <p class="actWz proFont">{{item.typeName}}</p>
-                  <span
-                    class="invmidWz"
-                  >应收：￥{{item.originalMoney}}&nbsp;&nbsp;已缴：￥{{item.realMoney}}</span>
-                </view>
-                <div class="infotit serwz">
-                  <image class="no-width" src="../../../static/property/No.png" alt />
-                </div>
-              </view>
-              <navigator :url="'/pages/property/cost-query-details/cost-query-details?id='+item.id">
-                <view class="weWzpad">
-                  <p class="font14">租户：{{item.lesseeName}}</p>
-                  <p class="font14">
-                    费用时间：{{item.startTime}}
-                    <span class="invmidWz">&nbsp;~&nbsp;</span>
-                    {{item.endTime}}
-                  </p>
-                  <p class="font14">资源：{{item.resourceName}}</p>
-                </view>
-              </navigator>
-              <view class="label projectBox flex-end">
-                <text href @click="show('left1',item.id)">终止缴费</text>
-                <text href v-if="item.realMoney" @click="payList(item.id)">支付记录</text>
-              </view>
-            </view>
-          </view>
-        </swiper-item>
-        <!-- 已缴费 -->
-        <swiper-item class="swiper-item" v-if="tabIndex==2">
-          <view class="joiList" v-for="(item,index) in details" :key="index">
-            <view class="serBox serindWid">
-              <view class="chouList">
-                <view class="propFlex">
-                  <p class="actWz proFont">{{item.typeName}}</p>
-                  <span
-                    class="invmidWz"
-                  >应收：￥{{item.originalMoney}}&nbsp;&nbsp;已缴：￥{{item.realMoney}}</span>
-                </view>
-                <div class="infotit serwz">
-                  <image class="no-width" src="../../../static/property/No.png" alt />
-                </div>
-              </view>
-              <navigator :url="'/pages/property/cost-query-details/cost-query-details?id='+item.id">
-                <view class="weWzpad">
-                  <p class="font14">租户：{{item.lesseeName}}</p>
-                  <p class="font14">
-                    费用时间：{{item.startTime}}
-                    <span class="invmidWz">&nbsp;~&nbsp;</span>
-                    {{item.endTime}}
-                  </p>
-                  <p class="font14">资源：{{item.resourceName}}</p>
-                </view>
-              </navigator>
-              <view class="label projectBox flex-end">
-                <text href @click="payList(item.id)">支付记录</text>
-              </view>
-            </view>
-          </view>
-        </swiper-item>
-        <!-- 已终止 -->
-        <swiper-item class="swiper-item" v-if="tabIndex==3">
-          <view class="joiList" v-for="(item,index) in details" :key="index">
-            <view class="serBox serindWid">
-              <view class="chouList">
-                <view class="propFlex">
-                  <p class="actWz proFont">{{item.typeName}}</p>
-                  <span
-                    class="invmidWz"
-                  >应收：￥{{item.originalMoney}}&nbsp;&nbsp;已缴：￥{{item.realMoney}}</span>
-                </view>
-                <div class="infotit serwz">
-                  <image class="no-width" src="../../../static/property/No.png" alt />
-                </div>
-              </view>
-              <navigator :url="'/pages/property/cost-query-details/cost-query-details?id='+item.id">
-                <view class="weWzpad">
-                  <p class="font14">租户：{{item.lesseeName}}</p>
-                  <p class="font14">
-                    费用时间：{{item.startTime}}
-                    <span class="invmidWz">&nbsp;~&nbsp;</span>
-                    {{item.endTime}}
-                  </p>
-                  <p class="font14">资源：{{item.resourceName}}</p>
-                </view>
-              </navigator>
-              <view class="label projectBox flex-end">
-                <text href @click="show('left2',item.finishRemark)">终止原因</text>
-                <text href v-if="item.realMoney" @click="payList(item.id)">支付记录</text>
-              </view>
-            </view>
-          </view>
-        </swiper-item>
-      </swiper>
-       <view class="example-body">
-          <uni-load-more :status="status" />
         </view>
+      </view>
+      <!-- 欠费 -->
+      <view class="view" v-if="tabIndex==1">
+        <view class="joiList" v-for="(item,index) in details" :key="index">
+          <view class="serBox serindWid">
+            <view class="chouList">
+              <view class="propFlex">
+                <p class="actWz proFont">{{item.typeName}}</p>
+                <span class="invmidWz">应收：￥{{item.originalMoney}}&nbsp;&nbsp;已缴：￥{{item.realMoney}}</span>
+              </view>
+              <div class="infotit serwz">
+                <image class="no-width" src="../../../static/property/No.png" alt />
+                <text style="font-size:12px">{{item.feeBillNo}}</text>
+              </div>
+            </view>
+            <navigator :url="'/pages/property/cost-query-details/cost-query-details?id='+item.id">
+              <view class="weWzpad">
+                <p class="font14">租户：{{item.lesseeName}}</p>
+                <p class="font14">
+                  费用时间：{{item.startTime}}
+                  <span class="invmidWz">&nbsp;~&nbsp;</span>
+                  {{item.endTime}}
+                </p>
+                <p class="font14">资源：{{item.resourceName}}</p>
+              </view>
+            </navigator>
+            <view class="label projectBox flex-end">
+              <text href @click="show('left1',item.id)">终止缴费</text>
+              <text href v-if="item.realMoney" @click="payList(item.id)">支付记录</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      <!-- 已缴费 -->
+      <view class="view" v-if="tabIndex==2">
+        <view class="joiList" v-for="(item,index) in details" :key="index">
+          <view class="serBox serindWid">
+            <view class="chouList">
+              <view class="propFlex">
+                <p class="actWz proFont">{{item.typeName}}</p>
+                <span class="invmidWz">应收：￥{{item.originalMoney}}&nbsp;&nbsp;已缴：￥{{item.realMoney}}</span>
+              </view>
+              <div class="infotit serwz">
+                <image class="no-width" src="../../../static/property/No.png" alt />
+                <text style="font-size:12px">{{item.feeBillNo}}</text>
+              </div>
+            </view>
+            <navigator :url="'/pages/property/cost-query-details/cost-query-details?id='+item.id">
+              <view class="weWzpad">
+                <p class="font14">租户：{{item.lesseeName}}</p>
+                <p class="font14">
+                  费用时间：{{item.startTime}}
+                  <span class="invmidWz">&nbsp;~&nbsp;</span>
+                  {{item.endTime}}
+                </p>
+                <p class="font14">资源：{{item.resourceName}}</p>
+              </view>
+            </navigator>
+            <view class="label projectBox flex-end">
+              <text href @click="payList(item.id)">支付记录</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      <!-- 已终止 -->
+      <view class="view" v-if="tabIndex==3">
+        <view class="joiList" v-for="(item,index) in details" :key="index">
+          <view class="serBox serindWid">
+            <view class="chouList">
+              <view class="propFlex">
+                <p class="actWz proFont">{{item.typeName}}</p>
+                <span class="invmidWz">应收：￥{{item.originalMoney}}&nbsp;&nbsp;已缴：￥{{item.realMoney}}</span>
+              </view>
+              <div class="infotit serwz">
+                <image class="no-width" src="../../../static/property/No.png" alt />
+                <text style="font-size:12px">{{item.feeBillNo}}</text>
+              </div>
+            </view>
+            <navigator :url="'/pages/property/cost-query-details/cost-query-details?id='+item.id">
+              <view class="weWzpad">
+                <p class="font14">租户：{{item.lesseeName}}</p>
+                <p class="font14">
+                  费用时间：{{item.startTime}}
+                  <span class="invmidWz">&nbsp;~&nbsp;</span>
+                  {{item.endTime}}
+                </p>
+                <p class="font14">资源：{{item.resourceName}}</p>
+              </view>
+            </navigator>
+            <view class="label projectBox flex-end">
+              <text href @click="show('left2',item.finishRemark)">终止原因</text>
+              <text href v-if="item.realMoney" @click="payList(item.id)">支付记录</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="example-body">
+        <uni-load-more :status="status" />
+      </view>
     </view>
     <!-- 终止缴费弹窗 -->
     <uni-popup ref="showLeft1" :mask-click="true">
       <view class="uni-tip">
         <text class="uni-tip-title">提示</text>
-        <view>请输入取消会议的原因</view>
+        <view>请输入终止缴费的原因</view>
         <view class="uni-textarea">
           <textarea @blur="bindTextAreaBlur" auto-height />
         </view>
         <view class="uni-tip-group-button">
           <text class="uni-tip-button" @click="cancel('left1')">取消</text>
-          <text class="uni-tip-button" @click="stopEnd()">确定</text>
+          <text class="uni-tip-button" @click="stopEnd">确定</text>
         </view>
       </view>
     </uni-popup>
@@ -188,7 +176,7 @@
       <view class="uni-tip">
         <text class="uni-tip-title">提示</text>
         <view class="uni-form-item uni-column">
-          <view>取消原因：{{why.finishRemark}}</view>
+          <view>终止原因：{{why.finishRemark}}</view>
         </view>
         <view class="uni-tip-group-button">
           <text class="uni-tip-button" @click="cancel('left2')">我知道了</text>
@@ -203,14 +191,15 @@ import uniSearchBar from '@/components/uni-search-bar/uni-search-bar.vue'
 import Tabbar from '@/pages/template/tabbar/tabbar.nvue'
 import uniLoadMore from '@/components/uni-load-more/uni-load-more.vue'
 import uniPopup from '@/components/uni-popup/uni-popup.vue'
-import textarea from '@/pages/component/textarea/textarea.vue'
+import {
+  timerZero
+} from '@/common/util.js';
 export default {
   components: {
     uniSearchBar,
     Tabbar,
     uniLoadMore,
-    uniPopup,
-    textarea
+    uniPopup
   },
   data() {
     return {
@@ -222,7 +211,7 @@ export default {
       statusNum: '',
       txtValue: '',
       stopId: '',//终止id
-      why: '',//终止原因
+      why: {},//终止原因
       obj: {
         limit: 3,
         page: 1
@@ -249,14 +238,23 @@ export default {
   methods: {
     //搜索
     onSearch(val) {
+      this.obj = {
+        limit: 3,
+        page: 1
+      }
       this.details = []
       this.searchVal = val.value
       this.init()
     },
     ontabtap(e) {
       let index = e.target.dataset.current || e.currentTarget.dataset.current;
-      console.log(e.currentTarget.dataset.current)
       this.tabIndex = e.currentTarget.dataset.current
+      this.obj = {
+        limit: 3,
+        page: 1
+      }
+      this.details = []
+      this.init()
     },
     ontabchange(e) { },
     //待缴费接口调用
@@ -278,6 +276,8 @@ export default {
         const list = res.body
         const totalNum = list.totalNum
         for (let s of list.data) {
+          s.endTime = timerZero(s.endTime)
+          s.startTime = timerZero(s.startTime)
           this.details.push(s)
         }
         if (this.obj.page * 3 > totalNum) {
@@ -303,7 +303,7 @@ export default {
       }
       if (e === 'left2') {
         this.$refs['showLeft2'].open()
-        this.why = valId
+        this.why.finishRemark = valId
       }
     },
     // 弹窗取消按钮
@@ -317,7 +317,6 @@ export default {
     },
     // 弹窗input输入的值
     bindTextAreaBlur: function (e) {
-      console.log(e.detail.value)
       this.txtValue = e.detail.value
     },
     //终止缴费
@@ -326,6 +325,12 @@ export default {
         id: this.stopId,
         finishRemark: this.txtValue
       }).then(res => {
+        this.obj = {
+          limit: 3,
+          page: 1
+        }
+        this.details = []
+        this.init()
         this.$refs['showLeft1'].close()
       }).catch(err => {
         console.log(err)

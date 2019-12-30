@@ -20,7 +20,7 @@ export default {
     );
   },
   stopPay(data) {                      //日常缴费的终止缴费
-    return minRequest.get(
+    return minRequest.post(
       "/api/propertyManage/feeBill/finish",
       data
     );
