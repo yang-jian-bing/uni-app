@@ -82,9 +82,9 @@
 							<img class="index-img" src="../../../static/property/shoufei3.png" />
 							<span class="serteachWz projectBox"> 预定会议室</span>
 						</view>
-			
+
 					</view>
-			
+
 				</view>
 			</view>
 			<!-- 报事报修 -->
@@ -108,7 +108,7 @@
 				</view>
 			</view>
 			<!-- 设施管理 -->
-			<view class='index-body'>
+			<view class='index-body1'>
 				<view class='index-box'>
 					<view class="topmid serindPad wePosition">
 						<view class="indexnewBor"></view>
@@ -125,7 +125,7 @@
 							<img class="index-img" src="../../../static/property/weixiu.png" />
 							<span class="serteachWz projectBox"> 维修记录</span>
 						</view>
-						<view class="drop1 serDrop">
+						<view class="drop1 serDrop" @click="open('keep-list/keep-list')">
 							<img class="index-img" src="../../../static/property/baoyang.png" />
 							<span class="serteachWz projectBox"> 保养记录</span>
 						</view>
@@ -255,6 +255,10 @@ export default {
 
 .index-body {
   width: 100%;
+}
+.index-body1 {
+  width: 100%;
+  height: 200px;
 }
 
 .index-pdt {

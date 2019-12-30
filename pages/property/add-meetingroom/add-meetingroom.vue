@@ -2,8 +2,20 @@
   <view>
     <view class="uni-padding-wrap uni-common-mt uniwrap">
       <form @submit="formSubmit" @reset="formReset">
-           <view class="uni-form-item uni-column">
-          <view class="uni-title uni-common-pl">预定日期</view>
+        <view class="uni-form-item uni-column">
+          <view class="title">资源(必填)</view>
+          <ly-tree
+            node-key="id"
+            :tree-data="options"
+            :props="{children: 'children',label: 'label'}"
+            accordion
+            :highlight-current="true"
+            @node-click="handleNodeClick"
+            emptyText="正在加载资源信息..."
+          ></ly-tree>
+        </view>
+        <view class="uni-form-item uni-column">
+          <view class="uni-title uni-common-pl">预定日期(必填)</view>
           <view class="uni-list">
             <view class="uni-list-cell">
               <view class="uni-list-cell-db">
@@ -14,113 +26,74 @@
                   :end="endDate"
                   @change="bindDateChange"
                 >
-                  <view class="uni-input">{{ date }}</view>
+                  <input disabled class="uni-input" name="reserveDate" :value="date" />
                 </picker>
               </view>
             </view>
+            <view v-if="(reserveData instanceof Array)" class="c-r d-f" style="width:100%">
+              已预约时间：
+              <span v-for="item in reserveData" :key="item" style="margin: 0 6px">{{item}}</span>
+            </view>
+            <view v-else class="c-r">{{reserveData}}</view>
           </view>
-          </view>
-           <view class="uni-form-item uni-column">
-          <view class="title">开始时间</view>
-          <view class="uni-list">
-            <view class="uni-list-cell">
-              <view class="uni-list-cell-db">
-                <picker
-                  mode="time"
-                  :value="time"
-                  start="09:01"
-                  end="21:01"
-                  @change="bindTimeChange"
-                >
-                  <view class="uni-input">{{ time }}</view>
-                </picker>
+        </view>
+        <view v-if="key">
+          <view class="uni-form-item uni-column">
+            <view class="title">开始时间(必填)</view>
+            <view class="uni-list">
+              <view class="uni-list-cell">
+                <view class="uni-list-cell-db">
+                  <picker
+                    mode="selector"
+                    :value="startTime"
+                    :range="timeArray"
+                    @change="bindTimeChange"
+                    :minuteShow="false"
+                  >
+                    <input disabled class="uni-input" name="startTime" :value="time + ':00'" />
+                  </picker>
+                </view>
               </view>
             </view>
           </view>
-         </view>
-         <view class="uni-form-item uni-column">
-          <view class="title">结束时间</view>
-          <view class="uni-list">
-            <view class="uni-list-cell">
-              <view class="uni-list-cell-db">
-                <picker
-                  mode="time"
-                  :value="time2"
-                  start="09:01"
-                  end="21:01"
-                  @change="bindTimeChange2"
-                >
-                  <view class="uni-input">{{ time2 }}</view>
-                </picker>
+          <view class="uni-form-item uni-column">
+            <view class="title">结束时间(必填)</view>
+            <view class="uni-list">
+              <view class="uni-list-cell">
+                <view class="uni-list-cell-db">
+                  <picker
+                    mode="selector"
+                    :value="endTime"
+                    :range="timeArray"
+                    @change="bindTimeChange2"
+                    :minuteShow="false"
+                  >
+                    <input disabled class="uni-input" name="endTime" :value="time2 + ':00'" />
+                  </picker>
+                </view>
               </view>
             </view>
           </view>
-         </view>
-          <!-- ///////////////////////// -->
-        <!-- <view class="uni-form-item uni-column">
-          <view class="title">预定日期</view>
-          <input
-            disabled
-            class="uni-input"
-            v-model="object.repairDate"
-            name="repairDate"
-            @click="open"
-            placeholder="请选择时间"
-          />
-          <uni-calendar
-            ref="calendar"
-            :date="info.date"
-            :insert="info.insert"
-            :lunar="info.lunar"
-            :startDate="info.startDate"
-            :endDate="info.endDate"
-            :range="info.range"
-            @confirm="confirm"
-          />
-        </view> -->
-        <view class="uni-form-item uni-column">
-          <view class="title">联系人</view>
-          <input
-            class="uni-input"
-            v-model="object.repairPersion"
-            name="repairPersion"
-            placeholder="请输入联系人"
-          />
         </view>
         <view class="uni-form-item uni-column">
-          <view class="title">联系电话</view>
-          <input
-            class="uni-input"
-            v-model="object.repairPrice"
-            name="repairPrice"
-            placeholder="请输入联系电话"
-          />
+          <view class="title">联系人(必填)</view>
+          <input class="uni-input" name="contactMan" placeholder="请输入联系人" />
+        </view>
+        <view class="uni-form-item uni-column">
+          <view class="title">联系电话(必填)</view>
+          <input class="uni-input" name="contactPhone" placeholder="请输入联系电话" />
         </view>
         <view class="uni-form-item uni-column">
           <view class="title">会议主题</view>
-          <input
-            class="uni-input"
-            v-model="object.repairProject"
-            name="repairProject"
-            placeholder="请输入会议主题"
-          />
+          <input class="uni-input" name="meetingTopic" placeholder="请输入会议主题" />
         </view>
         <view class="uni-form-item uni-column">
           <view class="title">单位名称</view>
-          <input
-            class="uni-input"
-            v-model="object.repairTime"
-            name="repairTime"
-            placeholder="请输入单位名称"
-          />
+          <input class="uni-input" name="companyName" placeholder="请输入单位名称" />
         </view>
         <view class="uni-form-item uni-column">
           <view class="title">备注</view>
-          <textarea
-            v-model="object.handlingSituation"
-            name="handlingSituation"
-            placeholder="如果有额外需求,请备注在这里"
-          />
+          <textarea name="remark" placeholder="如果有额外需求,请备注在这里" />
         </view>
         <view style="height: 100px;width: 100%;"></view>
         <button form-type="submit" class="btn-submit">提交</button>
@@ -135,39 +108,43 @@ import uniCalendar from '@/components/uni-calendar/uni-calendar.vue'
 import { timerZero } from '@/common/util.js'
 import picker from '@/pages/component/picker/picker'
 import mpvuePicker from '@/components/mpvue-picker/mpvuePicker.vue';
+import LyTree from '@/components/ly-tree/ly-tree.vue'
 import {
   nowDate
 } from "@/common/util.js"
 import base from '@/common/app-base.js'
-function getDate (type) {
-      const date = new Date();
+function getDate(type) {
+  const date = new Date();
 
-      let year = date.getFullYear();
-      let month = date.getMonth() + 1;
-      let day = date.getDate();
+  let year = date.getFullYear();
+  let month = date.getMonth() + 1;
+  let day = date.getDate();
 
-      if (type === 'start') {
-        year = year - 60;
-      } else if (type === 'end') {
-        year = year + 2;
-      }
-      month = month > 9 ? month : '0' + month;;
-      day = day > 9 ? day : '0' + day;
+  if (type === 'start') {
+    year = year - 60;
+  } else if (type === 'end') {
+    year = year + 2;
+  }
+  month = month > 9 ? month : '0' + month;;
+  day = day > 9 ? day : '0' + day;
 
-      return `${year}-${month}-${day}`;
-    }
+  return `${year}-${month}-${day}`;
+}
 export default {
-
-  data () {
+  components: {
+    uniCalendar,
+    LyTree
+  },
+  data() {
     return {
-         time: '12:01',
-         time2: '12:01',
-         date: getDate({
-           format: true
-         }),
-         startDate: getDate('start'),
-         endDate: getDate('end'),
-         pickerText:'',
+      time: '12:00',
+      time2: '12:00',
+      date: getDate({
+        format: true
+      }),
+      startDate: getDate('start'),
+      endDate: getDate('end'),
+      pickerText: '',
       info: {
         date: nowDate(),
         lunar: true,
@@ -184,72 +161,67 @@ export default {
         failureCondition: '',
         handlingSituation: ''
       },
-      facilitiesArchivesId: ''
+      facilitiesArchivesId: '',
+      options: [],
+      reserveData: '',
+      key: '',
+      startTime: '',
+      endTime: '',
+      timeArray: []
     }
   },
-  components: {
-    uniCalendar,
-  },
-  onLoad (option) {
-    if (option.update == 1) {
-      this.$minApi.RepairDetail({ id: option.id }).then(data => {
-        this.object = data.body.data
-        this.object.repairDate = timerZero(this.object.repairDate)
-      })
-    } else {
-      this.facilitiesArchivesId = option.id
-    }
+  onLoad(option) {
+    this.$minApi.TreeInfo({}).then(data => {
+      this.options = data.body.data
+    })
   },
   methods: {
-    open () {
+    open() {
       this.$refs.calendar.open()
     },
     formSubmit: function (e) {
       //定义表单规则
-      var rule = [{
-        name: "repairDate",
-        checkType: "date",
-        errorMsg: "请选择时间或者确定时间格式(YYYY-MM-DD)"
-      },
-      {
-        name: "repairPersion",
-        checkType: "notnull",
-        errorMsg: "请输入姓名"
-      },
-      {
-        name: "repairPrice",
-        checkType: "float",
-        errorMsg: "请输入价格或者查看格式是否正确(允许保留两位小数点的数字)"
-      },
-      {
-        name: "repairTime",
-        checkType: "notnull",
-        errorMsg: "请输入工时"
-      },
-      {
-        name: "repairProject",
-        checkType: "notnull",
-        errorMsg: "请输入项目"
-      }
+      var rule = [
+        {
+          name: "contactMan",
+          checkType: "notnull",
+          errorMsg: "请输入姓名"
+        },
+        {
+          name: "contactPhone",
+          checkType: "phoneno",
+          errorMsg: "手机号不可为空或者格式错误"
+        }
       ];
       //进行表单检查
       var formData = e.detail.value;
       var checkRes = graceChecker.check(formData, rule);
-      if (checkRes) {
-        formData.facilitiesArchivesId = this.facilitiesArchivesId || this.object.facilitiesArchivesId
-        if (this.object.id) {
-          formData.id = this.object.id
-        }
-        this.$minApi.RepairSave(formData).then(data => {
-          uni.showToast({
-            title: "设施维修信息新增/修改成功!",
-            icon: "none"
-          });
-          setTimeout(() => {
-            base.openPage('/pages/property/facilities-maintain-list/facilities-maintain-list');
-          }, 1100)
-
+      if (checkRes && this.key) {
+        formData.userSource = 1
+        formData.parkResourcesInfoId = this.key
+        formData.startTime = formData.startTime.slice(0, 2)
+        formData.endTime = formData.endTime.slice(0, 2)
+        this.$minApi.MeetingSave(formData).then(data => {
+          if (data.header.retCode == 999999) {
+            uni.showToast({
+              title: data.header.retMsg,
+              icon: "none"
+            });
+          } else {
+            uni.showToast({
+              title: "会议室预定成功!",
+              icon: "none"
+            });
+            setTimeout(() => {
+              uni.navigateTo({url:'/pages/property/meetingroom-list/meetingroom-list'});
+            }, 1100)
+          }
         })
+      } else if (!this.key) {
+        uni.showToast({
+          title: '请先选择资源',
+          icon: "none"
+        });
       } else {
         uni.showToast({
           title: graceChecker.error,
@@ -260,29 +232,56 @@ export default {
     formReset: function (e) {
       console.log('清空数据')
     },
-    confirm (e) {
+    confirm(e) {
       this.object.repairDate = e.fulldate
     },
     //时间选择器
     bindTimeChange: function (e) {
-      this.time = e.target.value
-      console.log(this.time)
+      this.time = this.timeArray[e.target.value]
     },
     bindTimeChange2: function (e) {
-      this.time2 = e.target.value
-      console.log(this.time2)
+      this.time2 = this.timeArray[e.target.value]
     },
     //日期选择器
     bindDateChange: function (e) {
       this.date = e.target.value
+      if (this.reserveData) {
+        this.reserveHandle(this.key)
+      }
     },
     //树状
-    showMulLinkageTwoPicker () {
+    showMulLinkageTwoPicker() {
       this.pickerValueArray = this.mulLinkageTwoPicker
       this.mode = 'multiLinkageSelector'
       this.deepLength = 2
       this.pickerValueDefault = [0, 0]
       this.$refs.mpvuePicker.show()
+    },
+    reserveHandle(key, val) {
+      if(val){
+      this.timeArray = []
+      for (let i = parseInt(val.data.startTime), len = parseInt(val.data.endTime); i <= len; i++) {
+        this.timeArray.push(i < 10 ? '0' + i : i + '')
+      }
+      this.time = this.timeArray[0]
+      this.time2 = this.timeArray[this.timeArray.length - 1]
+      this.startTime = 0
+      this.endTime = this.timeArray.length - 1
+      }
+      this.$minApi.ReserveInfo({ parkResourcesInfoId: key, reserveDate: this.date }).then(data => {
+        const val = data.body.data
+        if (val.length === 0) {
+          this.reserveData = '暂无预订信息'
+        } else {
+          this.reserveData = val
+        }
+      })
+    },
+    handleNodeClick(val) {
+      if (val.level === 5) {
+        this.key = val.key
+        this.reserveHandle(this.key, val)
+      }
     },
   },
 
@@ -316,5 +315,12 @@ uni-button:after {
   padding: 0;
   margin-top: 0px;
   width: 100%;
+}
+.c-r {
+  color: red;
+}
+.d-f {
+  display: flex;
+  flex-wrap: wrap;
 }
 </style>

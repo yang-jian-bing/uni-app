@@ -110,7 +110,8 @@ export default {
         repairProject: '',
         repairTime: '',
         failureCondition: '',
-        handlingSituation: ''
+        handlingSituation: '',
+        repairDate:''
       },
       facilitiesArchivesId: ''
     }

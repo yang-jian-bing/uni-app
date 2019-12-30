@@ -2,36 +2,23 @@
   <view>
     <view class="top">
       <view class="search mui-input-row">
-        <uni-search-bar radius="100" placeholder="请输入" @confirm="onSearch" style="80%" />
+        <uni-search-bar radius="100" placeholder="请输入设备名称" @confirm="onSearch" style="80%" />
       </view>
       <view v-for="(item,index) in list" :key="index">
         <view class="joiList">
           <view class="serBox serindWid">
-            <view @tap="runDetail(item.id)">
-              <view class="chouList">
-                <view class="propFlex">
-                  <span class="actWz proFont">{{item.name}}</span>
-                  <span class="invmidWz">保养次数：{{item.careNum}} 维修次数：{{item.repairNum}}</span>
-                </view>
-                <div class="infotit serwz">
-                  <!-- <image class='no-width' src="../../../static/property/No.png" alt=""> -->
-                  {{item.code}}
-                </div>
-              </view>
-              <view class="weWzpad">
-                <p class="font14">所属园区：{{item.parkName}}</p>
-                <p class="font14">已用时长：{{item.useTime}}</p>
-              </view>
+            <p class="actWz proFont">{{item.careProject}}</p>
+             <navigator :url="'/pages/property/keep-list-detail/keep-list-detail?id='+item.id">
+            <view class="font14">保养工时：{{item.careTime}}&nbsp;&nbsp;保养费用：￥{{item.carePrice}}</view>
+            <view class="weWzpad">
+              <p class="font14">所属园区：{{item.parkName}}</p>
+              <p class="font14">设备名称：{{item.name}}</p>
+              <p class="font14">保养信息：{{item.carePersion}}（{{item.careDate}}）</p>
             </view>
+             </navigator>
             <view class="label projectBox flex-end">
               <text @tap="update(item.id)">编辑</text>
               <text @tap="deleteHandle(item)">删除</text>
-              <text
-                @tap="repairLink(item.id,'/pages/property/add-facilities-maintain2/add-facilities-maintain2')"
-              >添加保养记录</text>
-              <text
-                @tap="repairLink(item.id,'/pages/property/add-facilities-maintain1/add-facilities-maintain1')"
-              >添加维修记录</text>
             </view>
           </view>
         </view>
@@ -41,13 +28,6 @@
         <uni-load-more :status="status" />
       </view>
     </view>
-    <uni-fab
-      ref="fab"
-      @tapLink="trigger"
-      horizontal="right"
-      vertical="bottom"
-      :pattern="{buttonColor:'#007aff'}"
-    />
   </view>
 </template>
 
@@ -58,8 +38,6 @@ import {
   timerZero
 } from '@/common/util.js';
 import uniLoadMore from '@/components/uni-load-more/uni-load-more.vue'
-import base from '@/common/app-base.js'
-import uniFab from '@/components/uni-fab/uni-fab.vue'
 export default {
   data() {
     return {
@@ -75,8 +53,7 @@ export default {
   components: {
     uniLoadMore,
     uniSearchBar,
-    uniSection,
-    uniFab
+    uniSection
   },
   onLoad() {
     this.init()
@@ -91,12 +68,12 @@ export default {
   },
   methods: {
     init() {
-      this.$minApi.InfraList(this.obj).then(data => {
+      this.$minApi.KeepList(this.obj).then(data => {
         const list = data.body
         const totalNum = list.totalNum
         if (totalNum) {
           for (let s of list.data) {
-            s.repairDate = timerZero(s.repairDate)
+            s.careDate = timerZero(s.careDate)
             this.list.push(s)
           }
           if (this.obj.page * 3 > totalNum) {
@@ -111,7 +88,7 @@ export default {
       })
     },
     deleteHandle(item) {
-      this.$minApi.InfraDelete({
+      this.$minApi.KeepDelete({
         id: item.id
       }).then(data => {
         this.list.splice(this.list.indexOf(item), 1)
@@ -134,19 +111,9 @@ export default {
       this.list = []
       this.init()
     },
-    // 跳转添加维修
-    repairLink(id, url) {
-      base.openPage(url, { id });
-    },
-    trigger() {
-      base.openPage('/pages/property/add-facilities/add-facilities');
-    },
     update(id) {
-      base.openPage('/pages/property/add-facilities/add-facilities', { id });
-    },
-    runDetail(val) {
       uni.navigateTo({
-        url: "/pages/property/facilities-details/facilities-details?id=" + val
+        url: '/pages/property/add-facilities-maintain2/add-facilities-maintain2?id=' + id + '&update=1'
       });
     }
   }
