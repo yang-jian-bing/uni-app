@@ -209,7 +209,6 @@ export default {
           setTimeout(() => {
             base.openPage('/pages/property/keep-list/keep-list');
           }, 1100)
-
         })
       } else {
         uni.showToast({

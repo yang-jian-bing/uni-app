@@ -212,6 +212,9 @@ export default {
               title: "会议室预定成功!",
               icon: "none"
             });
+            setTimeout(() => {
+              uni.navigateTo({url:'/pages/property/meetingroom-list/meetingroom-list'});
+            }, 1100)
           }
         })
       } else if (!this.key) {
@@ -255,6 +258,7 @@ export default {
       this.$refs.mpvuePicker.show()
     },
     reserveHandle(key, val) {
+      if(val){
       this.timeArray = []
       for (let i = parseInt(val.data.startTime), len = parseInt(val.data.endTime); i <= len; i++) {
         this.timeArray.push(i < 10 ? '0' + i : i + '')
@@ -263,6 +267,7 @@ export default {
       this.time2 = this.timeArray[this.timeArray.length - 1]
       this.startTime = 0
       this.endTime = this.timeArray.length - 1
+      }
       this.$minApi.ReserveInfo({ parkResourcesInfoId: key, reserveDate: this.date }).then(data => {
         const val = data.body.data
         if (val.length === 0) {
