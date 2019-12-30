@@ -1,6 +1,12 @@
 {
     "pages": [
         {
+            "path" : "pages/login/login",
+            "style" : {
+                  "navigationBarTitleText": "登录"
+            }
+        },
+        {
             "path":"pages/index/index",
              "style": {
                  "navigationBarTitleText": "首页",
@@ -20,13 +26,19 @@
         {
         	"path":"pages/view/aqscgl/aqscgl",
         	"style": {
-        		"navigationBarTitleText": "安全生产管理"
+        		"navigationBarTitleText": "监管通知列表"
         	}
         },
         {
         	"path":"pages/view/cwgl/cwgl",
         	"style": {
         		"navigationBarTitleText": "缴费记录"
+        	}
+        },
+        {
+        	"path":"pages/view/cwgl/cwgldetail",
+        	"style": {
+        		"navigationBarTitleText": "缴费详情"
         	}
         },
         {
@@ -61,6 +73,12 @@
         	}
         }
         ,{
+            "path" : "pages/view/djgl/wbdy/wbdydetail",
+            "style" : {
+        		"navigationBarTitleText": "外部党员列表"
+        	}
+        }
+        ,{
             "path" : "pages/view/djgl/learning/learning",
             "style" : {
         		"navigationBarTitleText": "党建学习材料"
@@ -73,9 +91,21 @@
         	}
         }
         ,{
+            "path" : "pages/view/djgl/shyk/shykdetail",
+            "style" : {
+        		"navigationBarTitleText": "三会一课详情"
+        	}
+        }
+        ,{
             "path" : "pages/view/djgl/mzshh/mzshh",
             "style" : {
         		"navigationBarTitleText": "民主生活会"
+        	}
+        }
+        ,{
+            "path" : "pages/view/djgl/mzshh/mzshhdetail",
+            "style" : {
+        		"navigationBarTitleText": "民主生活会详情"
         	}
         }
         ,{
@@ -85,16 +115,35 @@
         	}
         }
         ,{
+            "path" : "pages/view/djgl/dypb/dypbdetail",
+            "style" : {
+        		"navigationBarTitleText": "党员评比详情"
+        	}
+        }
+        ,{
             "path" : "pages/view/djgl/options/options",
             "style" : {
         		"navigationBarTitleText": "意见建议"
         	}
         },
         {
+            "path" : "pages/view/djgl/options/optionsdetail",
+            "style" : {
+        		"navigationBarTitleText": "意见建议详情"
+        	}
+        },
+        {
         	"path":"pages/view/gwgl/gwgl",
         	"style": {
-        		"navigationBarTitleText": "公文管理"
-        		// "enablePullDownRefresh":true
+        		"navigationBarTitleText": "采购列表"
+
+        	}
+        },
+        {
+        	"path":"pages/view/gwgl/gwgldetail",
+        	"style": {
+        		"navigationBarTitleText": "采购详情"
+
         	}
         },
         {
@@ -109,16 +158,66 @@
         		"navigationBarTitleText": "考勤管理"
         	}
         },
+        //考勤子集
+        {
+        	"path":"pages/view/kqgl/addLeave/addLeave",
+        	"style": {
+        		"navigationBarTitleText": "请假申请"
+        	}
+        },
+        {
+        	"path":"pages/view/kqgl/leave/leave",
+        	"style": {
+        		"navigationBarTitleText": "请假列表"
+        	}
+        },
+        {
+        	"path":"pages/view/kqgl/leavedetail/leavedetail",
+        	"style": {
+        		"navigationBarTitleText": "请假详情"
+        	}
+        },
+        {
+        	"path":"pages/view/kqgl/addExtraWork/addExtraWork",
+        	"style": {
+        		"navigationBarTitleText": "加班申请"
+        	}
+        },
+        {
+        	"path":"pages/view/kqgl/extrawork/extrawork",
+        	"style": {
+        		"navigationBarTitleText": "加班列表"
+        	}
+        },
+        {
+        	"path":"pages/view/kqgl/extraworkdetail/extraworkdetail",
+        	"style": {
+        		"navigationBarTitleText": "加班列表"
+        	}
+        },
+
         {
         	"path":"pages/view/xmgl/xmgl",
         	"style": {
-        		"navigationBarTitleText": "项目管理"
+        		"navigationBarTitleText": "项目列表"
+        	}
+        },
+        {
+        	"path":"pages/view/xmgl/xmgldetail",
+        	"style": {
+        		"navigationBarTitleText": "项目详情"
         	}
         },
         {
         	"path":"pages/view/zpgl/zpgl",
         	"style": {
-        		"navigationBarTitleText": "招聘管理"
+        		"navigationBarTitleText": "招聘列表"
+        	}
+        },
+        {
+        	"path":"pages/view/zpgl/zpgldetail",
+        	"style": {
+        		"navigationBarTitleText": "招聘详情"
         	}
         },
         //物业
@@ -289,6 +388,38 @@
             "path": "pages/property/facilities-details/facilities-details",
             "style": {
                 "navigationBarTitleText": "设施详情"
+            }
+        }
+
+        ,{
+            "path" : "pages/commission/commission",
+            "style" : {
+                 "navigationBarTitleText": "待办审批"
+            }
+        },
+        {
+            "path" : "pages/commission/commissiondetail",
+            "style" : {
+                 "navigationBarTitleText": "我的待办"
+            }
+        },
+        {
+            "path" : "pages/commission/myLaunch",
+            "style" : {
+                 "navigationBarTitleText": "我的流程发起"
+            }
+        },
+        {
+            "path" : "pages/commission/myManage",
+            "style" : {
+                 "navigationBarTitleText": "我的已办理"
+            }
+        },
+
+        {
+            "path" : "pages/commission/myTest",
+            "style" : {
+                 "navigationBarTitleText": "加班申请测试"
             }
         }
     ],

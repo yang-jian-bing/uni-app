@@ -1,7 +1,7 @@
 <template>
 	<view>
 		 <view class="top">
-            <view class="chouList" v-for="item in datalist" :key="item.id">
+            <view class="chouList" v-for="item in datalist" :key="item.id" @click="goto(item.id)">
                 <view class="propFlex invdiff">
                     <p class="actWz proFont">缴费单id:{{item.paymentid}}</p>
                    <!-- <p class="actWz proFont">总金额:{{item.amount}}</p> -->
@@ -55,6 +55,11 @@
 
 
         methods: {
+            goto(data){
+                uni.navigateTo({
+                    url: 'cwgldetail?id=' + data
+                })
+            },
              add(e){
              	this.state="loading";
              	let that=this;

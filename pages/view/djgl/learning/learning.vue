@@ -8,11 +8,12 @@
                 <view class='weWzpad'>
                     <p class='font14'>主题：{{item.title}}</p>
 
-                    <p class='font14'>指导人：{{item.innerpersons}}</p>
-                    <p class='font14'>学习党员：{{item.outdy}}</p>
-                    <p class='font14'>创建时间: {{item.created}}</p>
+                   <!-- <p class='font14'>指导人：{{item.innerpersons}}</p>
+                    <p class='font14'>学习党员：{{item.outdy}}</p> -->
+                    <p class='font14'>发布时间: {{item.created}}</p>
 
-                    <p class='font14'>创建人：{{item.creator}}</p>
+               <!--     <p class='font14'>创建人：{{item.creator}}</p>
+                    <p class='font14'>学习内容：{{item.zw}}</p> -->
                 </view>
 
 
@@ -58,7 +59,7 @@
             goto(data) {
                 console.log(data)
                 uni.navigateTo({
-                    url: 'nbdydetail?id=' + data
+                    url: 'learningdetail?id=' + data
                 })
             },
             add(e) {

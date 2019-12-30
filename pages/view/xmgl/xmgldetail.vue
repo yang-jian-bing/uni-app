@@ -5,11 +5,11 @@
 </template>
 
 <script>
-   import {getHandle,getToken} from "../../../../common/api.js"
+   import {getHandle,getToken} from "../../../common/api.js"
 	export default {
 		data() {
 			return {
-                   url:"http://www.ylibi.com/horizon/horizon/template/form/default.wf?formId=HZ308da46f32f907016f369e52422824"
+                   url:"http://www.ylibi.com/horizon/horizon/template/form/default.wf?formId=HZ308da46f32f907016f369e52422828"
 			}
 		},
 		methods: {

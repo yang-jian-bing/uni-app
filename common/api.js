@@ -37,7 +37,18 @@ function postHandle(url, data) {
         });
     })
 }
+function getToken(){
+    let accessToken=null;
+    uni.getStorage({
+        key: 'userdata',
+        success: function (res) {
 
+            accessToken=res.data.accessToken
+
+        }
+    });
+    return accessToken
+}
 module.exports =  {
-    getHandle,postHandle
+    getHandle,postHandle,getToken
 }

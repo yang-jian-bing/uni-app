@@ -1,44 +1,8 @@
 <template>
 	<view>
-          <!-- <view class="joiList" >
-              <view class="serBox serindWid">
 
 
-                  <view class='weWzpad'>
-                      <p class='font14'>主题：工程建设合同</p>
-                      <p class='font14'>合同类型：工程建设合同</p>
-                      <p class='font14'>地址：杨凌创业园<span class='invmidWz'>&nbsp;~&nbsp;</span>2019-12-12</p>
-                      <p class='font14'>房间号：A园区_A楼宇_1楼层_201房间</p>
-                      <p class='font14'>title:</p>
-                      <p class='font14'>开始时间：2019-12-15</p>
-                       <p class='font14'>签约时间：2019-12-15</p>
-                        <p class='font14'>取暖费：</p>
-                         <p class='font14'>yi：</p>
-                      						 <p class='font14'>取暖费截止时间：</p>
-                      						  <p class='font14'>修改人：111</p>
-                      						  <p class='font14'>付款：1111</p>
-                      						  <p class='font14'>周期：1</p>
-                      						  <p class='font14'>修改时间：2019-12</p>
-                      						  <p class='font14'>租金：1500</p>
-                      						  <p class='font14'>id：hz12313</p>
-                      						  <p class='font14'>制冷费：1500</p>
-                      						  <p class='font14'>创建人：admin</p>
-                      						  <p class='font14'>签订人：root</p>
-                      						  <p class='font14'>创建时间：2019-12-21</p>
-                                              <p class='font14'>进度单：2500</p>
-                      						<p class='font14'>制冷费截止时间：1</p>
-                      						<p class='font14'>钱：100</p>
-                      						<p class='font14'>项目：999</p>
-                      						<p class='font14'>结束时间：2019</p>
-                      						<p class='font14'>结束方式：</p>
-                      						<p class='font14'>合同名称：555</p>
-                      						<p class='font14'>面积：50</p>
-                      						<p class='font14'>租聘单价：100</p>
-                  </view>
-
-              </view>
-          </view>	 -->
-			  <view class="joiList" v-for="item of datalist"  :key="item.id">
+			  <view class="joiList" v-for="item of datalist"  :key="item.id"  @click="goto(item.id)">
 			      <view class="serBox serindWid">
 
 
@@ -46,12 +10,12 @@
 
 			                                     <p class='font14'>合同类型：{{item.type}}</p>
                                                  <p class='font14'>合同名称：{{item.name}}</p>
-			                                     <p class='font14'>合同金额：{{item.money}}</p>
-			                                   
-                                                  <p class='font14'>合同进度：{{item.jdd}}</p>
+			                                     <p class='font14'>创建时间：{{item.created}}</p>
+
+                                                 <!-- <p class='font14'>合同进度：{{item.jdd}}</p>
 			                                     <p class='font14'>开始时间：{{item.stime}}</p>
 			                                      <p class='font14'>结束时间：{{item.qtime}}</p>
-			                                       <p class='font14'>签订人：{{item.qiandingren}}</p>
+			                                       <p class='font14'>签订人：{{item.qiandingren}}</p> -->
 			          </view>
 
 			      </view>
@@ -96,6 +60,8 @@ import uniLoadMore from "@/components/uni-load-more/uni-load-more.vue"
 
 
 		methods: {
+
+
              add(e){
              	this.state="loading";
              	let that=this;
@@ -199,7 +165,7 @@ import uniLoadMore from "@/components/uni-load-more/uni-load-more.vue"
     display: flex;
 	/* border: 1px solid red; */
 	background: #fff;
-	margin: 20upx 0;
+
 }
 
 .serBox {

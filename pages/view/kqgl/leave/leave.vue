@@ -1,72 +1,59 @@
 <template>
 	<view>
 		<view class="content">
-			<view class="joiList" v-for="item in datalist" :key="item.usr_id"  @click="goto(item.id)" >
-			   
-			        
-			        
+			<view class="joiList" v-for="item in datalist" :key="item.id"  @click="goto(item.workid)" >
+
+
+
 			        <view class='weWzpad' >
-			            <p class='font14'>姓名：{{item.usr}}</p>
-			            <p class='font14'>性别：{{item.sex}}</p>
-			            <p class='font14'>状态：{{item.state}}</p>
-						 <p class='font14'>创建时间: {{item.created}}</p>
-						 <p class='font14'>创建人：{{item.creator}}</p>
+			            <p class='font14'>用户名：{{item.username}}</p>
+			            <p class='font14'>申请开始时间：{{item.stime}}</p>
+			            <p class='font14'>请假结束时间：{{item.etime}}</p>
+						 <p class='font14'>请假缘由: {{item.created}}</p>
+
 			        </view>
-			        
-			 
+
+
 			</view>
 		</view>
-		<uni-load-more :status="state" :content-text="contentText" color="#007aff" @clickLoadMore="addExtra"></uni-load-more>
+		<!-- <uni-load-more :status="state" :content-text="contentText" color="#007aff" @clickLoadMore="addExtra"></uni-load-more> -->
 	</view>
 </template>
 
 <script>
-	import uniLoadMore from "@/components/uni-load-more/uni-load-more.vue"
+    import {
+        getHandle,getToken
+    } from "../../../../common/api.js"
+
+
 	export default {
-		 components: {uniLoadMore},
+
 		data() {
 			return {
 				datalist:"",
-					pages:"",
-					pageNum:"1",
-					state:"more",
-					statusTypes: [{
-										value: 'more',
-										text: '加载前'
-									}, {
-										value: 'loading',
-										text: '加载中'
-									}, {
-										value: 'noMore',
-										text: '没有更多'
-									}],
-					contentText: {
-										contentdown: '查看更多',
-										contentrefresh: '加载中',
-										contentnomore: '没有更多'
-									}
-				
+
+
 			}
 		},
 		methods: {
-			
+           goto(id){
+                 uni.navigateTo({
+                     url:"../leavedetail/leavedetail?workid="+id
+                 })
+           }
 		},
 		onLoad() {
-			
-				this.request("yloa/api/v1/askforleave/get.wf'",{
-					"page":"1",
-					"limit":"13",
-					"module":"2",
-					"menu":"1"
-					
-				},"GET")
+
+
+				getHandle("yloa/api/v1/askforleave/get.wf?accessToken="+getToken())
 				 .then(res=>{
-					 console.log(res)
-					 document.cookie=`userName=JSESSIONID;domain=http://www.ylibi.com;`
-					 this.datalist=res.data.data;
-					 this.pages=res.data.page;
+					 // console.log(res)
+					 // console.log(JSON.parse(res[1].data.data))
+					 this.datalist= JSON.parse(res[1].data.data)
+     //                 console.log(this.datalist)
+					//  this.pages=res.data.page;
 				 })
-		
+
 		}
 	}
 </script>
@@ -78,8 +65,8 @@
 	/* border: 1px solid red; */
 	background: #fff;
 	border-bottom: 1px solid #eee;
-	
-	
+
+
 
 }
 

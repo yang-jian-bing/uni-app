@@ -55,9 +55,9 @@
         },
         methods: {
             goto(data) {
-                console.log(data)
+
                 uni.navigateTo({
-                    url: 'nbdydetail?id=' + data
+                    url: 'dypbdetail?id=' + data
                 })
             },
             add(e) {

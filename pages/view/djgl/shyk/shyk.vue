@@ -8,11 +8,8 @@
                 <view class='weWzpad'>
                     <p class='font14'>会议名称：{{item.title}}</p>
 
-                    <p class='font14'>会议日期：{{item.stime}}~{{item.etime}}</p>
-                    <p class='font14'>会议地点：{{item.address}}</p>
-                    <p class='font14'>主持人: {{item.zcr}}</p>
-
-                    <p class='font14'>参会人员：{{item.chr}}</p>
+                    <p class='font14'>会议日期：{{item.created}}</p>
+                
                 </view>
 
 
@@ -58,7 +55,7 @@
             goto(data) {
                 console.log(data)
                 uni.navigateTo({
-                    url: 'nbdydetail?id=' + data
+                    url: 'shykdetail?id=' + data
                 })
             },
             add(e) {

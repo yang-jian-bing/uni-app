@@ -7,10 +7,10 @@
 
 			        <view class='weWzpad' >
 			            <p class='font14'>姓名：{{item.usr}}</p>
-			            <p class='font14'>性别：{{item.sex}}</p>
-			            <p class='font14'>状态：{{item.state}}</p>
+			            <p class='font14'>入党时间：{{item.rdtime}}</p>
+			        <!--    <p class='font14'>状态：{{item.state}}</p>
 						 <p class='font14'>创建时间: {{item.created}}</p>
-						 <p class='font14'>创建人：{{item.creator}}</p>
+						 <p class='font14'>创建人：{{item.creator}}</p> -->
 			        </view>
 
 
@@ -52,7 +52,7 @@
 			goto(data){
 				console.log(data)
 				uni.navigateTo({
-					url:'nbdydetail?id='+data
+					url:'wbdydetail?id='+data
 				})
 			},
 			add(e){

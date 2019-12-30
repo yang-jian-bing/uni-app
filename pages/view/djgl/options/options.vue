@@ -8,10 +8,10 @@
                 <view class='weWzpad'>
                     <p class='font14'>标题：{{item.title}}</p>
 
-                    <p class='font14'>发布时间：{{item.modified}}</p>
+                    <p class='font14'>发布时间：{{item.created}}</p>
 
 
-                    <p class='font14'>创建人：{{item.creater}}</p>
+                   
                 </view>
 
 
@@ -57,7 +57,7 @@
             goto(data) {
                 console.log(data)
                 uni.navigateTo({
-                    url: 'nbdydetail?id=' + data
+                    url: 'optionsdetail?id=' + data
                 })
             },
             add(e) {
