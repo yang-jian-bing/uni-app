@@ -18,9 +18,6 @@
 
 <script>
     import {
-        payRecord
-    } from '@/api/lihao.js'
-    import {
         timerZero
     } from '@/common/util.js';
     export default {
@@ -28,15 +25,17 @@
         data() {
             return {
                 details: [],
+                ids:""
             };
         },
-        onLoad() {
+        onLoad(options) {
+            this.ids=options.id
             this.init()
         },
         methods: {
             init() {
                 this.$minApi.payRecord({
-                    id: '1d76f05d-8406-41f3-bcb5-b0d6cd19aa45',
+                    id: this.ids,
                 }).then(res => {
                     this.details = res.body.data
                     this.details.map(items => {

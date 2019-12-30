@@ -210,7 +210,6 @@ export default {
     Tabbar,
     uniLoadMore,
     uniPopup,
-    textarea
   },
   data() {
     return {
