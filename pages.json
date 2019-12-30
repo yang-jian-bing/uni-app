@@ -410,6 +410,12 @@
             }
         },
         {
+            "path" : "pages/my/my",
+            "style" : {
+                 "navigationBarTitleText": "我的流程发起"
+            }
+        },
+        {
             "path" : "pages/commission/myManage",
             "style" : {
                  "navigationBarTitleText": "我的已办理"
@@ -421,6 +427,10 @@
             "style" : {
                  "navigationBarTitleText": "加班申请测试"
             }
+        }
+        ,{
+            "path" : "pages/my/my",
+            "style" : {}
         }
     ],
     "subPackages": [],
