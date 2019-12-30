@@ -108,7 +108,7 @@
 				</view>
 			</view>
 			<!-- 设施管理 -->
-			<view class='index-body'>
+			<view class='index-body1'>
 				<view class='index-box'>
 					<view class="topmid serindPad wePosition">
 						<view class="indexnewBor"></view>
@@ -255,6 +255,10 @@ export default {
 
 .index-body {
   width: 100%;
+}
+.index-body1 {
+  width: 100%;
+  height: 200px;
 }
 
 .index-pdt {

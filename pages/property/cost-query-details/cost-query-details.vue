@@ -53,16 +53,18 @@
 	export default {
 		data() {
 			return {
-                details:[]
+                details:[],
+                ids:""
 			};
 		},
-        onLoad(){
+        onLoad(options){
+          this.ids=options.id
             this.init()
         },
         methods:{
            init() {
                this.$minApi.costDetails({
-                   id: '7d83f34f-d075-4599-9a26-a56645d31a3b',
+                   id: this.ids,
                }).then(res => {
 
                    this.details=res.body.data
