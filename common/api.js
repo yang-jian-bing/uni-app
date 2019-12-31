@@ -2,7 +2,7 @@ const requestUrl = '/api'
 function getHandle(url, data) {
     return new Promise((resolve, reject) => {
         uni.request({
-            url: requestUrl + url,
+            url: requestUrl +"/horizon/horizon/"+ url,
             data:data,
             header: {
                  'content-Type':"application/x-www-form-urlencoded", //自定义请求头信息
@@ -22,7 +22,7 @@ function getHandle(url, data) {
 function postHandle(url, data) {
     return new Promise((resolve, reject) => {
         uni.request({
-            url: requestUrl + url,
+            url: requestUrl +"/horizon/horizon/"+ url,
             data,
 			method:'POST'
         }).then(res => {
