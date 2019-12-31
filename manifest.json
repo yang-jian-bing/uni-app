@@ -116,8 +116,8 @@
       "disableHostCheck": true,
       "proxy": {
         "/api": {
-          //"target" : "http://www.ylibi.com",
-          "target": "http://61.150.65.204:9090",
+          "target" : "http://www.ylibi.com/horizon/horizon/",
+          // "target": "http://61.150.65.204:9090",
           "changeOrigin": true,
           "secure": false,
           "pathRewrite": {
