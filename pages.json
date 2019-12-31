@@ -16,7 +16,7 @@
                 }
             }
         },
-        
+
 
 
         //
@@ -419,7 +419,7 @@
         {
             "path": "pages/my/my",
             "style": {
-                "navigationBarTitleText": "我的流程发起"
+                "navigationBarTitleText": "个人中心"
             }
         },
         {
@@ -434,13 +434,8 @@
             "style": {
                 "navigationBarTitleText": "加班申请测试"
             }
-        },
-        {
-            "path": "pages/my/my",
-            "style": {
-                "navigationBarTitleText": "个人中心"
-            }
         }
+
     ],
     "subPackages": [],
     "globalStyle": {

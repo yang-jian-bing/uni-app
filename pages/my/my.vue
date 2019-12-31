@@ -1,14 +1,14 @@
 <template>
 	<view>
 		<view class="content">
-			<view class="joiList" v-for="item in datalist" :key="item.usr_id"  @click="goto(item.id)" >
+			<view class="joiList" >
 
 
 
 			        <view class='weWzpad' >
-			            <p class='font14'>用户名：{{item.username}}</p>
-			            <p class='font14'>登录账号：{{item.loginname}}</p>
-                         <p class='font14'>部门id：{{item.deptid}}</p>
+			            <p class='font14'>用户名：{{username}}</p>
+			            <p class='font14'>登录账号：{{loginname}}</p>
+                         <p class='font14'>部门id：{{deptid}}</p>
 			        </view>
 
 
@@ -20,9 +20,9 @@
 
 <script>
    import {getHandle} from "../../common/api.js"
-	import uniLoadMore from "@/components/uni-load-more/uni-load-more.vue"
+
 	export default {
-		 components: {uniLoadMore},
+
 		data() {
 			return {
                   deptid:"",
@@ -51,12 +51,13 @@
 	}
 </script>
 
-<style>
+<style  scoped>
 .joiList {
-    padding: 17px 15px 9px;
+     padding:0 17px 15px 9px;
     display: flex;
 	/* border: 1px solid red; */
 	background: #fff;
+    border-top-width:0px;
 	border-bottom: 1px solid #eee;
 
 
@@ -85,20 +86,17 @@
     color: #898989;
 }
 .invdiff {
-    padding-top: 18px;
+  /*  padding-top: 18px; */
 }
 .comWaiting {
     color: #2B76FB;
     font-size: 16px;
 }
 
-.joiList {
-    padding: 17px 15px 9px;
-    display: flex;
-}
+
 
 .joiPad {
-    padding: 15px 0;
+   /* padding: 15px 0; */
     border-top: 1px solid #eeeeee;
     flex: 1;
 }
@@ -137,7 +135,7 @@
 	justify-content: flex-end;
 }
 .weWzpad {
-    padding-top: 12px;
+   /* padding-top: 12px; */
 }
 .font14 {
     font-size: 14px;
