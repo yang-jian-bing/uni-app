@@ -183,6 +183,13 @@
         </view>
       </view>
     </uni-popup>
+    <uni-fab
+      ref="fab"
+      @tapLink="trigger"
+      horizontal="right"
+      vertical="bottom"
+      :pattern="{buttonColor:'#007aff'}"
+    />
   </view>
 </template>
 
@@ -191,6 +198,8 @@ import uniSearchBar from '@/components/uni-search-bar/uni-search-bar.vue'
 import Tabbar from '@/pages/template/tabbar/tabbar.nvue'
 import uniLoadMore from '@/components/uni-load-more/uni-load-more.vue'
 import uniPopup from '@/components/uni-popup/uni-popup.vue'
+import uniFab from '@/components/uni-fab/uni-fab.vue'
+import base from '@/common/app-base.js'
 import {
   timerZero
 } from '@/common/util.js';
@@ -199,7 +208,8 @@ export default {
     uniSearchBar,
     Tabbar,
     uniLoadMore,
-    uniPopup
+    uniPopup,
+    uniFab
   },
   data() {
     return {
@@ -340,6 +350,9 @@ export default {
       uni.navigateTo({
         url: '/pages/property/payment-records/payment-records?id=' + ids
       });
+    },
+    trigger() {
+      base.openPage('/pages/property/add-meetingroom/add-meetingroom');
     }
   }
 }
@@ -407,7 +420,9 @@ page {
   flex-wrap: nowrap;
   padding-left: 34upx;
   padding-right: 34upx;
-  margin-right: 50upx;
+  width: 50px;
+ margin-left: 8px;
+  /* margin-right: 30upx; */
 }
 
 .uni-tab-item-title {
