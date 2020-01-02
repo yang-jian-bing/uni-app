@@ -30,7 +30,7 @@
                 </picker>
               </view>
             </view>
-            <view v-if="(reserveData instanceof Array)" class="c-r d-f" style="width:100%">
+            <view v-if="!isString" class="c-r d-f" style="width:100%">
               已预约时间：
               <span v-for="item in reserveData" :key="item" style="margin: 0 6px">{{item}}</span>
             </view>
@@ -131,6 +131,15 @@ function getDate(type) {
   return `${year}-${month}-${day}`;
 }
 export default {
+    computed:{
+        isString(){
+            if(typeof this.reserveData ==='string'){
+                return true
+            }else{
+                return false
+            }
+        }
+    },
   components: {
     uniCalendar,
     LyTree
