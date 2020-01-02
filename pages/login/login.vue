@@ -11,7 +11,7 @@
 		     </view>
 		     <view class="loginBox">
 		         <span>密码</span>
-		         <input type="text" placeholder="请输入密码" v-model="password"/>
+		         <input type="password" placeholder="请输入密码" v-model="password"/>
 		     </view>
 		     <view class="login"  @click="login">
 		         登录
