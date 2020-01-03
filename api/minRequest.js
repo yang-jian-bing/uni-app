@@ -7,15 +7,15 @@ minRequest.interceptors.request(request => {
 
   console.log(request)
       if(request.method=="POST"){
-          uni.getStorage({
-              key: "userdata",
-              success: function(res) {
-                  if (res.data) {
-                      request.data.userAccId = res.data.loginname;
-                  }
-              }
-          });
-          request.data.channel = 4;
+          // uni.getStorage({
+          //     key: "userdata",
+          //     success: function(res) {
+          //         if (res.data) {
+          //             request.data.userAccId = res.data.loginname;
+          //         }
+          //     }
+          // });
+          // request.data.channel = 4;
           return request;
 
 
