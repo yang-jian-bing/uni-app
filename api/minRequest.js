@@ -4,7 +4,14 @@ const minRequest = new MinRequest();
 
 // 请求拦截器
 minRequest.interceptors.request(request => {
-    request.data.userAccId = 1;
+    uni.getStorage({
+        key: "userdata",
+        success: function(res) {
+            if (res.data) {
+                request.data.userAccId = res.data.loginname;
+            }
+        }
+    });
     request.data.channel = 4;
     return request;
 });
