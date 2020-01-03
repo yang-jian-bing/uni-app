@@ -4,29 +4,42 @@ const minRequest = new MinRequest();
 
 // 请求拦截器
 minRequest.interceptors.request(request => {
+
   console.log(request)
       if(request.method=="POST"){
-          request.data.userAccId = 1;
+          uni.getStorage({
+              key: "userdata",
+              success: function(res) {
+                  if (res.data) {
+                      request.data.userAccId = res.data.loginname;
+                  }
+              }
+          });
           request.data.channel = 4;
           return request;
+
+
       }else  if(request.method=="GET"){
-          let accessToken=null;
+
           uni.getStorage({
                    key:"userdata",
                    success:function(res){
                        console.log(res)
                        if(res.data){
-                           accessToken=res.data.accessToken
+                           request.data.accessToken=res.data.accessToken;
+                           request.data.userAccId = res.data.loginname;
                        }
                 }
               })
-            request.data.accessToken=accessToken;
-            request.data.userAccId = 1;
+
             request.data.channel = 4;
-           
+
             return request;
 
       }
+
+
+
 
 });
 
