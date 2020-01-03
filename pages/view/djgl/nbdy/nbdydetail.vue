@@ -5,7 +5,7 @@
 </template>
 
 <script>
-   import {getHandle,getToken} from "../../../../common/api.js"
+   import {getToken} from "../../../../common/api.js"
 	export default {
 		data() {
 			return {
@@ -16,7 +16,10 @@
 
 		},
 		onLoad(option) {
+
+
              this.url=this.url+"&dataid="+option.id+"&accessToken="+getToken()
+             console.log(this.url)
 
 		}
 	}

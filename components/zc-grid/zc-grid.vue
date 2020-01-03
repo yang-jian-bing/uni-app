@@ -2,8 +2,8 @@
 	<view class="warp">
 		<view class="example-body">
 			<uni-grid  :show-border="false" :square="false" :highlight="false" @change="change">
-				<uni-grid-item :hor="0" :ver="0" marker="badge" type="error" text="12" v-for="item in list" :key="item.id">
-					<image class="image" :src="item.url" mode="aspectFill" @click="webTo(item)" />
+				<uni-grid-item :hor="0" :ver="0" marker="badge" type="error" text="12" v-for="(item,index) in list" :key="index">
+					<image class="image" :src="item.url"  @click="webTo(item, index)" />
 					<text class="text">{{item.text}}</text>
 				</uni-grid-item>
 			</uni-grid>
@@ -73,10 +73,14 @@
 				let {
 					index
 				} = e.detail
-				
+
 			},
-			webTo(item) {
+			webTo(item,index) {
+                console.log(item)
 				this.$emit('goTo',item)
+                // uni.navigateTo({
+                // 	url:item.toURl
+                // })
 			}
 		}
 	}

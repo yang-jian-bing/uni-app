@@ -4,10 +4,10 @@
             <view class="chouList" v-for="item in datalist" :key="item.id" @click="goto(item.id)">
                 <view class="propFlex invdiff">
                     <p class="actWz proFont">缴费单id:{{item.paymentid}}</p>
-                   <!-- <p class="actWz proFont">总金额:{{item.amount}}</p> -->
 
 
-                     <span class="comWaiting">收款方：1111</span>
+
+                    <!-- <span class="comWaiting">收款方：1111</span> -->
                 </view>
                  <p class="serwz ">总金额：{{item.amount}}</p>
                  <p class="serwz ">缴费渠道：<span  v-if="item.channel==1">支付宝支付</span><span v-else-if="item.channel==2">微信支付</span><span v-else-if="item.channel==3">手动写入</span></p>
@@ -24,15 +24,15 @@
 
 <script>
     import {
-        getHandle
-    } from "../../../common/api.js"
+        getFinance
+    } from "../../../api/guokai.js"
     import uniLoadMore from "@/components/uni-load-more/uni-load-more.vue"
 	export default {
         components: {uniLoadMore},
 		data() {
 			return {
-               datalist:"",
-               	pages:"",
+               datalist:[],
+               	totalNums:"",
                	pageNum:"1",
                	state:"more",
                	statusTypes: [{
@@ -60,26 +60,36 @@
                     url: 'cwgldetail?id=' + data
                 })
             },
-             add(e){
+            init(){
+                this.$minApi.getFinance({
+                      "page":this.pageNum,
+                      "limit":"13",
+                        "module":"8",
+                       "menu":"1"
+                }).then(res=>{
+                      this.state="more";
+                      console.log(res)
+
+                    for (let  i in res.data) {
+                        console.log(res.data)
+                         console.log(res.data[i])
+                     				  this.datalist.push(res.data[i]);
+                      	 		}
+
+                    this.totalNums=res.totalNums
+                })
+            },
+             add(){
              	this.state="loading";
              	let that=this;
-             	that.pageNum++;
+
 
              	console.log(that.pageNum)
              	setTimeout(function(){
-             		if(that.pageNum<=that.pages){
-             			getHandle("workflow/rest/v0/mobile/get.wf",{
-             				"page":this.pageNum,
-             				"limit":"13",
-             				"module":"8",
-             				"menu":"1"
+             		if(that.pageNum*13<that.totalNums){
+                           that.pageNum++;
+                           that.init()
 
-             			},"GET").then(res=>{
-             				that.state="more";
-             				for (var i = 0; i < res.data.data.length; i++) {
-             							that.datalist.push(res.data.data[i]);
-             				 		}
-             			})
 
              		}else{
              			that.state="noMore";
@@ -89,16 +99,9 @@
                 }
         },
         onLoad() {
-                getHandle("workflow/rest/v0/mobile/get.wf",{
-                   "page":this.pageNum,
-                   "limit":"13",
-                   "module":"8",
-                   "menu":"1"
-                }).then(res=>{
-                    console.log(res)
-                    this.datalist=res[1].data.data
-                    this.pages=res[1].data.page
-                })
+
+
+               this.init()
         }
 	}
 </script>

@@ -22,15 +22,15 @@
 
 <script>
     import {
-        getHandle,getToken
+        getToken
     } from "../../../../common/api.js"
-
+import { getLeave } from "../../../../api/guokai.js"
 
 	export default {
 
 		data() {
 			return {
-				datalist:"",
+				datalist:[],
 
 
 			}
@@ -40,19 +40,30 @@
                  uni.navigateTo({
                      url:"../leavedetail/leavedetail?workid="+id
                  })
+           },
+           init(){
+               let accessToken =  getToken()
+               console.log(accessToken)
+               console.log(this.$minApi)
+               this.$minApi.getLeave().then(res=>{
+                  console.log(res)
+                  for (let  i in res.data) {
+
+                                     				  this.datalist.push(res.data[i]);
+                                      	 		}
+
+
+
+               })
            }
 		},
+
+
 		onLoad() {
+         console.log("111")
+        this.init()
 
 
-				getHandle("yloa/api/v1/askforleave/get.wf?accessToken="+getToken())
-				 .then(res=>{
-					 // console.log(res)
-					 // console.log(JSON.parse(res[1].data.data))
-					 this.datalist= JSON.parse(res[1].data.data)
-     //                 console.log(this.datalist)
-					//  this.pages=res.data.page;
-				 })
 
 		}
 	}

@@ -2,7 +2,7 @@
 	<view class="content">
 
 		 <view class="conten-top" >
-		 	  <span >首页</span>
+
 		 </view>
 		 <view class="card"></view>
 	   <view class="content-main">
@@ -56,16 +56,17 @@
 		height: 370upx;
 		background: #fff;
 		position: absolute;
-		top:150upx;
+		top:60upx;
 		border: 1upx solid #eee;
 		border-radius: 20upx;
 		box-shadow:4upx 4upx 7upx  #999;
-		background:url(../../static/rotImga.png);
-		background-size:cover;
+		background-image:url("~@/static/rotImga.gif");
+		 background-size: cover;
+		 background-position: center center;
 	}
     .conten-top{
 		width: 100%;
-		height: 300upx;
+		height: 200upx;
 		background: #467BEB;
 		text-align: center;
 		font-size: 20px;

@@ -21,16 +21,16 @@
 </template>
 
 <script>
+
+    import {getExtrawork} from "../../../../api/guokai.js"
     import {
-        getHandle,getToken
+        getToken
     } from "../../../../common/api.js"
-
-
 	export default {
 
 		data() {
 			return {
-				datalist:"",
+				datalist:[],
 
 
 			}
@@ -42,16 +42,21 @@
                  })
            }
 		},
+        init(){
+            this.$minApi.getExtrawork().then(res=>{
+
+               for (let  i in res.data) {
+
+                                  				  this.datalist.push(res.data[i]);
+                                   	 		}
+
+
+            })
+        },
 		onLoad() {
 
+             this.init()
 
-				getHandle("yloa/api/v1/overtimeapply/get.wf?accessToken="+getToken())
-				 .then(res=>{
-					 // console.log(res)
-					console.log(JSON.parse(res[1].data.data))
-					 this.datalist= JSON.parse(res[1].data.data)
-
-				 })
 
 		}
 	}

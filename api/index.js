@@ -4,6 +4,7 @@ import zhanghaiqi from "./zhanghaiqi";
 import mengguodong from "./mengguodong";
 import zhenghao from "./zhenghao";
 import lihao from "./lihao";
+import guokai from "./guokai.js"
 
 let object = Object.assign(
     {},
@@ -12,7 +13,8 @@ let object = Object.assign(
     zhanghaiqi,
     mengguodong,
     zhenghao,
-    lihao
+    lihao,
+    guokai
 );
 export default {
     // 这里统一管理api请求

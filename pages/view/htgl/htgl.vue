@@ -2,7 +2,7 @@
 	<view>
 
 
-			  <view class="joiList" v-for="item of datalist"  :key="item.id"  @click="goto(item.id)">
+			  <view class="joiList" v-for="item of datalist"  :key="item.id"  >
 			      <view class="serBox serindWid">
 
 
@@ -30,14 +30,14 @@
 </template>
 
 <script>
-    import {getHandle} from "../../../common/api.js"
+ import {getParty} from "../../../api/guokai.js"
 import uniLoadMore from "@/components/uni-load-more/uni-load-more.vue"
 	export default {
         components: {uniLoadMore},
 		data() {
 			return {
-                  datalist:"",
-                  	pages:"",
+                  datalist:[],
+                  totalNums:"",
                   	pageNum:"1",
                   	state:"more",
                   	statusTypes: [{
@@ -61,46 +61,45 @@ import uniLoadMore from "@/components/uni-load-more/uni-load-more.vue"
 
 		methods: {
 
+            init(){
+                this.$minApi.getParty({
+                      "page":this.pageNum,
+                    "limit":"13",
+                    							"module":"1",
+                    							"menu":"1"
+                }).then(res=>{
+                     this.state="more";
+                     console.log(res)
+                  for (let  i in res.data) {
 
+                   				  this.datalist.push(res.data[i]);
+                    	 		}
+
+                    this.totalNums=res.totalNums
+                })
+            },
              add(e){
-             	this.state="loading";
-             	let that=this;
-             	that.pageNum++;
 
-             	console.log(that.pageNum)
-             	setTimeout(function(){
-             		if(that.pageNum<=that.pages){
-             			getHandle("workflow/rest/v0/mobile/get.wf",{
-             				"page":this.pageNum,
-             				"limit":"13",
-             				"module":"2",
-             				"menu":"1"
+                   this.state="loading";
+                   let that=this;
 
-             			},"GET").then(res=>{
-             				that.state="more";
-             				for (var i = 0; i < res.data.data.length; i++) {
-             							that.datalist.push(res.data.data[i]);
-             				 		}
-             			})
 
-             		}else{
-             			that.state="noMore";
-             		}
 
-             	},500)
+                   setTimeout(function(){
+                   	if(that.pageNum*13<that.totalNums){
+                              that.pageNum++;
+                              that.init()
+
+
+                   	}else{
+                   		that.state="noMore";
+                   	}
+
+                   },500)
                 }
 		},
         onLoad() {
-                getHandle("workflow/rest/v0/mobile/get.wf",{
-                   "page":this.pageNum,
-                   "limit":"13",
-                   "module":"1",
-                   "menu":"1"
-                }).then(res=>{
-                    console.log(res)
-                    this.datalist=res[1].data.data
-                    this.pages=res[1].data.page
-                })
+               this.init()
         }
 
 	}

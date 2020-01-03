@@ -10,10 +10,8 @@
 
             "path": "pages/index/index",
             "style": {
-                "navigationBarTitleText": "首页",
-                "app-plus": {
-                    "titleNView": false
-                }
+                "navigationBarTitleText": "首页"
+
             }
         },
 
@@ -84,6 +82,12 @@
         },
         {
             "path": "pages/view/djgl/learning/learning",
+            "style": {
+                "navigationBarTitleText": "党建学习材料"
+            }
+        },
+        {
+            "path": "pages/view/djgl/learning/learningdetail",
             "style": {
                 "navigationBarTitleText": "党建学习材料"
             }
@@ -441,7 +445,7 @@
     "globalStyle": {
         "navigationBarTextStyle": "white",
         "navigationBarTitleText": "Hello uniapp",
-        "navigationBarBackgroundColor": "#007AFF",
+        "navigationBarBackgroundColor": "#467BEB",
         "backgroundColor": "#F8F8F8",
         "backgroundColorTop": "#F4F5F6",
         "backgroundColorBottom": "#F4F5F6",

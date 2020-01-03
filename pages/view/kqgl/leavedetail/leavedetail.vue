@@ -6,7 +6,7 @@
 
 <script>
     import {
-        getHandle,getToken
+        getToken
     } from "../../../../common/api.js"
 	export default {
 		data() {

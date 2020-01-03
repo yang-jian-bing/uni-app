@@ -7,11 +7,11 @@
 		     </view>
 		     <view class="loginBox">
 		         <span>用户名</span>
-		         <input type="text" placeholder="请输入用户名或电话号码"  v-model="username"/>
+		         <input type="text" placeholder="请输入用户名"  v-model="fordata.username"/>
 		     </view>
 		     <view class="loginBox">
 		         <span>密码</span>
-		         <input type="password" placeholder="请输入密码" v-model="password"/>
+		         <input type="password" placeholder="请输入密码" v-model="fordata.password"/>
 		     </view>
 		     <view class="login"  @click="login">
 		         登录
@@ -22,74 +22,76 @@
 </template>
 
 <script>
-    import {postHandle} from "../../common/api.js"
 
+  import {login} from "../../api/guokai.js"
 	export default {
 		data() {
 			return {
-				username:"",
-				password:''
+                fordata:{
+                    username:"",
+                    password:''
+                }
+
 			}
 		},
 		methods: {
 			 login(){
+                  let that=this;
 
-				 let that=this;
-
-				postHandle(`workflow/rest/v0/moible/user/login.wf?username=${this.username}&password=${this.password}`
-
-                ).then((res)=>{
-				      console.log(res)
-                      if(res[1].statusCode==500){
-                          uni.showToast({
-                            	    title: "登录失败",
-                           	         duration: 2000,
-                                     icon:"none"
-                           	})
-
-                      }else if(res[1].statusCode==200){
-                          uni.showToast({
-                            	    title: "登录成功",
-                           	         duration: 2000,
-
-                           	})
-                             var data= JSON.parse(res[1].data.data)
-                             uni.setStorage({
-                                 key: 'userdata',
-                                 data: data,
-                                 success: function () {
-                                     console.log('success');
-                                 }
-                             });
-                           uni.switchTab({
-                           	url:"/pages/index/index"
-                           })
-                      }
+                 if(that.fordata.username!=""&&that.fordata.password!=""){
+                         console.log(this.$minApi)
+                       this.$minApi.login(that.fordata).then(res=>{
+                            console.log(res)
+                            if(res.successcode==1){
+                                uni.switchTab({
+                                url:"/pages/index/index"
+                                })
+                                var data= JSON.parse(res.data)
+                                 uni.setStorage({
+                                     key: 'userdata',
+                                      data: data,
+                                     success: function () {
+                                        console.log('success');
+                                    }
+                                 });
 
 
+                                uni.showToast({
+                                  	    title: "登录成功",
+                                	    duration: 1000,
+
+                                	})
 
 
-					// if (res.data.indexOf(";") > -1){
+                            }else{
+                                uni.showToast({
+                                 	    title: "登录失败",
+                                 	         duration: 2000,
+                                          icon:"none"
+                                 	})
 
-					// 	var message = res.data.split(";");
-					//  	uni.showToast({
-					//  	    title: message,
-					// 	    duration: 2000
-					// 	})
-					// 	uni.hideToast()
-					// }else{
-					// 	uni.showToast({
-					// 	    title: '登录成功',
-					// 	    duration: 2000
-					// 	})
-					// 	uni.switchTab({
-					// 		url:"/pages/index/index"
-					// 	})
-					// }
+                           }
+                       })
 
 
 
-				})
+
+
+
+                 }else{
+                     uni.showToast({
+                      	    title: "请输入完整用户名和密码",
+                      	         duration: 2000,
+                               icon:"none"
+                      	})
+                 }
+
+
+
+
+
+
+
 
 
 
