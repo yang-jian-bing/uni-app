@@ -23,9 +23,8 @@
                      uni.getStorage({
                           key: 'userdata',
                           success: function (res) {
-                             console.log(res);
-                             that.accessToken=res.data.accessToken
-                            that.url+"&accessToken="+res.data.accessToken
+                           
+                            that.url+"&accessToken="+res.data.accessToken_decode
                           }
                       });
 

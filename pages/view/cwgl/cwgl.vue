@@ -17,7 +17,7 @@
 
         </view>
         <view>
-                <uni-load-more :status="state" :content-text="contentText" color="#007aff" @clickLoadMore="add"></uni-load-more>
+                <uni-load-more :status="state" :content-text="contentText" color="#007aff" ></uni-load-more>
         </view>
 	</view>
 </template>
@@ -97,6 +97,11 @@
 
              	},500)
                 }
+        },
+        onReachBottom(){
+            if(this.state=="more"){
+                 this.add()
+            }
         },
         onLoad() {
 

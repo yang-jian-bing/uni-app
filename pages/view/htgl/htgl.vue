@@ -78,7 +78,7 @@ import uniLoadMore from "@/components/uni-load-more/uni-load-more.vue"
                     this.totalNums=res.totalNums
                 })
             },
-             add(e){
+             add(){
 
                    this.state="loading";
                    let that=this;
@@ -98,6 +98,11 @@ import uniLoadMore from "@/components/uni-load-more/uni-load-more.vue"
                    },500)
                 }
 		},
+        onReachBottom(){
+            if(this.state=="more"){
+                 this.add()
+            }
+        },
         onLoad() {
                this.init()
         }

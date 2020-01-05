@@ -71,7 +71,7 @@
                     this.totalNums=res.totalNums
                 })
             },
-			add(e){
+			add(){
 				this.state="loading";
 				let that=this;
 
@@ -91,7 +91,11 @@
 
             }
 		},
-
+    onReachBottom(){
+        if(this.state=="more"){
+             this.add()
+        }
+    },
 		onLoad() {
             this.init()
 		}

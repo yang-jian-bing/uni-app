@@ -43,7 +43,7 @@ function getToken(){
         key: 'userdata',
         success: function (res) {
 
-            accessToken=res.data.accessToken
+            accessToken=res.data.accessToken_decode
 
         }
     });

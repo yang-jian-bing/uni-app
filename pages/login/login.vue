@@ -39,7 +39,7 @@
                   let that=this;
 
                  if(that.fordata.username!=""&&that.fordata.password!=""){
-                         console.log(this.$minApi)
+                       
                        this.$minApi.login(that.fordata).then(res=>{
                             console.log(res)
                             if(res.successcode==1){
@@ -47,6 +47,7 @@
                                 url:"/pages/index/index"
                                 })
                                 var data= JSON.parse(res.data)
+                                console.log(data)
                                  uni.setStorage({
                                      key: 'userdata',
                                       data: data,

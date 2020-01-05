@@ -77,6 +77,11 @@ import {getParty} from "../../../../api/guokai.js"
 
 
                },
+               onReachBottom(){
+                   if(this.state=="more"){
+                        this.add()
+                   }
+               },
              init(){
                  this.$minApi.getParty({
                        "page":this.pageNum,

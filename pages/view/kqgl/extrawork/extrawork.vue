@@ -23,9 +23,7 @@
 <script>
 
     import {getExtrawork} from "../../../../api/guokai.js"
-    import {
-        getToken
-    } from "../../../../common/api.js"
+   
 	export default {
 
 		data() {
@@ -40,19 +38,24 @@
                  uni.navigateTo({
                      url:"../extraworkdetail/extraworkdetail?workid="+id
                  })
+           },
+           init(){
+              this.$minApi.getExtrawork().then(res=>{
+                             console.log(res)
+                                let result=JSON.parse(res.data)
+                                console.log(result)
+                                for (let  i in result) {
+
+                                              this.datalist.push(result[i]);
+
+                                                	 		}
+
+
+
+                           })
            }
 		},
-        init(){
-            this.$minApi.getExtrawork().then(res=>{
 
-               for (let  i in res.data) {
-
-                                  				  this.datalist.push(res.data[i]);
-                                   	 		}
-
-
-            })
-        },
 		onLoad() {
 
              this.init()

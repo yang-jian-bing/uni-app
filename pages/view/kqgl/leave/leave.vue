@@ -21,9 +21,7 @@
 </template>
 
 <script>
-    import {
-        getToken
-    } from "../../../../common/api.js"
+
 import { getLeave } from "../../../../api/guokai.js"
 
 	export default {
@@ -42,28 +40,54 @@ import { getLeave } from "../../../../api/guokai.js"
                  })
            },
            init(){
-               let accessToken =  getToken()
-               console.log(accessToken)
-               console.log(this.$minApi)
-               this.$minApi.getLeave().then(res=>{
-                  console.log(res)
-                  for (let  i in res.data) {
 
-                                     				  this.datalist.push(res.data[i]);
-                                      	 		}
+                 uni.request({
+                   url:"http://www.ylibi.com/horizon/horizon/yloa/api/v1/askforleave/get.wf?accessToken=TUfKbStH79iCdo3J%2f%2bQXz%2f9NrA3ikDYoprzftK8uxVwMFg3Vyw471rSTkaDQ%2bilM",
 
 
+                    success(res) {
+                        console.log(res)
+                     }
+                 })
 
-               })
+                // this.$minApi.getLeave().then(res=>{
+                //   console.log(res)
+                //     for (let  i in res.data) {
+
+                //                    				  this.datalist.push(res.data[i]);
+                //                       	 		}
+
+
+
+                // })
            }
 		},
 
 
 		onLoad() {
-         console.log("111")
-        this.init()
+
+      // uni.request({
+      //   url:"http://www.ylibi.com/horizon/horizon/yloa/api/v1/askforleave/get.wf?accessToken=TUfKbStH79iCdo3J%2f%2bQXz%2f9NrA3ikDYoprzftK8uxVwMFg3Vyw471rSTkaDQ%2bilM",
 
 
+      //    success(res) {
+      //        console.log(res)
+      //     }
+      // })
+
+   this.$minApi.getLeave().then(res=>{
+                  console.log(res)
+                     let result=JSON.parse(res.data)
+                     console.log(result)
+                     for (let  i in result) {
+
+                                   this.datalist.push(result[i]);
+
+                                     	 		}
+
+
+
+                })
 
 		}
 	}
