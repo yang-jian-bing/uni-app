@@ -1,20 +1,6 @@
 <template>
 	<view>
-		<!-- <view  class="top">
-			<view class='index-bg'>
-				<view class='topmid pdt50'>
-					<view class="index-flex">
-						<p>岗位：物业管理人员</p>
-						<p>姓名：李晓霞</p>
-					    <p>部门：物业</p>
-					</view>
-					<view class="outlogin">
-						退出登录
-					</view>
-				</view>
-
-			</view>
-		</view> -->
+	
 		<view class="list">
 			<zc-grid :list="imgList"  @goTo="add"></zc-grid>
 		</view>
@@ -47,12 +33,12 @@
 						text: '已办理',
 						 toURl:"http://www.ylibi.com/horizon/horizon/module/view/horizon.view.jsp?isprotocolpage=true&viewId=HZ2882c0581ed27d01581f37113d008a"
 					},
-                    {
-                        id:4,
-                    	url: '../../static/btnOtm.png',
-                    	text: '加班申请测试',
-                    	toURl:"http://www.ylibi.com/horizon/horizon/module/view/horizon.view.jsp?isprotocolpage=true&viewId=HZ2882c0581ed27d01581f37113d008a"
-                    },
+                    // {
+                    //     id:4,
+                    // 	url: '../../static/btnOtm.png',
+                    // 	text: '加班申请测试',
+                    // 	toURl:"http://www.ylibi.com/horizon/horizon/module/view/horizon.view.jsp?isprotocolpage=true&viewId=HZ2882c0581ed27d01581f37113d008a"
+                    // },
 
 
 
@@ -72,7 +58,7 @@
              uni.getStorage({
                  key: 'userdata',
                  success: function (res) {
-                     console.log(res);
+                    
                      accessToken=res.data.accessToken
 
                  }
@@ -99,11 +85,7 @@
                 })
             }
 
-             // // Location.href=data.toURl+"&"+accessToken;
-             // Window.location.href="https://www.baidu.com";
-             // console.log(data.toURl+"&"+accessToken)
-             // console.log(location)
-             // console.log(accessToken)
+           
          }
 		}
 	}

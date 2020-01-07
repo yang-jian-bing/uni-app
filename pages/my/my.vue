@@ -8,7 +8,8 @@
 			        <view class='weWzpad' >
 			            <p class='font14'>用户名：{{username}}</p>
 			            <p class='font14'>登录账号：{{loginname}}</p>
-                         <p class='font14'>部门id：{{deptid}}</p>
+                        
+                         <p class='font14'>部门信息：{{deptid}}</p>
 			        </view>
 
 

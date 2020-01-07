@@ -468,7 +468,7 @@
                 "selectedIconPath": "static/homePre.png"
             },
             {
-                "pagePath": "pages/commission/commission",
+                "pagePath":"pages/commission/commissiondetail",
                 "text": "待办审批",
                 "iconPath": "static/donDef.png",
                 "selectedIconPath": "static/donPre.png"

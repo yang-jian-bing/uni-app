@@ -17,7 +17,7 @@
               }
           },
           onLoad() {
-                 // console.log(this.accessToken)
+               
                  var that=this;
 
                      uni.getStorage({
