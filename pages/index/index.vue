@@ -65,7 +65,7 @@
 		border: 1upx solid #eee;
 		border-radius: 20upx;
 		box-shadow:4upx 4upx 7upx  #999;
-		background-image:url("~@/static/123.gif");
+		background-image:url("~@/static/rotImgaa.gif");
 		 background-size: cover;
 		 background-position: 10% 10%;
 	}
