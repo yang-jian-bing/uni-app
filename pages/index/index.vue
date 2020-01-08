@@ -32,6 +32,7 @@
 					{imgUrl:'../../static/btnCheck.png',name:"考勤管理",url:"../view/kqgl/kqgl"},
 					{imgUrl:'../../static/btnProject.png',name:"项目管理",url:"../view/xmgl/xmgl"},
 					{imgUrl:'../../static/btnRecruit.png',name:"招聘管理",url:"../view/zpgl/zpgl"},
+                    {imgUrl:'../../static/proPre.png',name:"物业管理",url:"../property/property-index/property-index"},
 
 				]
 			}
