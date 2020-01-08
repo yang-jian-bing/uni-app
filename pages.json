@@ -473,12 +473,7 @@
                 "iconPath": "static/donDef.png",
                 "selectedIconPath": "static/donPre.png"
             },
-            {
-                "pagePath": "pages/property/property-index/property-index",
-                "text": "物业",
-                "iconPath": "static/proDef.png",
-                "selectedIconPath": "static/proPre.png"
-            },
+          
             {
                 "pagePath": "pages/my/my",
                 "text": "我的",
