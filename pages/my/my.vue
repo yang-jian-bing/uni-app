@@ -8,8 +8,8 @@
 			        <view class='weWzpad' >
 			            <p class='font14'>用户名：{{username}}</p>
 			            <p class='font14'>登录账号：{{loginname}}</p>
-                        
-                         <p class='font14'>部门信息：{{deptid}}</p>
+
+                         <p class='font14'>部门信息：{{deptname}}</p>
 			        </view>
 
 
@@ -28,7 +28,8 @@
 			return {
                   deptid:"",
                    loginname:"",
-                   username:""
+                   username:"",
+                   deptname:""
 			}
 		},
 		methods: {
@@ -40,8 +41,8 @@
            uni.getStorage({
                key: 'userdata',
                success: function (res) {
-
-                   that.deptid=res.data.deptid;
+                  console.log(res)
+                   that.deptname=res.data.deptname;
                    that.loginname=res.data.loginname;
                    that.username=res.data.username
 
