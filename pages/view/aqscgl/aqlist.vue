@@ -58,7 +58,7 @@ import uniLoadMore from "@/components/uni-load-more/uni-load-more.vue"
 		methods: {
             goto(data){
                 uni.navigateTo({
-                    url: 'zpgldetail?id=' +data
+                    url: 'aqscgldetail?id=' +data
                 })
             },
             init(){

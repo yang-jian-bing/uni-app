@@ -17,7 +17,7 @@
 		methods: {
            
 		},
-        onLoad() {
+        onLoad(option) {
              this.url=this.url+option.workid+"&accessToken="+getToken();
         }
 	}
