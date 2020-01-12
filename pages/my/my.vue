@@ -7,15 +7,19 @@
 
 			        <view class='weWzpad' >
 			            <p class='font14'>用户名：{{username}}</p>
-			            <p class='font14'>登录账号：{{loginname}}</p>
+			            <p class='font14'>登录账号：{{loginname}} </p>
 
                          <p class='font14'>部门信息：{{deptname}}</p>
 			        </view>
 
 
-			</view>
-		</view>
-
+			          <view>
+                              <button type="primary" size="mini" @click="quit">退出</button>
+                       </view>
+           </view>
+      
+           
+       </view>
 	</view>
 </template>
 
@@ -33,7 +37,12 @@
 			}
 		},
 		methods: {
-
+             quit(){
+                 uni.clearStorage();
+                 uni.redirectTo({
+                     url: "../login/login"
+                 });
+             }
 		},
 
 		onLoad() {
@@ -61,6 +70,8 @@
 	background: #fff;
     border-top-width:0px;
 	border-bottom: 1px solid #eee;
+    justify-content: space-between;
+     align-items: center;
 
 
 

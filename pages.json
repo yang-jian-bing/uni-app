@@ -14,7 +14,7 @@
 
             }
         },
-        
+
 
 
 
@@ -29,10 +29,23 @@
             }
         },
         //首页九宫格
+
         {
             "path": "pages/view/aqscgl/aqscgl",
             "style": {
-                "navigationBarTitleText": "监管通知列表"
+                "navigationBarTitleText": "监管管理"
+            }
+        },
+        {
+            "path": "pages/view/aqscgl/aqlist",
+            "style": {
+                "navigationBarTitleText": "监管列表"
+            }
+        },
+        {
+            "path": "pages/view/aqscgl/addaq",
+            "style": {
+                "navigationBarTitleText": "监管添加"
             }
         },
         {
@@ -160,6 +173,24 @@
             "path": "pages/view/htgl/htgl",
             "style": {
                 "navigationBarTitleText": "合同管理"
+            }
+        },
+        {
+            "path": "pages/view/htgl/addht",
+            "style": {
+                "navigationBarTitleText": "合同添加"
+            }
+        },
+        {
+            "path": "pages/view/htgl/htlist",
+            "style": {
+                "navigationBarTitleText": "合同列表"
+            }
+        },
+        {
+            "path": "pages/view/htgl/htdetail",
+            "style": {
+                "navigationBarTitleText": "合同详情"
             }
         },
         {
@@ -473,7 +504,7 @@
                 "iconPath": "static/donDef.png",
                 "selectedIconPath": "static/donPre.png"
             },
-          
+
             {
                 "pagePath": "pages/my/my",
                 "text": "我的",
