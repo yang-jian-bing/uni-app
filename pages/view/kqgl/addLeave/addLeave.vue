@@ -11,14 +11,14 @@
 	export default {
 		data() {
 			return {
-                  url:"http://www.ylibi.com/horizon/horizon/workflow/support/open.wf?flowId=HZ8080816e3a12ee016e3fdbae1d0096"
+                  url:""
 			}
 		},
 		methods: {
-           
+
 		},
-        onLoad() {
-             this.url=this.url+option.workid+"&accessToken="+getToken();
+        onLoad(option) {
+             this.url="http://www.ylibi.com/horizon/horizon/workflow/support/open.wf?flowId=HZ8080816e3a12ee016e3fdbae1d0096&accessToken="+getToken();
         }
 	}
 </script>

@@ -11,14 +11,14 @@
 	export default {
 		data() {
 			return {
-                  url:"http://www.ylibi.com/horizon/horizon/workflow/support/open.wf?flowId=zcgzd"
+                  url:""
 			}
 		},
 		methods: {
 
 		},
         onLoad() {
-             this.url=this.url+option.workid+"&accessToken="+getToken();
+             this.url="http://www.ylibi.com/horizon/horizon/workflow/support/open.wf?flowId=zcgzd&accessToken="+getToken();
         }
 	}
 </script>

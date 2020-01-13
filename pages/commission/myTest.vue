@@ -12,7 +12,7 @@
           data(){
               return{
                   accessToken:"",
-                   url:"http://www.ylibi.com/horizon/horizon/workflow/support/open.wf?flowId=zcgzd"
+                   url:""
 
               }
           },
@@ -25,7 +25,7 @@
                           success: function (res) {
                              console.log(res);
                            console.log(res.data.accessToken_decode)
-                             that.url=that.url+"&accessToken="+res.data.accessToken_decode
+                             that.url="http://www.ylibi.com/horizon/horizon/workflow/support/open.wf?flowId=zcgzd&accessToken="+res.data.accessToken_decode
                           }
                       });
 
