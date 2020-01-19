@@ -9,7 +9,7 @@
 			            <p class='font14'>用户名：{{item.username}}</p>
 			            <p class='font14'>申请开始时间：{{item.stime}}</p>
 			            <p class='font14'>请假结束时间：{{item.etime}}</p>
-						 <p class='font14'>请假缘由: {{item.created}}</p>
+						 <p class='font14'>请假缘由: {{item.reason}}</p>
 
 			        </view>
 

@@ -37,12 +37,15 @@
 		methods: {
 			 login(){
                   let that=this;
-
+                uni.showLoading({
+                    title: '登录中'
+                });
                  if(that.fordata.username!=""&&that.fordata.password!=""){
-                       
+
                        this.$minApi.login(that.fordata).then(res=>{
                             console.log(res)
                             if(res.successcode==1){
+                                  uni.hideLoading();
                                 uni.switchTab({
                                 url:"/pages/index/index"
                                 })
@@ -65,6 +68,7 @@
 
 
                             }else{
+                                uni.hideLoading();
                                 uni.showToast({
                                  	    title: "登录失败",
                                  	         duration: 2000,
