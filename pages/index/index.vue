@@ -28,7 +28,7 @@
 
 					{imgUrl:'../../static/btnPtybdg.png',name:"党建管理",url:"../view/djgl/djgl"},
 					{imgUrl:'../../static/btnDocument.png',name:"采购管理",url:"../view/gwgl/gwgl"},
-					{imgUrl:'../../static/btnContract.png',name:"合同管理",url:"../view/htgl/htgl"},
+					{imgUrl:'../../static/btnContract.png',name:"合同管理",url:"../view/htgl/htlist"},
 					{imgUrl:'../../static/btnCheck.png',name:"考勤管理",url:"../view/kqgl/kqgl"},
 					{imgUrl:'../../static/btnProject.png',name:"项目管理",url:"../view/xmgl/xmgl"},
 					{imgUrl:'../../static/btnRecruit.png',name:"招聘管理",url:"../view/zpgl/zpgl"},

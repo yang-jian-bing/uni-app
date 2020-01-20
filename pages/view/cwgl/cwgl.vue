@@ -1,6 +1,9 @@
 <template>
 	<view>
 		 <view class="top">
+             <view class="add" >
+                      +
+             </view>
             <view class="chouList" v-for="item in datalist" :key="item.id" @click="goto(item.id)">
                 <view class="propFlex invdiff">
                     <p class="actWz proFont">缴费单id:{{item.paymentid}}</p>
@@ -117,7 +120,10 @@
 	    background: #fff;
 	}
 
-
+  .add{
+     width: 80upx;height: 80upx;background:#007AFF;position: fixed;bottom:50upx;right:30upx;
+     border: 1px solid #fff;border-radius: 50%;font-size:35px;text-align: center;line-height:70upx;color: #fff;
+  }
 	.line {
 	    width: 100%;
 	    height: 10px;

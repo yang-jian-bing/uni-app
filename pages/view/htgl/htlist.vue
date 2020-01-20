@@ -1,6 +1,8 @@
 <template>
 	<view>
-
+               <view class="add" @click="addht">
+               	  +
+               </view>
 
 			  <view class="joiList" v-for="item of datalist"  :key="item.id"  @click="goto(item.id)" >
 			      <view class="serBox serindWid">
@@ -79,6 +81,11 @@ import uniLoadMore from "@/components/uni-load-more/uni-load-more.vue"
                     this.totalNums=res.totalNums
                 })
             },
+            addht(){
+                uni.navigateTo({
+                    url:"./addht"
+                })
+            },
              add(){
 
                    this.state="loading";
@@ -118,7 +125,10 @@ import uniLoadMore from "@/components/uni-load-more/uni-load-more.vue"
     padding-top: 14px;
     color: #333333;
 }
-
+.add{
+     width: 80upx;height: 80upx;background:#007AFF;position: fixed;bottom:50upx;right:30upx;
+     border: 1px solid #fff;border-radius: 50%;font-size:35px;text-align: center;line-height:70upx;color: #fff;
+  }
 .topmid {
     display: flex;
     justify-content: space-between;

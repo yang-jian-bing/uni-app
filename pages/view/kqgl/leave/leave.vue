@@ -1,6 +1,9 @@
 <template>
 	<view>
 		<view class="content">
+            <view class="add"  @click="addLeave">
+                    +
+            </view>
 			<view class="joiList" v-for="item in datalist" :key="item.id"  @click="goto(item.workid)" >
 
 
@@ -38,6 +41,11 @@ import { getLeave } from "../../../../api/guokai.js"
                  uni.navigateTo({
                      url:"../leavedetail/leavedetail?workid="+id
                  })
+           },
+           addLeave(){
+               uni.navigateTo({
+                   url:"../addLeave/addLeave"
+               })
            },
            init(){
 
@@ -104,7 +112,10 @@ import { getLeave } from "../../../../api/guokai.js"
 
 
 }
-
+.add{
+     width: 80upx;height: 80upx;background:#007AFF;position: fixed;bottom:50upx;right:30upx;
+     border: 1px solid #fff;border-radius: 50%;font-size:35px;text-align: center;line-height:70upx;color: #fff;
+  }
 .serBox {
     display: flex;
     flex-direction: column;

@@ -30,16 +30,7 @@
 							text: '加班',
 							toURl:"extrawork/extrawork"
 						},
-						{
-							url: '../../../static/btnApyLean.png',
-							text: '请假申请',
-							toURl:"addLeave/addLeave"
-						},
-						{
-							url: '../../../static/btnApyOtm.png',
-							text: '加班申请',
-							toURl:"addExtraWork/addExtraWork"
-						},
+						
 						
 						
 					]
