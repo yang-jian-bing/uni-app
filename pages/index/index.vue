@@ -23,7 +23,7 @@
 				gridList:[
                     {imgUrl:'../../static/btnProIon.png',name:"我的请求",url:"../commission/myLaunch"},
                       {imgUrl:'../../static/btnReadyt.png',name:"已办流程",url:"../commission/myManage"},
-					{imgUrl:'../../static/btnSafepro.png',name:"安全生产管理",url:"../view/aqscgl/aqscgl"},
+					{imgUrl:'../../static/btnSafepro.png',name:"安全生产管理",url:"../view/aqscgl/aqlist"},
 					{imgUrl:'../../static/btnFinance.png',name:"财务管理",url:"../view/cwgl/cwgl"},
 
 					{imgUrl:'../../static/btnPtybdg.png',name:"党建管理",url:"../view/djgl/djgl"},

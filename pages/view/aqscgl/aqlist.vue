@@ -1,6 +1,8 @@
 <template>
 	<view>
-
+                 <view class="add" @click="addaq">
+                        +
+                 </view>
 			  <view class="joiList" v-for="item of datalist"  :key="item.id"  @click="goto(item.id)">
 
 
@@ -61,6 +63,11 @@ import uniLoadMore from "@/components/uni-load-more/uni-load-more.vue"
                     url: 'aqscgldetail?id=' +data
                 })
             },
+            addaq(){
+                uni.navigateTo({
+                    url: './addaq'
+                })
+            },
             init(){
                 this.$minApi.getParty({
                       "page":this.pageNum,
@@ -115,7 +122,10 @@ import uniLoadMore from "@/components/uni-load-more/uni-load-more.vue"
     padding-top: 14px;
     color: #333333;
 }
-
+.add{
+   width: 80upx;height: 80upx;background:#007AFF;position: fixed;bottom:50upx;right:30upx;
+   border: 1px solid #fff;border-radius: 50%;font-size:35px;text-align: center;line-height:80upx;color: #fff;
+}
 .topmid {
     display: flex;
     justify-content: space-between;

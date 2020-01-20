@@ -127,7 +127,7 @@ import uniLoadMore from "@/components/uni-load-more/uni-load-more.vue"
 }
 .add{
      width: 80upx;height: 80upx;background:#007AFF;position: fixed;bottom:50upx;right:30upx;
-     border: 1px solid #fff;border-radius: 50%;font-size:35px;text-align: center;line-height:70upx;color: #fff;
+     border: 1px solid #fff;border-radius: 50%;font-size:35px;text-align: center;line-height:80upx;color: #fff;
   }
 .topmid {
     display: flex;
